@@ -4,6 +4,5 @@ title = 'Adam OReilly'
 
 [Params]
 mainSections = "post"
-startdate = "2012-12-02"
 summary = true
 toc = true
