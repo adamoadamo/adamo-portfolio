@@ -1,0 +1,11 @@
+baseURL = ''
+languageCode = 'en-us'
+title = 'Adam OReilly'
+theme = 'sk2'
+
+[Params]
+mainSections = "post"
+startdate = "2012-12-02"
+subtitle = "A Hugo Theme"
+summary = true
+toc = true
