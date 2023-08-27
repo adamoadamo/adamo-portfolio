@@ -1,11 +1,11 @@
 
 @font-face {
-  font-family: aulac;
+  font-family: 'aulac';
   src: url(../fonts/aulac.woff);
 }
 
 html {
-  font-family: aulac, Arial, Helvetica, sans-serif;
+  font-family: 'aulac', Arial, Helvetica, sans-serif;
 }
 
 .flex {
