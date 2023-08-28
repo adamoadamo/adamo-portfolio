@@ -32,7 +32,7 @@
 		{{range $paginator.Pages}}
 		<div class="card">
 			<a href="{{.RelPermalink}}">
-				<h3>{{.Title}}</h3>
+				<p>{{.Title}}</p>
 			</a>
 			{{with .Lastmod}}<div class="card-date">{{dateFormat "2006-01-02" .}}</div>{{end}}
 			{{if site.Params.summary}}<div>{{.Summary}}</div>{{end}}
