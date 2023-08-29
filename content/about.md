@@ -1,25 +1,11 @@
 +++
 title = "About"
-description = "Hugo, the world's fastest framework for building websites"
-date = "2019-02-28"
-aliases = ["about-us", "about-hugo", "contact"]
-author = "Hugo Authors"
+description = "Adam O'Reilly"
+date = "2023-08-28"
+aliases = ["bio", "contact"]
+author = "Adam O'Reilly"
 +++
 
-Written in Go, Hugo is an open source static site generator available under the [Apache Licence 2.0.](https://github.com/gohugoio/hugo/blob/master/LICENSE) Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque augue tortor, lacinia quis neque sed, laoreet molestie neque. Sed suscipit quam sed eros viverra accumsan. Aenean ac vulputate elit. Nullam a volutpat elit. Integer odio tellus, ultricies vel tempus sit amet, euismod non urna. Quisque nec neque nisi. Donec et nisi malesuada, blandit libero dignissim, egestas est. Duis interdum gravida diam, eu sollicitudin nisl finibus placerat. Vestibulum a orci leo. Nulla ullamcorper massa et ligula consectetur, at pulvinar orci interdum.
 
-Hugo makes use of a variety of open source projects including:
-
-* https://github.com/yuin/goldmark
-* https://github.com/alecthomas/chroma
-* https://github.com/muesli/smartcrop
-* https://github.com/spf13/cobra
-* https://github.com/spf13/viper
-
-Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.
-
-Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.
-
-Websites built with Hugo are extremely fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.
-
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+Nam massa odio, cursus eget luctus in, scelerisque at eros. Mauris vel tristique justo. Etiam ut iaculis arcu, vel consectetur ex. Praesent quis eros vel elit pharetra eleifend. Donec maximus ullamcorper porttitor. Aliquam erat volutpat. Duis molestie leo non nibh faucibus venenatis. Fusce interdum purus quis justo eleifend efficitur. Sed eleifend volutpat leo, in tincidunt mauris feugiat quis. Ut vel enim nec metus posuere varius non quis erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus ac sapien massa. Sed rhoncus felis leo, nec finibus turpis sagittis et. Vestibulum rhoncus tempus enim, at molestie nulla dapibus eu.
