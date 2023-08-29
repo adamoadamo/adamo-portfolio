@@ -1,8 +1,20 @@
 baseURL = ''
 languageCode = 'en-us'
-title = 'Adam OReilly'
+title = "Adam O'Reilly"
 
 [Params]
 mainSections = "post"
 summary = true
 toc = true
+
+goatCounter = "adamtoreilly"
+tagline = "Adam O'Reilly is a designer based in Brooklyn, <nobr>New York</nobr>."
+googleAnalytics = "G-SSSSSSSS"
+
+disableKinds = ["taxonomy", "term", "RSS"]
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[permalinks]
+work = "/:sections[last]-:filename/"
