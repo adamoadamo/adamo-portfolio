@@ -4,5 +4,7 @@
         url(aulac.woff) format('woff');
     font-weight: normal;
     font-style: normal;
+    letter-spacing: 0.035em;
+    line-height: 135%;
   }
 
