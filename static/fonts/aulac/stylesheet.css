@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'aulac';
-    src: url(aulac.woff2) format('woff2'),
-        url(aulac.woff) format('woff');
+    src: url(AulacRegular.woff2) format('woff2'),
+        url(AulacRegular.woff) format('woff');
     font-weight: normal;
     font-style: normal;
   }
