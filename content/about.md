@@ -2,7 +2,6 @@
 title = "About"
 description = "Adam O'Reilly"
 date = "2023-08-28"
-aliases = ["bio", "contact"]
 author = "Adam O'Reilly"
 +++
 
