@@ -22,6 +22,19 @@ img {
 }
 
 .image-item {
-  /* Remove 'flex: 1' if you want each image to be its original size */
-  /* Additional styling, if needed */
+  position: relative;
+  
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    margin: 0 auto; // Center the image if its parent is wider than 500px
+  }
+  
+  .project-content {
+    width: 100%;
+    max-width: 500px; // Match max-width of the image
+    box-sizing: border-box;
+    margin: 0 auto; // Center the text box if its parent is wider than 500px
+  }
 }

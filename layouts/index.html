@@ -7,12 +7,17 @@
 				{{ range $sortedPages }}
 				  {{ if eq .Section "work" }}
 					{{ with .Resources.ByType "image" }}
-					  {{ range . }}
+					  {{ range $index, $element := . }}
 						<div class="flex-item">
 						  <div class="image-container">
 							<div class="image-item">
-							  <img src="{{ .RelPermalink }}" alt="{{ with .Params.alt }}{{ . }}{{ else }}{{ .Title }}{{ end }}" />
-							  <p>{{ with .Params.caption }}{{ . }}{{ else }}No Caption{{ end }}</p>
+							  <img src="{{ $element.RelPermalink }}" alt="{{ with $element.Params.alt }}{{ . }}{{ else }}{{ $element.Title }}{{ end }}" />
+							  <p>{{ with $element.Params.caption }}{{ . }}{{ else }}No Caption{{ end }}</p>
+							  {{ if eq $index 0 }} <!-- Check if it is the first image -->
+								<div class="project-content">
+								  {{ $.Content }}
+								</div>
+							  {{ end }}
 							</div>
 						  </div>
 						</div>
@@ -21,6 +26,9 @@
 				  {{ end }}
 				{{ end }}  
 			  </div>
+			  
+			  
+			  
 			  
 			  
 			  
