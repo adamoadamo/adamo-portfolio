@@ -70,6 +70,7 @@ nobr, .nowrap {
   max-width: calc(100% - var(--typography--margin--left) - var(--typography--margin--right) + 1px);
   overflow-wrap: break-word;
   hyphens: none;
+ 
 
   @supports (display: flow-root) {
     display: flow-root;
@@ -89,7 +90,6 @@ nobr, .nowrap {
     margin-bottom: var(--typography--margin--bottom);
   }
 }
-
 
 td { display: table-cell }
 

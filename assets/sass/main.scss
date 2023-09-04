@@ -1,6 +1,9 @@
 // main.scss
 @import 'normalize';
 @import 'grid';
+@import 'fonts';
+@import 'typography';
+@import 'links';
 
 body.frozen {
   overflow: hidden;

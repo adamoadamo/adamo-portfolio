@@ -1,14 +1,12 @@
-@import '/static/fonts/aulac/stylesheet.css';
+@import '/fonts/aulac/stylesheet.css';
 
-/*
 %--shoulders {
   --typography--shoulder: calc(1 - var(--typography--cap-height));
   --typography--shoulder--top: calc(var(--typography--shoulder) - var(--typography--shoulder--bottom));
 }
 
-%font--aulac {
+%font--Aulac {
   @extend %--shoulders;
-
   --typography--cap-height: 0.621;
   --typography--x-height: 0.456;
   --typography--shoulder--bottom: 0.265;
@@ -17,8 +15,7 @@
   --typography--tracking: -0.0222;
   --typography--underline: 0.06;
   --typography--underline--shift: -0.06;
-
-  font-family: 'aulac', serif, sans-serif;
+  font-family: 'Aulac', serif, sans-serif;
 }
 
 %font--underline {

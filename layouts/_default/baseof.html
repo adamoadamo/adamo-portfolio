@@ -23,9 +23,6 @@
 	<meta content="{{ .Site.BaseURL }}" name="og:url" />
 	<meta content="website" name="og:type" />
 	
-<!--temp css-->
-		<link rel="stylesheet" href="{{relLangURL ""}}css/style.css">
-
 <!--sass compiler-->	
 	{{ $sass := resources.Get "sass/main.scss" }}
 	{{ $options := (dict "enableSourceMap" (not hugo.IsProduction) "transpiler" "dartsass") }}
