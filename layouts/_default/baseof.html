@@ -29,7 +29,7 @@
 <!--sass compiler-->	
 	{{ $sass := resources.Get "sass/main.scss" }}
 	{{ $options := (dict "enableSourceMap" (not hugo.IsProduction) "transpiler" "dartsass") }}
-	{{ $mainCss := $sass | resources.ToCSS $options }}
+	{{ $mainCss := $sass | resources.ToCSS $options | resources.Minify }}
 	<link href="{{($mainCss | resources.Fingerprint "sha512").RelPermalink}}" rel="stylesheet" />
 
 <!--goat counter-->	

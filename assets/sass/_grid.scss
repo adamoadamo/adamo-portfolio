@@ -1,36 +1,44 @@
 @import 'variables';
 
-.container {
-  width: 100%;
-  padding-right: $gutter-width;
-  padding-left: $gutter-width;
-  margin-right: auto;
-  margin-left: auto;
+.grid-container {
+  display: grid;
+  gap: 20px;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -$gutter-width / 2;
-  margin-left: -$gutter-width / 2;
+.grid-item {
+  // Grid item styles
 }
 
-.col {
-  flex-basis: 0;
-  flex-grow: 1;
-  max-width: 100%;
-  padding-right: $gutter-width / 2;
-  padding-left: $gutter-width / 2;
+// 2-column grid
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
 }
 
-// Generate column classes
-@each $breakpoint, $value in $breakpoints {
-  @media (min-width: $value) {
-    @for $i from 1 through $grid-columns {
-      .col-#{$breakpoint}-#{$i} {
-        flex: 0 0 calc(100% / #{$grid-columns} * #{$i});
-        max-width: calc(100% / #{$grid-columns} * #{$i});
-      }
-    }
+// 3-column grid
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+// 6-column grid
+.grid-6 {
+  grid-template-columns: repeat(6, 1fr);
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// General responsive adjustments
+@media (max-width: 1024px) {
+  // Add responsive rules for medium screens
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
   }
 }
