@@ -1,15 +1,14 @@
-baseURL = 'http://www.adamtoreilly.info/'
-languageCode = 'en-us'
+baseURL = "http://adamtoreilly.info/"
+languageCode = "en-us"
 title = "Adam O'Reilly"
 
 [Params]
 mainSections = "work"
 summary = true
 toc = true
-
 goatCounter = "adamtoreilly"
 tagline = "Adam O'Reilly is a designer based in Brooklyn, <nobr>New York</nobr>."
-googleAnalytics = "G-SSSSSSSS"
+ga = "G-TF8P2JE3M4"
 
 disableKinds = ["taxonomy", "term", "RSS"]
 

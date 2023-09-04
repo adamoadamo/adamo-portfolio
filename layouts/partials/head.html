@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
 <head>
 	<meta charset="utf-8">
     <meta name="description" content="" />
@@ -9,4 +10,16 @@
 	<title>{{ .Site.Data.homepage.head.title }}</title>
 	<link rel="stylesheet" href="{{relLangURL ""}}css/style.css">
 	<link rel="stylesheet" href="{{relLangURL ""}}css/grid.css">
+
+	{{- with .Site.Params.Ga }}
+	<script async src="https://www.googletagmanager.com/gtag/js?id={{.}}"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', '{{.}}');
+	</script>
+  {{end -}}
+
 </head>
