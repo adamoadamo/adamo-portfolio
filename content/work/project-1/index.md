@@ -9,8 +9,12 @@ data:
   - title: Year
     description: 2023
 resources:
-- src: "project.png"
+- src: "project-1.png"
   params:
-    caption: "Image from Project 1"
+    caption: "Project 1 - Image 1"
+    alt: "Descriptive alt text here"
+- src: "project-2.png"
+  params:
+    caption: "Project 1 - Image 2"
     alt: "Descriptive alt text here"
 ---

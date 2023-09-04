@@ -1,25 +1,27 @@
 {{ define "main" }}
 
-			{{site.Title}}
-			{{- with .Site.Params.Tagline }}
-			{{end -}}
-			{{.Content}}
+			{{site.Title}}{{.Content}}
 
-			<div class="masonry">
+			<div class="flex-container">
 				{{ $sortedPages := sort .Site.RegularPages "Title" "asc" }}
 				{{ range $sortedPages }}
 				  {{ if eq .Section "work" }}
-					<div class="masonry-item">  
-					  <a href="{{ .Permalink }}">{{ .Title }}</a>
-					  {{ with .Resources.ByType "image" }}
-						{{ range . }}
-						  <img src="{{ .RelPermalink }}" alt="{{ with .Params.alt }}{{ . }}{{ else }}{{ .Title }}{{ end }}" />
-						  <p>{{ with .Params.caption }}{{ . }}{{ else }}No Caption{{ end }}</p>
-						{{ end }}
+					{{ with .Resources.ByType "image" }}
+					  {{ range . }}
+						<div class="flex-item">
+						  <div class="image-container">
+							<div class="image-item">
+							  <img src="{{ .RelPermalink }}" alt="{{ with .Params.alt }}{{ . }}{{ else }}{{ .Title }}{{ end }}" />
+							  <p>{{ with .Params.caption }}{{ . }}{{ else }}No Caption{{ end }}</p>
+							</div>
+						  </div>
+						</div>
 					  {{ end }}
-					</div>
+					{{ end }}
 				  {{ end }}
 				{{ end }}  
 			  </div>
+			  
+			  
 			  
 {{ end }}
