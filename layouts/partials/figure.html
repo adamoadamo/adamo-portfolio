@@ -1,0 +1,16 @@
+<single-figure
+  is-screenshot="{{ .IsScreenshot }}"
+  {{ with .DisableInteraction }}disable-interaction="{{. | safeCSS}}"{{ end }}
+  {{ with .MatColor }}mat="{{. | safeCSS}}"{{ end }}
+  {{ with .Plain }}additional-classes="plain"{{ end }}
+  {{ with .Caption }}caption="{{. | safeCSS}}"{{ end }}
+  {{ with .Title }}title="{{.}}"{{ end }}
+  {{ if .Video }}
+    is-video="true"
+    src="{{.Video.RelPermalink}}"
+  {{ else }}
+    src="{{.Image.RelPermalink }}"
+    width="{{.Image.Width}}" 
+    height="{{.Image.Height}}"
+  {{ end }}
+></single-figure>

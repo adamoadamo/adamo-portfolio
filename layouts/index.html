@@ -1,15 +1,35 @@
-Hello Cruel World
-
 <!DOCTYPE html>
 <html>
-{{- partial "head.html" . -}}
+	{{- partial "head.html" . -}}
 
 <body>
-	{{- partial "header.html" . -}}
-	<div id="content">
-		{{- block "main" . }}{{- end }}
-	</div>
-	{{- partial "footer.html" . -}}
+
+
+	<section class="sp-horiz-lg">
+        <div class="sp-vert-sm">
+			<div class="col bg-light-gray c12 cm6 cs6">
+
+			{{site.Title}}
+			{{- with .Site.Params.Tagline }}
+			{{end -}}
+			{{.Content}}
+
+		  	</div>
+			
+				{{ $sortedPages := sort .Site.RegularPages "Title" "asc" }}
+				{{ range $sortedPages }}
+					{{ if eq .Section "work" }}
+						<div class="col bg-light-gray c12 cm6 cs6">
+							<a href="{{ .Permalink }}">{{ .Title }}</a>
+						</div>
+					{{ end }}
+				{{ end }}
+				
+        </div>
+</section>
+
+
+{{- partial "footer.html" . -}}
 </body>
 
 </html>

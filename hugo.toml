@@ -3,7 +3,7 @@ languageCode = 'en-us'
 title = "Adam O'Reilly"
 
 [Params]
-mainSections = "post"
+mainSections = "work"
 summary = true
 toc = true
 
