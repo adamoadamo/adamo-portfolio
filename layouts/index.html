@@ -1,35 +1,22 @@
-<!DOCTYPE html>
-<html>
-	{{- partial "head.html" . -}}
+{{ define "main" }}
 
-<body>
-
-
-	<section class="sp-horiz-lg">
-        <div class="sp-vert-sm">
-			<div class="col bg-light-gray c12 cm6 cs6">
-
+<div class="container">
+	<div class="row">
+	  	<div class="col col-sm-12 col-md-6 col-lg-6">
 			{{site.Title}}
 			{{- with .Site.Params.Tagline }}
 			{{end -}}
 			{{.Content}}
+	  	</div>
+		  	{{ $sortedPages := sort .Site.RegularPages "Title" "asc" }}
+		  	{{ range $sortedPages }}
+			  	{{ if eq .Section "work" }}
+				<div class="col col-sm-12 col-md-6 col-lg-2">
+					<a href="{{ .Permalink }}">{{ .Title }}</a>
+				</div>	
+			{{ end }}
+			{{ end }}	
+	</div>
+</div>
 
-		  	</div>
-			
-				{{ $sortedPages := sort .Site.RegularPages "Title" "asc" }}
-				{{ range $sortedPages }}
-					{{ if eq .Section "work" }}
-						<div class="col bg-light-gray c12 cm6 cs6">
-							<a href="{{ .Permalink }}">{{ .Title }}</a>
-						</div>
-					{{ end }}
-				{{ end }}
-				
-        </div>
-</section>
-
-
-{{- partial "footer.html" . -}}
-</body>
-
-</html>
+{{ end }}

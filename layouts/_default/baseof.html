@@ -1,23 +1,49 @@
 <!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
 <head>
 	<meta charset="utf-8">
-    <meta name="description" content="" />
-	<meta name=generator content="Hugo 0.117.0">
 	<meta content="initial-scale=1,width=device-width,viewport-fit=cover" name=viewport>
-	<link href="/favicons/favicon.ico" rel=icon sizes=64x64 type=image/x-icon>
-	<link href=../..static/apple-touch-icon.png rel=apple-touch-icon>
-	<title>{{ .Site.Data.homepage.head.title }}</title>
-	<link rel="stylesheet" href="{{relLangURL ""}}css/style.css">
-	<link rel="stylesheet" href="{{relLangURL ""}}css/grid.css">
+	{{- block "head" .}}{{ end -}}
+	{{- $favicon := resources.Get "/icons/favicon.ico" -}}
+	<link href="{{$favicon.RelPermalink}}" rel="icon" sizes="64x64" type="image/x-icon" />
+	{{- $faviconSvg := resources.Get "/icons/favicon.svg" -}}
+	<link href="{{$faviconSvg.RelPermalink}}" rel="icon" type="image/svg+xml" />
+	{{- $touchIcon := resources.Get "/icons/touch.png" -}}
+	<link href="{{$touchIcon.RelPermalink}}" rel="apple-touch-icon" />	
+	<title>
+	{{- block "title" . -}}
+        {{ .Site.Title }}
+    {{- end -}}
+	</title>
+	{{- block "opengraph" .}}
+	<meta content="{{block "og:image" . }}{{(resources.Get "/icons/preview.png").Permalink}}{{end}}" name="og:image" />
+	<meta content="{{block "og:title" .}}{{- .Site.Title -}}{{end}}" name="og:title" />
+	<meta content="{{block "og:description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{end}}" name="og:description" />
+	{{end -}}
+	<meta content="{{ .Site.BaseURL }}" name="og:url" />
+	<meta content="website" name="og:type" />
+	
+<!--temp css-->
+		<link rel="stylesheet" href="{{relLangURL ""}}css/style.css">
+
+<!--sass compiler-->	
+	{{ $sass := resources.Get "sass/main.scss" }}
+	{{ $options := (dict "enableSourceMap" (not hugo.IsProduction) "transpiler" "dartsass") }}
+	{{ $mainCss := $sass | resources.ToCSS $options }}
+	<link href="{{($mainCss | resources.Fingerprint "sha512").RelPermalink}}" rel="stylesheet" />
+
+<!--goat counter-->	
+	{{- with .Site.Params.GoatCounter }}
+	<script data-goatcounter="https://{{.}}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+	{{end -}}
 </head>
-
-
-<body>
-	{{- partial "header.html" . -}}
-	<div id="content">
-		{{- block "main" . }}{{- end }}
-	</div>
-	{{- partial "footer.html" . -}}
+<body {{ block "bodyMeta" .}}{{end}} {{ if hugo.IsProduction }}data-production="true"{{ end }}>
+	<main>
+		<!--index-->	
+        {{ block "main" . }}{{ end }}
+    </main> 
+    <footer>
+        {{- partial "footer.html" . -}}
+    </footer>
 </body>
-
 </html>

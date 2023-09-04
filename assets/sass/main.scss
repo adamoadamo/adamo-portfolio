@@ -1,0 +1,8 @@
+// main.scss
+@import 'normalize';
+@import 'grid';
+
+body.frozen {
+  overflow: hidden;
+}
+
