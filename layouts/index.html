@@ -5,15 +5,21 @@
 			{{end -}}
 			{{.Content}}
 
-			<div class="grid-container grid-6">
+			<div class="masonry">
 				{{ $sortedPages := sort .Site.RegularPages "Title" "asc" }}
 				{{ range $sortedPages }}
-					{{ if eq .Section "work" }}
-						<div class="grid-item">	
-						<a href="{{ .Permalink }}">{{ .Title }}</a>
-						</div>
-				{{ end }}
-				{{ end }}	
-			</div>
-
+				  {{ if eq .Section "work" }}
+					<div class="masonry-item">  
+					  <a href="{{ .Permalink }}">{{ .Title }}</a>
+					  {{ with .Resources.ByType "image" }}
+						{{ range . }}
+						  <img src="{{ .RelPermalink }}" alt="{{ with .Params.alt }}{{ . }}{{ else }}{{ .Title }}{{ end }}" />
+						  <p>{{ with .Params.caption }}{{ . }}{{ else }}No Caption{{ end }}</p>
+						{{ end }}
+					  {{ end }}
+					</div>
+				  {{ end }}
+				{{ end }}  
+			  </div>
+			  
 {{ end }}
