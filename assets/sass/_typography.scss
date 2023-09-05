@@ -1,6 +1,6 @@
 // Define mixin for common Aulac styles
 @mixin aulac-styles {
-    font-family: "Aulac";
+    font-family: "aulac";
     font-kerning: auto;
     hyphens: none;
     letter-spacing: 0.005em;
@@ -8,7 +8,7 @@
   
   // Font face definition
   @font-face {
-    font-family: 'Aulac';
+    font-family: 'aulac';
     src: url(fonts/aulac/AulacRegular.woff2) format('woff2'),
          url(fonts/aulac/AulacRegular.woff) format('woff');
     font-weight: normal;
@@ -30,4 +30,13 @@
     font-size: 1em;
     line-height: 1.25em;
   }
+  
+  .poem-item {
+    @include aulac-styles;
+    text-align: center;
+    font-size: 2em;
+    line-height: 1.25em;
+    max-width: 600px;
+  }
+
   

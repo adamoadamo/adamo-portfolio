@@ -5,40 +5,42 @@
 }
 
 .flex-item {
-  max-width: calc(100% - 20px); /* Account for gap */
+  max-width: calc(100% - 20px);
   display: flex;
-  flex-direction: column; /* Stacks title and image container vertically */
+  flex-direction: column;
 }
 
 img {
-  max-width: 100%; /* Makes sure the image doesn't stretch beyond the container */
+  max-width: 100%;
   height: auto;
+  transition: max-width 0.3s ease-in-out; // Specify property for smoother transitions
 }
 
 .image-container {
   display: flex;
-  flex-wrap: nowrap; /* Change to 'wrap' if you want the images to wrap onto the next line */
-  gap: 10px; /* Gap between each image item */
+  flex-wrap: nowrap;
+  gap: 10px;
 }
 
 .image-item {
   position: relative;
-  
-  img {
-    width: 100%;
-    height: auto;
-    max-width: 300px;
-    margin: 0 auto; // Center the image if its parent is wider than 500px
-  }
-  
-  .project-content {
-    width: 100%;
-    max-width: 300px; // Match max-width of the image
-    box-sizing: border-box;
-    margin: 0 auto; // Center the text box if its parent is wider than 500px
-  }
+  transition: max-width 0.3s ease-in-out, height 0.3s ease-in-out; // Specify properties for smoother transitions
 }
 
-.image-caption {
-     
+.image-item img {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.image-item img.active { // The new .active class
+  max-width: 600px;
+}
+
+.project-content {
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  margin: 0 auto;
 }

@@ -29,6 +29,11 @@
 	{{ $mainCss := $sass | resources.ToCSS $options | resources.Minify }}
 	<link href="{{($mainCss | resources.Fingerprint "sha512").RelPermalink}}" rel="stylesheet" />
 
+
+<!--js call -->
+{{- $js := resources.Get "scripts/image.js" | js.Build -}}
+<script type="module" src="{{($js | resources.Fingerprint "sha512").RelPermalink}}"></script>
+
 <!--goat counter-->	
 	{{- with .Site.Params.GoatCounter }}
 	<script data-goatcounter="https://{{.}}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
