@@ -1,7 +1,9 @@
 {{ define "main" }}
-
-			{{site.Title}}{{.Content}}
-
+			<div class="flex-container">
+				<div class="bio">
+				{{.Content}}
+				</div>
+			</div>
 			<div class="flex-container">
 				{{ $sortedPages := sort .Site.RegularPages "Title" "asc" }}
 				{{ range $sortedPages }}
@@ -12,7 +14,9 @@
 						  <div class="image-container">
 							<div class="image-item">
 							  <img src="{{ $element.RelPermalink }}" alt="{{ with $element.Params.alt }}{{ . }}{{ else }}{{ $element.Title }}{{ end }}" />
-							  <p>{{ with $element.Params.caption }}{{ . }}{{ else }}No Caption{{ end }}</p>
+							  <div class="image-caption"> <!-- The new div for image caption -->
+								<p>{{ with $element.Params.caption }}{{ . }}{{ else }}No Caption{{ end }}</p>
+							  </div>
 							  {{ if eq $index 0 }} <!-- Check if it is the first image -->
 								<div class="project-content">
 								  {{ $.Content }}
@@ -26,10 +30,5 @@
 				  {{ end }}
 				{{ end }}  
 			  </div>
-			  
-			  
-			  
-			  
-			  
-			  
+			  		  
 {{ end }}

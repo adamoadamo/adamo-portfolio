@@ -1,14 +1,10 @@
-// main.scss
 @import 'normalize';
 @import 'grid';
-@import 'fonts';
-@import 'typography';
 @import 'links';
+@import 'typography';
 
 body.frozen {
   overflow: hidden;
 }
 
-p {
-  font-family: "Aulac";
-}
+

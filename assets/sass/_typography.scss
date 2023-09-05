@@ -1,95 +1,30 @@
-@use 'fonts';
-
-:root {
-	font-feature-settings: 'liga', 'kern';
-	font-size:             62.5%;
-}
-
-:root * {
-	-moz-osx-font-smoothing:  grayscale;
-	-webkit-font-smoothing:   antialiased;
-	-webkit-text-size-adjust: none;
-	font-kerning:             normal;
-	font-smooth:              always;
-	text-rendering:           optimizeLegibility;
-}
-
-em, em em em {
-  font-style: italic;
-}
-
-em em {
-  font-style: normal;
-}
-
-del {
-  font-style: line-through;
-}
-
-nobr, .nowrap {
-  white-space: nowrap;
-}
-
-%--face--variables {
-  --typography--tracking--override: var(--typography--tracking);
-  --typography--letter-spacing: calc(var(--typography--tracking--override, var(--typography--tracking, 0)) * 1em);
-  --typography--margin--left: calc(var(--typography--inset--left) * 1em);
-  --typography--margin--right: calc(var(--typography--inset--right) * 1em);
-}
-
-%--leading--variables {
-  --typography--font-size: calc(var(--typography--scale, 1) * var(--typography--size--override, var(--typography--size)));
-  --typography--line-height: calc(var(--typography--leading) * var(--typography--size--override, var(--typography--size)));
-  --typography--leading--remainder: calc((var(--typography--leading) - 1) / 2);
-  --typography--shift: calc((var(--typography--shoulder) + var(--typography--shoulder--top)) * (1 - var(--typography--scale, 1)));
-  --typography--leading--bottom: calc(var(--typography--shoulder--bottom) + var(--typography--leading--remainder) + var(--typography--shift, 0));
-  --typography--leading--top: calc(var(--typography--shoulder--top) + var(--typography--leading--remainder) - var(--typography--shift, 0));
-  --typography--margin--bottom: calc(-1 * var(--typography--leading--bottom) * var(--typography--size--override, var(--typography--size)));
-  --typography--margin--top: calc(-1 * var(--typography--leading--top) * var(--typography--size--override, var(--typography--size)));
-}
-
-%type--layout {
-  @extend %--leading--variables;
-  --typography--cap: calc(var(--typography--cap-height) * 1em);
-  --typography--between: calc(var(--typography--font-size) * (var(--typography--leading) + var(--typography--shoulder) - 1));
-  line-height: var(--typography--line-height);
-  font-size: var(--typography--font-size);
-}
-
-%typography, h1, h2, h3, h4, h5, h6, p, td {
-  @extend %--face--variables;
-  @extend %--leading--variables;
-  color: var(--color);
-  display: block;
-  font-size: var(--typography--font-size);
-  font-weight: var(--typography--weight);
-  letter-spacing: var(--typography--letter-spacing);
-  line-height: var(--typography--line-height);
-  margin-left: var(--typography--margin--left);
-  margin-right: var(--typography--margin--right);
-  max-width: calc(100% - var(--typography--margin--left) - var(--typography--margin--right) + 1px);
-  overflow-wrap: break-word;
-  hyphens: none;
- 
-
-  @supports (display: flow-root) {
-    display: flow-root;
+@font-face {
+    font-family: 'Aulac';
+    src: url(fonts/aulac/AulacRegular.woff2) format('woff2'),
+         url(fonts/aulac/AulacRegular.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .image-caption {
+    font-family: "Aulac";
+    text-align: center;
+    font-size: 0.8em;
+    font-kerning: auto;
+    hyphens: none;
+    letter-spacing: 0.005em;
+    padding-bottom: 1em;
+    padding-top: 0.5em;
   }
 
-  &:before, &:after {
-    content: '';
-    display: block;
-    visibility: hidden;
+  .project-content, .bio {
+    font-family: "Aulac";
+    text-align: left;
+    font-size: 1em;
+    font-kerning: auto;
+    hyphens: none;
+    line-height: 1.25em;
+    letter-spacing: 0.005em;
   }
 
-  &:before {
-    margin-top: calc(var(--typography--margin--top) - (var(--typography--margin--top--shift, 0) * var(--typography--size--override, var(--typography--size))));
-  }
-
-  &:after {
-    margin-bottom: var(--typography--margin--bottom);
-  }
-}
-
-td { display: table-cell }
 
