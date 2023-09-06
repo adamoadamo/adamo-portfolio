@@ -10,5 +10,4 @@ data:
     description: 1995
 ---
 
-Here is a some text 
-it's like a poem.
+Imagine what sort of habit — shit, pants — form into warding; an hour, or halfway, the film, obsolete.
