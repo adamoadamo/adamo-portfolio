@@ -1,52 +1,76 @@
 {{ define "main" }}
-			<div class="flex-container">
-				<div class="bio">
-				{{.Content}}
-				</div>
-			</div>
+			
+	<div class="flex-container">
+		<div class="bio">
+		{{.Content}}
+		</div>
+	</div>
 
-			<div class="flex-container">
-				{{ $sortedPages := sort .Site.RegularPages "Title" "asc" }}
-				{{ range $sortedPages }}
-				  {{ if eq .Section "work" }}
-					{{ $currentPage := . }} <!-- Store current Markdown file context -->
-					{{ $imageResources := .Resources.ByType "image" }}
-					{{ $totalImages := len $imageResources }} <!-- Calculate the total number of images -->
-					{{ if $imageResources }}
-					  {{ range $index, $element := $imageResources }}
-						<div class="flex-item">
-						  <div class="image-container">
-							<div class="image-item">
-							  <img class="img-transition" src="{{ $element.RelPermalink }}" alt="{{ with $element.Params.alt }}{{ . }}{{ else }}{{ $element.Title }}{{ end }}" />
-							  <div class="image-caption">
-								<p>{{ with $element.Params.caption }}{{ . }}{{ else }}No Caption{{ end }}
-								{{ if gt $totalImages 1 }} <!-- Only show if more than 1 image -->
-								  <span class="image-number"> {{ add $index 1 }}/{{ $totalImages }}</span>
-								{{ end }}
-								</p>
-							  </div>
-							  {{ if eq $index 0 }} <!-- Check if it is the first image -->
-								<div class="project-content">
-								  {{ $currentPage.Content }} <!-- Display Markdown file content -->
-								</div>
-							  {{ end }}
-							</div>
-						  </div>
-						</div>
-					  {{ end }}
-					{{ else }}
-					  <div class="flex-item">
-						<div class="image-container">
-						  <div class="poem-item">
-							{{ $currentPage.Content }}
-						  </div>
-						</div>
-					  </div>
-					{{ end }}
+<!-- Initialize the counter -->
+	{{ $totalMarkdownFiles := 0 }} 
+	{{ range .Site.RegularPages }}
+		{{ if eq .Section "work" }}
+		{{ $totalMarkdownFiles = add $totalMarkdownFiles 1 }}
+		{{ end }}
+	{{ end }}
+			
+<!-- Display the counter -->			
+	<div class="flex-container">
+		<div class="filter">
+			{{ printf "Display: %d" $totalMarkdownFiles }}
+		</div>
+
+<!-- Sort by Name + Year -->	
+		<div class="sort-container">
+			<button id="sortAlpha" class="sort-button selected">Alphabetical</button>
+			<button id="sortChrono" class="sort-button">Chronological</button>
+		  </div>
+	
+	</div>
+			
+<!-- Project Grid -->	
+<div id="assortment" class="flex-container"> <!-- Changed the class to an id for JavaScript hook -->
+	{{ $sortedPages := sort .Site.RegularPages "Title" "asc" }}
+	{{ range $sortedPages }}
+	  {{ if eq .Section "work" }}
+		{{ $currentPage := . }}
+		{{ $year := index .Params.data 2 "description" }} <!-- Assuming the year is in the third entry of the 'data' list -->
+		{{ $imageResources := .Resources.ByType "image" }}
+		{{ $totalImages := len $imageResources }}
+		{{ if $imageResources }}
+		  {{ range $index, $element := $imageResources }}
+		  <div class="flex-item" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}"> <!-- Added data attributes here -->
+			<div class="image-container">
+			  <div class="image-item navigable-item">
+				<img src="{{ $element.RelPermalink }}" alt="{{ with $element.Params.alt }}{{ . }}{{ else }}{{ $element.Title }}{{ end }}" />
+				<div class="image-caption">
+				  <p>{{ with $element.Params.caption }}{{ . }}{{ else }}No Caption{{ end }}
+				  {{ if gt $totalImages 1 }}
+					<span class="image-number"> {{ add $index 1 }} of {{ $totalImages }}</span>
 				  {{ end }}
+				  </p>
+				</div>
+				{{ if eq $index 0 }}
+				<div class="project-content">
+				  {{ $currentPage.Content }}
+				</div>
 				{{ end }}
 			  </div>
-			  
-			  
-
+			</div>
+		  </div>
+		  {{ end }}
+		{{ else }}
+		  <div class="flex-item" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}"> <!-- Added data attributes here -->
+			<div class="image-container">
+			  <div class="poem-item navigable-item">
+				{{ $currentPage.Content }}
+			  </div>
+			</div>
+		  </div>
+		{{ end }}
+	  {{ end }}
+	{{ end }}
+  </div>
+  
+			
 {{ end }}

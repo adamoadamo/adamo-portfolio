@@ -31,8 +31,12 @@
 
 
 <!--js call -->
-{{- $js := resources.Get "scripts/image.js" | js.Build -}}
-<script type="module" src="{{($js | resources.Fingerprint "sha512").RelPermalink}}"></script>
+{{- $js := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
+<script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
+
+{{- $js := resources.Get "scripts/sort.js" | js.Build | resources.Minify -}}
+<script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
+
 
 <!--goat counter-->	
 	{{- with .Site.Params.GoatCounter }}

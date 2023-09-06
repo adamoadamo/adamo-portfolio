@@ -1,0 +1,57 @@
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.flex-item {
+  max-width: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  transition: max-width 0.3s ease-in-out; // Specify property for smoother transitions
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.image-item,
+.poem-item { // Include .poem-item for common styles
+  position: relative;
+  transition: max-width 0.3s ease-in-out, height 0.3s ease-in-out; // Specify properties for smoother transitions
+}
+
+.image-item img,
+.poem-item { // Include .poem-item for consistent max-width
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.image-item img.active,
+.poem-item.active { // The new .active class for both
+  max-width: 550px;
+}
+
+.project-content,
+.poem-item { // Consistent width for poem content and project content
+  width: 100%;
+  max-width: 250px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.navigable-item.active {
+}
+
+.poem-item.active {
+  transition: all 0.3s ease-in-out;
+}
