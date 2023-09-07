@@ -10,6 +10,10 @@
   flex-direction: column;
 }
 
+.flex-item:focus {
+  outline: none;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -35,10 +39,11 @@ img {
   margin: 0 auto;
 }
 
-.image-item img.active,
-.poem-item.active { // The new .active class for both
+.image-item.navigable-item.active img,
+.poem-item.navigable-item.active {
   max-width: 550px;
 }
+
 
 .project-content,
 .poem-item { // Consistent width for poem content and project content
@@ -49,9 +54,18 @@ img {
   transition: all 0.3s ease-in-out;
 }
 
-.navigable-item.active {
+.navigable-item:focus {
+  outline: none;
 }
 
 .poem-item.active {
   transition: all 0.3s ease-in-out;
+}
+
+:focus {
+  outline: none;
+}
+
+#totalMdFiles {
+  display: none;
 }

@@ -34,10 +34,6 @@
 {{- $js := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
 <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
 
-{{- $js := resources.Get "scripts/sort.js" | js.Build | resources.Minify -}}
-<script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
-
-
 <!--goat counter-->	
 	{{- with .Site.Params.GoatCounter }}
 	<script data-goatcounter="https://{{.}}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

@@ -1,5 +1,10 @@
 {{ define "main" }}
-			
+
+
+<!-- TRY TO DELETE -->
+<div id="totalMdFiles"></div>
+
+
 	<div class="flex-container">
 		<div class="bio">
 		{{.Content}}
@@ -39,7 +44,7 @@
 		{{ $totalImages := len $imageResources }}
 		{{ if $imageResources }}
 		  {{ range $index, $element := $imageResources }}
-		  <div class="flex-item" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}"> <!-- Added data attributes here -->
+		  <div class="flex-item" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}" tabindex="0"> <!-- Added tabindex="0" and data attributes here -->
 			<div class="image-container">
 			  <div class="image-item navigable-item">
 				<img src="{{ $element.RelPermalink }}" alt="{{ with $element.Params.alt }}{{ . }}{{ else }}{{ $element.Title }}{{ end }}" />
@@ -60,7 +65,7 @@
 		  </div>
 		  {{ end }}
 		{{ else }}
-		  <div class="flex-item" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}"> <!-- Added data attributes here -->
+		  <div class="flex-item" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}" tabindex="0"> <!-- Added tabindex="0" and data attributes here -->
 			<div class="image-container">
 			  <div class="poem-item navigable-item">
 				{{ $currentPage.Content }}
@@ -71,6 +76,7 @@
 	  {{ end }}
 	{{ end }}
   </div>
+  
   
 			
 {{ end }}

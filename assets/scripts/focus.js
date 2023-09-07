@@ -1,51 +1,98 @@
 document.addEventListener('DOMContentLoaded', function() {
-  let items = document.querySelectorAll('.navigable-item');
-  let currentIndex = -1;
+  console.log("DOM Content Loaded");
 
-  function scrollItemIntoView(item) {
-    item.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
+  const sortAlphaBtn = document.getElementById('sortAlpha');
+  const sortChronoBtn = document.getElementById('sortChrono');
+
+  if (!sortAlphaBtn || !sortChronoBtn) {
+    console.error("Sort buttons not found");
+    return;
   }
 
-  items.forEach((item, index) => {
-    item.addEventListener('click', function() {
-      if (currentIndex !== -1) {
-        items[currentIndex].classList.remove('active');
-        let prevImg = items[currentIndex].querySelector('img');
-        if (prevImg) prevImg.classList.remove('active');
-      }
+  console.log("Sort buttons found");
 
-      if (currentIndex === index) {
-        currentIndex = -1;
-      } else {
-        item.classList.add('active');
-        let img = item.querySelector('img');
-        if (img) img.classList.add('active');
+  const assortment = document.getElementById('assortment');
+  let flexItems = Array.from(assortment.getElementsByClassName('flex-item'));
+
+  if (flexItems.length === 0) {
+    console.error("No flex items found");
+    return;
+  }
+
+  console.log(`Found ${flexItems.length} flex items`);
+
+  let currentIndex = 0;
+
+  const registerNavigation = () => {
+    console.log("Registering navigation...");
+    flexItems = Array.from(assortment.getElementsByClassName('flex-item'));
+    flexItems.forEach((item, index) => {
+      item.addEventListener('focus', () => {
+        console.log(`Item focused, index: ${index}`);
         currentIndex = index;
-        scrollItemIntoView(item);
-      }
+        
+        // Remove 'active' class from all items
+        flexItems.forEach(i => i.querySelector('.navigable-item').classList.remove('active'));
+
+        // Add 'active' class to the currently focused item
+        const navigableItem = item.querySelector('.navigable-item');
+        if (navigableItem) {
+          navigableItem.classList.add('active');
+        }
+      });
     });
-  });
+  };
+
+  registerNavigation(); // Initial registration
 
   document.addEventListener('keydown', function(event) {
-    if (currentIndex === -1) return;
-
-    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
-      items[currentIndex].classList.remove('active');
-      let prevImg = items[currentIndex].querySelector('img');
-      if (prevImg) prevImg.classList.remove('active');
-
-      if (event.key === 'ArrowRight') {
-        currentIndex = (currentIndex + 1) % items.length;
-      } else {
-        currentIndex = (currentIndex - 1 + items.length) % items.length;
-      }
-
-      let newItem = items[currentIndex];
-      newItem.classList.add('active');
-      let img = newItem.querySelector('img');
-      if (img) img.classList.add('active');
-
-      scrollItemIntoView(newItem);
+    console.log(`Keydown event: ${event.key}`);
+    if (event.key === 'ArrowRight') {
+      currentIndex = (currentIndex + 1) % flexItems.length;
+      console.log(`New index after ArrowRight: ${currentIndex}`);
+      flexItems[currentIndex].focus();
+    } else if (event.key === 'ArrowLeft') {
+      currentIndex = (currentIndex - 1 + flexItems.length) % flexItems.length;
+      console.log(`New index after ArrowLeft: ${currentIndex}`);
+      flexItems[currentIndex].focus();
     }
+  });
+  
+  const sortItems = (type) => {
+    let sortedItems;
+    if (type === 'alpha') {
+      sortedItems = flexItems.sort((a, b) => a.dataset.title.localeCompare(b.dataset.title));
+      console.log("Sorted alphabetically");
+    } else {
+      sortedItems = flexItems.sort((a, b) => parseInt(a.dataset.year, 10) - parseInt(b.dataset.year, 10));
+      console.log("Sorted chronologically");
+    }
+
+    assortment.innerHTML = '';
+    sortedItems.forEach((item) => {
+      assortment.appendChild(item);
+    });
+
+    registerNavigation(); // Re-register after sorting
+    console.log("Re-registered navigation after sorting");
+  };
+
+  sortItems('alpha');
+  sortAlphaBtn.classList.add('selected');
+  document.getElementById('totalMdFiles').innerText = flexItems.length;
+  console.log("Initial sorting complete");
+
+  sortAlphaBtn.addEventListener('click', () => {
+    sortItems('alpha');
+    sortAlphaBtn.classList.add('selected');
+    sortChronoBtn.classList.remove('selected');
+    console.log("Sorted alphabetically via button");
+  });
+
+  sortChronoBtn.addEventListener('click', () => {
+    sortItems('chrono');
+    sortChronoBtn.classList.add('selected');
+    sortAlphaBtn.classList.remove('selected');
+    console.log("Sorted chronologically via button");
   });
 });
