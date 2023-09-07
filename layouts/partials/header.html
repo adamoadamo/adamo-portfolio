@@ -11,16 +11,14 @@
     {{ $totalMarkdownFiles = add $totalMarkdownFiles 1 }}
     {{ end }}
 {{ end }}
-        
-<!-- Display the counter -->			
+        			
 <div class="flex-container">
-    <div class="filter">
-        {{ printf "Display: %d" $totalMarkdownFiles }}
-    </div>
-
     <div class="sort-container">
         <button id="sortAlpha" class="sort-button selected">Alphabetical</button>
         <button id="sortChrono" class="sort-button">Chronological</button>
       </div>
+      <div class="sort-total">
+        {{ printf "Amt: %d" $totalMarkdownFiles }}
+    </div>
 </div>
         

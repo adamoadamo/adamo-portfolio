@@ -11,19 +11,19 @@
   img {
     max-width: 100%;
     height: auto;
+    display: block;
+    background: white;
+    background-image: radial-gradient(black 1px, #f9f9f9 0);
+    background-size:3px 3px;
+    background-position: 0px 0px;
   }
   
   .image-container {
     display: flex;
     flex-wrap: nowrap;
-    gap: 10px;
+    gap: calc(var(--space-unit) / 2);
   }
-  
-  .filter {
-    padding-bottom: 1.5em;
-    padding-top: 0.5em;
-  }
-  
+
   .image-caption {
     padding-bottom: var(--space-unit);
     padding-top: calc(var(--space-unit) / 2);

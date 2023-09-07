@@ -1,10 +1,14 @@
-@mixin aulac-styles {
+  @mixin aulac-styles {
     font-family: "aulac";
     font-kerning: auto;
     hyphens: none;
-    letter-spacing: 0.006em;
+    letter-spacing: 0.0075em;
+    color: black;
   }
   
+  $font-size-base: 1em;
+  $line-height-base: 1.25em;
+
   @font-face {
     font-family: 'aulac';
     src: url(/fonts/aulac/AulacRegular.woff2) format('woff2'),
@@ -12,41 +16,35 @@
     font-weight: normal;
     font-style: normal;
   }
-  
-  .filter {
+
+  .sort-total, .sort-button  {
     @include aulac-styles;
-    text-align: center;
-    font-size: 0.75em;
-    padding-bottom: 1em;
-    padding-top: 0.5em;
-    text-transform: uppercase;
+    font-size: $font-size-base * 0.75;
   }
 
   .sort-button.selected {
     text-decoration: underline;
-  }  
+  }   
 
   .image-caption {
     @include aulac-styles;
     text-align: center;
-    font-size: 0.65em;
-    padding-bottom: var(--space-unit);
-    padding-top: calc(var(--space-unit) / 2);
+    font-size: $font-size-base * 0.75;
     text-transform: uppercase;
   }
   
   .project-content, .bio {
     @include aulac-styles;
     text-align: left;
-    font-size: 0.9em;
-    line-height: 1.25em;
+    font-size: $font-size-base;
+    line-height: $line-height-base
   }
   
   .poem-item {
     @include aulac-styles;
     text-align: center;
-    font-size: 2em;
-    line-height: 1.25em;
+    font-size: $font-size-base * 2;
+    line-height: $line-height-base;
     max-width: 600px;
     max-width: 15ch;
   }
