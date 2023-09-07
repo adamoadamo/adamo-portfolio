@@ -4,10 +4,8 @@ title = "Adam O'Reilly"
 
 [Params]
 mainSections = "work"
-summary = true
-toc = true
 goatCounter = "adamoadamo"
-tagline = "Adam O'Reilly is a designer based in Brooklyn, <nobr>New York</nobr>."
+tagline = "Adam O'Reilly is a designer and developer based in Brooklyn, <nobr>New York</nobr>."
 ga = "G-TF8P2JE3M4"
 
 disableKinds = ["taxonomy", "term", "RSS"]
