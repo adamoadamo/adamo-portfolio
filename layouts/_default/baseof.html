@@ -21,31 +21,25 @@
 	<meta content="{{block "og:description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{end}}" name="og:description" />
 	{{end -}}
 	<meta content="{{ .Site.BaseURL }}" name="og:url" />
-	<meta content="website" name="og:type" />
-	
-<!--sass compiler-->	
-	{{ $sass := resources.Get "sass/main.scss" }}
+	<meta content="website" name="og:type" />	
+	{{ $sass := resources.Get "scss/main.scss" }}
 	{{ $options := (dict "enableSourceMap" (not hugo.IsProduction) "transpiler" "dartsass") }}
 	{{ $mainCss := $sass | resources.ToCSS $options | resources.Minify }}
 	<link href="{{($mainCss | resources.Fingerprint "sha512").RelPermalink}}" rel="stylesheet" />
-
-
-<!--js call -->
-{{- $js := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
-<script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
-
-<!--goat counter-->	
+	{{- $js := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
+	<script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
 	{{- with .Site.Params.GoatCounter }}
 	<script data-goatcounter="https://{{.}}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 	{{end -}}
 </head>
 <body {{ block "bodyMeta" .}}{{end}} {{ if hugo.IsProduction }}data-production="true"{{ end }}>
-	<main>
-		<!--index-->	
-        {{ block "main" . }}{{ end }}
-    </main> 
-    <footer>
-        {{- partial "footer.html" . -}}
-    </footer>
+	<div class="container">
+		<main>
+			{{ block "main" . }}{{ end }}
+		</main> 
+		<footer>
+			{{- partial "footer.html" . -}}
+		</footer>
+	</div>
 </body>
 </html>

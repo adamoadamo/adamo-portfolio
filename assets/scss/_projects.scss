@@ -1,0 +1,81 @@
+.flex-item {
+  max-width: calc(100% - var(--space-unit));
+  display: flex;
+  flex-direction: column;
+}
+
+  .flex-item:focus {
+    outline: none;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .image-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+  
+  .filter {
+    padding-bottom: 1.5em;
+    padding-top: 0.5em;
+  }
+  
+  .image-caption {
+    padding-bottom: var(--space-unit);
+    padding-top: calc(var(--space-unit) / 2);
+  }
+  
+  .image-item,
+  .poem-item { 
+    position: relative;
+  }
+  
+  .image-item img,
+  .poem-item { 
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  .image-item.navigable-item.active img,
+  .poem-item.navigable-item.active {
+    max-width: 550px;
+  }
+  
+  .project-content,
+  .poem-item { 
+    width: 100%;
+    max-width: 250px;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+  
+  .navigable-item:focus {
+    outline: none;
+  }
+  
+  .poem-item.active {
+  }
+  
+  .poem-item {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-decoration: none;
+  }
+  
+  :focus {
+    outline: none;
+  }
+  
+  #totalMdFiles {
+    display: none;
+  }
+  

@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const sortAlphaBtn = document.getElementById('sortAlpha');
   const sortChronoBtn = document.getElementById('sortChrono');
+  
+  let recentlyFocused = false; // Add this flag to manage focus/click interaction
 
   if (!sortAlphaBtn || !sortChronoBtn) {
     console.error("Sort buttons not found");
@@ -23,6 +25,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
   let currentIndex = 0;
 
+  const toggleActiveClass = (event) => {
+    if (recentlyFocused) {
+      recentlyFocused = false; // Reset the flag
+    } else {
+      event.currentTarget.classList.toggle('active');
+    }
+  };
+
+  const registerClickToToggle = () => {
+    flexItems.forEach(item => {
+      const navigableItem = item.querySelector('.navigable-item');
+      if (navigableItem) {
+        navigableItem.removeEventListener('click', toggleActiveClass);
+        navigableItem.addEventListener('click', toggleActiveClass);
+      }
+    });
+  };
+
   const registerNavigation = () => {
     console.log("Registering navigation...");
     flexItems = Array.from(assortment.getElementsByClassName('flex-item'));
@@ -30,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
       item.addEventListener('focus', () => {
         console.log(`Item focused, index: ${index}`);
         currentIndex = index;
+        recentlyFocused = true; // Set the flag
         
         // Remove 'active' class from all items
         flexItems.forEach(i => i.querySelector('.navigable-item').classList.remove('active'));
@@ -43,7 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   };
 
-  registerNavigation(); // Initial registration
+  registerNavigation();  // Initial registration
+  registerClickToToggle(); // Initial click registration
 
   document.addEventListener('keydown', function(event) {
     console.log(`Keydown event: ${event.key}`);
@@ -57,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
       flexItems[currentIndex].focus();
     }
   });
-  
+
   const sortItems = (type) => {
     let sortedItems;
     if (type === 'alpha') {
@@ -73,7 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
       assortment.appendChild(item);
     });
 
-    registerNavigation(); // Re-register after sorting
+    registerNavigation();  // Re-register after sorting
+    registerClickToToggle(); // Re-register click events after sorting
     console.log("Re-registered navigation after sorting");
   };
 

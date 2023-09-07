@@ -1,4 +1,3 @@
-// Define mixin for common Aulac styles
 @mixin aulac-styles {
     font-family: "aulac";
     font-kerning: auto;
@@ -6,7 +5,6 @@
     letter-spacing: 0.006em;
   }
   
-  // Font face definition
   @font-face {
     font-family: 'aulac';
     src: url(/fonts/aulac/AulacRegular.woff2) format('woff2'),
@@ -28,20 +26,19 @@
     text-decoration: underline;
   }  
 
-  // Applying the mixin
   .image-caption {
     @include aulac-styles;
     text-align: center;
-    font-size: 0.75em;
-    padding-bottom: 1em;
-    padding-top: 0.5em;
+    font-size: 0.65em;
+    padding-bottom: var(--space-unit);
+    padding-top: calc(var(--space-unit) / 2);
     text-transform: uppercase;
   }
   
   .project-content, .bio {
     @include aulac-styles;
     text-align: left;
-    font-size: 1em;
+    font-size: 0.9em;
     line-height: 1.25em;
   }
   
