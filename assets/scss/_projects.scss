@@ -54,6 +54,11 @@
     margin: 0 auto;
   }
   
+  .navigable-item.active .project-content {
+    margin: 0; // Align the content to the left when active
+  }
+  
+
   .navigable-item:focus {
     outline: none;
   }

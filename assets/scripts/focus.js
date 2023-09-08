@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
       recentlyFocused = false; // Reset the flag
     } else {
       event.currentTarget.classList.toggle('active');
+      event.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
     }
   };
 
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const navigableItem = item.querySelector('.navigable-item');
         if (navigableItem) {
           navigableItem.classList.add('active');
+          navigableItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
         }
       });
     });

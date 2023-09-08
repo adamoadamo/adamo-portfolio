@@ -1,3 +1,17 @@
+  :root {
+    font-feature-settings: 'liga', 'kern';
+  }
+  
+  :root * {
+    -moz-osx-font-smoothing:  grayscale;
+    -webkit-font-smoothing:   antialiased;
+    -webkit-text-size-adjust: none;
+    font-kerning:             normal;
+    font-smooth:              always;
+    text-rendering:           optimizeLegibility;
+  }
+
+  
   @mixin aulac-styles {
     font-family: "aulac";
     font-kerning: auto;
@@ -37,7 +51,11 @@
     @include aulac-styles;
     text-align: left;
     font-size: $font-size-base;
-    line-height: $line-height-base
+    line-height: $line-height-base;
+  
+    p:nth-of-type(2) {
+      text-indent: calc(var(--space-unit) * 2);
+    }
   }
   
   .poem-item {
@@ -55,3 +73,12 @@
     max-width: 600px;
   }
 
+  ::selection {
+    background-color: black;
+    color: white;
+  }
+  
+  ::-moz-selection {
+    background-color: black;
+    color: white;
+  }
