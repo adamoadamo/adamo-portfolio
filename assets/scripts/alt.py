@@ -2,8 +2,8 @@ import os
 import requests
 
 # Replace with  Azure Computer Vision API endpoint and API key
-AZURE_ENDPOINT = "https://adamtoreilly.cognitiveservices.azure.com/"
-AZURE_API_KEY = "YOUR_AZURE_API_KEY"
+AZURE_ENDPOINT = "AZURE_ENDPOINT_URL"
+AZURE_API_KEY = "AZURE_API_KEY"
 
 SITE_PATH = "../content/work/"
 
