@@ -1,10 +1,9 @@
 import os
 import requests
+import yaml
 
 AZURE_API_KEY = os.getenv("AZURE_API")
-
 AZURE_ENDPOINT = "https://adamtoreilly.cognitiveservices.azure.com/"
-
 SITE_PATH = "../content/work/"
 
 def get_image_description(image_path):
@@ -24,16 +23,43 @@ def get_image_description(image_path):
         print(f"Failed to get description for {image_path}: {e}")
         return None
 
-def update_markdown_file(md_file_path, image_path, alt_text):
+def update_markdown_file(md_file_path, image_index, alt_text):
     try:
         with open(md_file_path, 'r', encoding='utf-8') as file:
-            content = file.read()
-        
-        content = content.replace(f'![]({os.path.basename(image_path)})', f'![{alt_text}]({os.path.basename(image_path)})')
+            content = file.readlines()
 
+        # Identify the lines containing the front matter
+        front_matter = []
+        line_number = 0
+        recording = False
+        for line in content:
+            if line.strip() == "---":
+                if recording:
+                    break
+                else:
+                    recording = True
+            if recording:
+                front_matter.append(line)
+            line_number += 1
+
+        # Parse the YAML front matter
+        front_matter_yaml = yaml.safe_load(''.join(front_matter[1:-1]))
+
+        # Update the alt text
+        front_matter_yaml["resources"][image_index]["params"]["alt"] = alt_text
+
+        # Convert the updated YAML back to a string
+        front_matter_updated = yaml.safe_dump(front_matter_yaml, sort_keys=False)
+
+        # Replace the old front matter with the updated front matter in the content
+        content = content[:len(front_matter)-1] + [front_matter_updated] + content[line_number:]
+
+        # Write the updated content back to the file
         with open(md_file_path, 'w', encoding='utf-8') as file:
-            file.write(content)
-        print(f"Updated alt text for {os.path.basename(image_path)} in {md_file_path}")
+            file.writelines(content)
+
+        print(f"Updated alt text in {md_file_path}")
+
     except Exception as e:
         print(f"Failed to update markdown file {md_file_path}: {e}")
 
@@ -43,16 +69,19 @@ for root, dirs, files in os.walk(SITE_PATH):
             md_file_path = os.path.join(root, file_name)
             with open(md_file_path, 'r', encoding='utf-8') as file:
                 content = file.read()
-            
-            # Find all images in the markdown file
-            for line in content.split('\n'):
-                if line.strip().startswith('![]('):
-                    # Get the image path
-                    image_path = os.path.join(root, line.strip()[4:-1])
-                    
-                    # Get the alt text from Azure
-                    alt_text = get_image_description(image_path)
-                    
-                    if alt_text:
-                        # Update the markdown file with the alt text
-                        update_markdown_file(md_file_path, image_path, alt_text)
+
+            # Find the front matter and extract resource information
+            front_matter_end = content.find('---', 1)
+            front_matter = content[4:front_matter_end]
+            data = yaml.safe_load(front_matter)
+
+            resources = data.get('resources', [])
+            for i, resource in enumerate(resources):
+                image_path = os.path.join(root, resource['src'])
+
+                # Get the alt text from Azure
+                alt_text = get_image_description(image_path)
+                
+                if alt_text:
+                    # Update the markdown file with the alt text
+                    update_markdown_file(md_file_path, i, alt_text)

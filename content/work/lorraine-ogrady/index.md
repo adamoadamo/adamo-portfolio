@@ -12,6 +12,6 @@ resources:
 - src: "1.png"
   params:
     caption: Lorraine O'Grady × Études × Brooklyn Museum
-    alt: "A motion graphic of a clock where the minute hand is chained to the end of the minute hand, and the seconds hand is chained to the end minute hand"
+    alt: ""
 ---
 

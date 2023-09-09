@@ -11,14 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Setup Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v2
         with: 
           python-version: '3.11'
 
-      - name: Run Python Script
+      - name: Install Dependencies
         run: |
-          pip install requests
-          python ./assets/scripts/alt.py
+          pip install requests pyyaml
+
+      - name: Run Python Script
+        run: python ././assets/scripts/alt.py

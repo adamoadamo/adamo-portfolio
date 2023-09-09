@@ -12,7 +12,7 @@ resources:
 - src: "1.png"
   params:
     caption: CAPTION
-    alt: "Descriptive alt text here"
+    alt: ""
 ---
 
 PROJECT E Occuscidi tem etur, sinus aspit, sitatur siment molupta con porenem re pratum dolupis enduciisque dolorOccuscidi tem etur, sinus aspit, sitatur siment molupta con porenem re pratum dolupis enduciisque dolorOccuscidi tem etur, sinus aspit, sitatur siment mol
