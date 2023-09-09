@@ -50,14 +50,17 @@ def update_markdown_file(md_file_path, front_matter_toml, image_index, alt_text)
         
         front_matter_end = content.index('+++\n', 3) + 1  # Find the end of the front matter block
 
-        # Identify the lines where the alt field for the given image is defined
+            # Identify the lines where the alt field for the given image is defined
         alt_field_line = None
+        inside_correct_resource_block = False
         for i in range(3, front_matter_end):
-            if f'[[resources]]\nsrc = "{front_matter_toml["resources"][image_index]["src"]}"' in content[i]:
-                for j in range(i, front_matter_end):  # Start a new loop to find the alt field line
-                    if 'alt =' in content[j]:
-                        alt_field_line = j
-                        break
+            line = content[i]
+            if line.startswith("[[resources]]"):
+                inside_correct_resource_block = False  # Reset the flag at the start of each new resource block
+            if f'src = "{front_matter_toml["resources"][image_index]["src"]}"' in line:
+                inside_correct_resource_block = True
+            if inside_correct_resource_block and line.strip().startswith('alt ='):
+                alt_field_line = i
                 break
 
         # If the alt field is found, update it with the new alt text
