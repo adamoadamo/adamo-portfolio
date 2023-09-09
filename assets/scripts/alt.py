@@ -4,11 +4,11 @@ import os
 import toml
 import traceback
 
-key = "e345170f92ac49b485fc5c62cc995c8d"
-endpoint = "https://adamtoreilly.cognitiveservices.azure.com/"
+AZURE_API_KEY = os.getenv("AZURE_API")
+AZURE_ENDPOINT = os.getenv("VISION_ENDPOINT")
 SITE_PATH = "content/work/"
 
-client = ComputerVisionClient(endpoint, AzureKeyCredential(key))
+client = ComputerVisionClient(AZURE_ENDPOINT, AzureKeyCredential(AZURE_API_KEY))
 
 def get_image_description(image_path):
     try:
