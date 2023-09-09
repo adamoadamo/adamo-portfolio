@@ -18,11 +18,11 @@ description = "2012"
 src = "1.png"
 [resources.params]
 caption = "Garry Neill Kennedy at Printed Matter"
-alt = ""
+alt = "text"
 
 [[resources]]
 src = "2.jpg"
 [resources.params]
 caption = "Garry Neill Kennedy at Printed Matter"
-alt = ""
+alt = "a group of people looking at a laptop"
 +++
