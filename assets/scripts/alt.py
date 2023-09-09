@@ -53,9 +53,10 @@ def update_markdown_file(md_file_path, front_matter_toml, image_index, alt_text)
         
         # Insert the description as plain text after the TOML section
         content.insert(front_matter_end, f"Alt text for image {image_index}: {alt_text}\n")
+        print(content[front_matter_end-2:front_matter_end+2])  # Print lines around the inserted text
 
         with open(md_file_path, 'w', encoding='utf-8') as file:
-            file.writelines(content)
+            file.writelines(content)    
 
         print(f"Inserted description in {md_file_path} with: {alt_text}")  # Log the inserted description
     
