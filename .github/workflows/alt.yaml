@@ -39,6 +39,10 @@ jobs:
       - name: Commit changes
         run: git commit -m "Update alt text descriptions" || echo "No changes to commit"
 
+      # Set remote URL with the personal access token for authentication
+      - name: Set remote URL with token
+        run: git remote set-url origin https://x-access-token:${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}@github.com/adamoadamo/adamo-portfolio.git
+
       # Push the changes back to your repository. Only push if there was a commit in the previous step
       - name: Push changes
         run: git push origin ${{ github.head_ref }} || echo "No changes to push"
