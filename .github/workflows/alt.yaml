@@ -27,3 +27,18 @@ jobs:
 
       - name: Run Python Script
         run: python ./assets/scripts/alt.py
+
+      # Add changes to git index
+      - name: Add changes to git
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'github-action@github.com'
+          git add content/work/*
+      
+      # Commit the changes with a generic message. Only commit if there are changes to commit
+      - name: Commit changes
+        run: git commit -m "Update alt text descriptions" || echo "No changes to commit"
+
+      # Push the changes back to your repository. Only push if there was a commit in the previous step
+      - name: Push changes
+        run: git push origin ${{ github.head_ref }} || echo "No changes to push"
