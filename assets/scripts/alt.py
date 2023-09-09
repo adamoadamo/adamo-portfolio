@@ -17,7 +17,10 @@ def get_image_description(image_path):
                 'visualFeatures': 'Description',
             }
             response = requests.post(AZURE_ENDPOINT + 'vision/v3.1/analyze', headers=headers, params=params, data=image_data)
-            description = response.json()['description']['captions'][0]['text']
+            response_data = response.json()
+            print(f"Azure API response: {response_data}")  # Debugging line
+            description = response_data['description']['captions'][0]['text']
+            print(f"Extracted description: {description}")  # Debugging line
             return description
     except Exception as e:
         print(f"Failed to get description for {image_path}: {e}")
@@ -50,6 +53,8 @@ def update_markdown_file(md_file_path, image_index, alt_text):
 
         # Convert the updated YAML back to a string
         front_matter_updated = yaml.safe_dump(front_matter_yaml, sort_keys=False)
+        print(f"YAML data before update: {front_matter_yaml}")  # Debugging line
+        print(f"YAML data after update: {front_matter_updated}")  # Debugging line
 
         # Replace the old front matter with the updated front matter in the content
         content = content[:len(front_matter)-1] + [front_matter_updated] + content[line_number:]
@@ -67,6 +72,7 @@ for root, dirs, files in os.walk(SITE_PATH):
     for file_name in files:
         if file_name.endswith(".md"):
             md_file_path = os.path.join(root, file_name)
+            print(f"Processing file: {md_file_path}")  # Debugging line
             with open(md_file_path, 'r', encoding='utf-8') as file:
                 content = file.read()
 
@@ -78,6 +84,7 @@ for root, dirs, files in os.walk(SITE_PATH):
             resources = data.get('resources', [])
             for i, resource in enumerate(resources):
                 image_path = os.path.join(root, resource['src'])
+                print(f"Found image: {image_path}")  # Debugging line
 
                 # Get the alt text from Azure
                 alt_text = get_image_description(image_path)
