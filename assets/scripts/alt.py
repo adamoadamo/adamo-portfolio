@@ -30,6 +30,7 @@ def get_image_description(image_path):
             
             if analysis.captions:
                 description = analysis.captions[0].text
+                print(f"Description found for {image_path}: {description}")  # Log the description
                 return description
         
         print(f"No description found for {image_path}")
@@ -54,7 +55,7 @@ def update_markdown_file(md_file_path, front_matter_toml, image_index, alt_text)
         with open(md_file_path, 'w', encoding='utf-8') as file:
             file.writelines(content)
 
-        print(f"Updated alt text in {md_file_path}")
+        print(f"Updated alt text in {md_file_path} with: {alt_text}")  # Log the updated alt text
     
     except Exception as e:
         print(f"Failed to update markdown file {md_file_path}: {e}")
