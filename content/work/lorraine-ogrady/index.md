@@ -18,6 +18,6 @@ description = "2021"
 src = "1.png"
 [resources.params]
 caption = "Lorraine O'Grady × Études × Brooklyn Museum"
-alt = ""
+alt = "a man wearing a white shirt"
 +++
 
