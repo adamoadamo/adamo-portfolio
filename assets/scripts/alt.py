@@ -1,14 +1,26 @@
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
-from azure.core.credentials import AzureKeyCredential
+from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
+from msrest.authentication import CognitiveServicesCredentials
+
 import os
 import toml
 import traceback
 
-AZURE_API_KEY = os.getenv("AZURE_API")
-AZURE_ENDPOINT = os.getenv("VISION_ENDPOINT")
+# Get the environment variables
+region = os.environ['ACCOUNT_REGION']
+key = os.environ['ACCOUNT_KEY']
 SITE_PATH = "content/work/"
 
-client = ComputerVisionClient(AZURE_ENDPOINT, AzureKeyCredential(AZURE_API_KEY))
+# Check if environment variables are set
+if not region or not key:
+    raise EnvironmentError("ACCOUNT_REGION and/or ACCOUNT_KEY are not set in the environment")
+
+# Create a Computer Vision client instance
+credentials = CognitiveServicesCredentials(key)
+client = ComputerVisionClient(
+    endpoint=f"https://{region}.api.cognitive.microsoft.com/",
+    credentials=credentials
+)
 
 def get_image_description(image_path):
     try:

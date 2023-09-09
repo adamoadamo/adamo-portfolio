@@ -4,8 +4,9 @@ on:
   workflow_dispatch
 
 env:
-  AZURE_API: ${{ secrets.AZURE_API }}
   VISION_ENDPOINT: ${{ secrets.VISION_ENDPOINT }}
+  ACCOUNT_REGION: ${{ secrets.AZURE_ACCOUNT_REGION }}
+  ACCOUNT_KEY: ${{ secrets.AZURE_ACCOUNT_KEY }}
 
 jobs:
   run-python:
