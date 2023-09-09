@@ -19,3 +19,4 @@ src = "1.png"
 [resources.params]
 caption = "Fubu × Black Fashion Fair"
 alt = ""
++++
