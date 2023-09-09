@@ -1,30 +1,22 @@
 import os
 import toml
-from azure.ai.vision import sdk
+from azure.ai.visioncomputervision import ComputerVisionClient
+from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
 
 AZURE_API_KEY = os.getenv("AZURE_API")
 AZURE_ENDPOINT = os.getenv("VISION_ENDPOINT")
 SITE_PATH = "content/work/"
 
-service_options = sdk.VisionServiceOptions(AZURE_ENDPOINT, AZURE_API_KEY)
+client = ComputerVisionClient(AZURE_ENDPOINT, AZURE_API_KEY)
 
 def get_image_description(image_path):
     try:
-        vision_source = sdk.VisionSource(file_path=image_path)
-        analysis_options = sdk.ImageAnalysisOptions()
-        analysis_options.features = (
-            sdk.ImageAnalysisFeature.CAPTION |
-            sdk.ImageAnalysisFeature.TEXT
-        )
-        analysis_options.language = "en"
-        analysis_options.gender_neutral_caption = True
-
-        image_analyzer = sdk.ImageAnalyzer(service_options, vision_source, analysis_options)
-        result = image_analyzer.analyze()
-
-        if result.reason == sdk.ImageAnalysisResultReason.ANALYZED:
-            if result.caption is not None:
-                description = result.caption.content
+        with open(image_path, 'rb') as image_data:
+            # Using the analyze_image_in_stream method to get image description
+            analysis = client.analyze_image_in_stream(image_data, [VisualFeatureTypes.description])
+            
+            if analysis.description and analysis.description.captions:
+                description = analysis.description.captions[0].text
                 return description
 
         print(f"No description found for {image_path}")
@@ -36,6 +28,8 @@ def get_image_description(image_path):
 
 def update_markdown_file(md_file_path, front_matter_toml, image_index, alt_text):
     try:
+        front_matter_toml['resources'][image_index]['title'] = alt_text  # Updating the alt text
+
         with open(md_file_path, 'r', encoding='utf-8') as file:
             content = file.readlines()
 
