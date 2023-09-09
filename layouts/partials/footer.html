@@ -1,14 +1,7 @@
 <footer class="flex">
-	{{if site.Copyright}}
-		<div class="pad-r-5px">{{site.Copyright}}</div>
-	{{else}}
-		<div class="pad-r-5px">
-		{{- now.Format "2006"}} {{site.Title}}
-		</div>
-	{{end}}
+    {{ if site.Copyright }}
+        <div class="pad-r-5px">{{ site.Copyright }}</div>
+    {{ else }}
+        <div class="pad-r-5px">{{- now.Format "2006" }} {{ site.Title }}</div>
+    {{ end }}
 </footer>
-
-<!--js-->
-{{with site.Menus.main}}
-<script src="{{relLangURL ""}}js/sk2.js"></script>
-{{end}}
