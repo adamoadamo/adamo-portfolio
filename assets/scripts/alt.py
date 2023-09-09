@@ -25,12 +25,13 @@ client = ComputerVisionClient(
 def get_image_description(image_path):
     try:
         with open(image_path, 'rb') as image_data:
-            # Using the describe_image_in_stream method to get image description
             analysis = client.describe_image_in_stream(image_data)
             
             if analysis.captions:
+                for caption in analysis.captions:
+                    print(f"Caption: {caption.text}, Confidence: {caption.confidence}")
+                
                 description = analysis.captions[0].text
-                print(f"Description found for {image_path}: {description}")  # Log the description
                 return description
         
         print(f"No description found for {image_path}")
@@ -48,6 +49,8 @@ def update_markdown_file(md_file_path, front_matter_toml, image_index, alt_text)
         
         front_matter_end = content.index('+++\n', 3) + 1  # Find the end of the front matter block
 
+        print(f"Found end of front matter at line {front_matter_end}")
+        
         # Insert the description as plain text after the TOML section
         content.insert(front_matter_end, f"Alt text for image {image_index}: {alt_text}\n")
 
