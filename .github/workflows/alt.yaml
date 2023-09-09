@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }} # Use your personal access token to checkout
-          ref: refs/heads/main
+          ref: refs/heads/master
 
       - name: Setup Python
         uses: actions/setup-python@v3
@@ -44,4 +44,5 @@ jobs:
 
       # Push the changes back to your repository. Only push if there was a commit in the previous step
       - name: Push changes
-        run: git push origin HEAD:main || echo "No changes to push"
+        run: git push origin master || echo "No changes to push"
+
