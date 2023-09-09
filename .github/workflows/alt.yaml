@@ -3,7 +3,7 @@ name: Alt Text Generator
 on: 
   workflow_dispatch
 
-env: azure_api: $({ secrets.AZURE_API})
+env: azure_api: $({ secrets.AZURE_API })
 
 jobs:
   run-python:
