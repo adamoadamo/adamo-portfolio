@@ -62,6 +62,8 @@ def update_markdown_file(md_file_path, front_matter_toml, image_index, alt_text)
         # If the alt field is found, update it with the new alt text
         if alt_field_line is not None:
             content[alt_field_line] = f'alt = "{alt_text}"\n'
+        else:
+            print(f"No alt field line found for image index {image_index} in file {md_file_path}")
 
         # Write the modified content back to the file
         with open(md_file_path, 'w', encoding='utf-8') as file:
