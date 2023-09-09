@@ -27,8 +27,10 @@
   .image-caption {
     padding-bottom: var(--space-unit);
     padding-top: calc(var(--space-unit) / 2);
+    opacity: 0;
   }
-  
+
+
   .image-item,
   .poem-item { 
     position: relative;

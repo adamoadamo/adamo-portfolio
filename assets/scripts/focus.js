@@ -4,10 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const sortAlphaBtn = document.getElementById('sortAlpha');
   const sortChronoBtn = document.getElementById('sortChrono');
   
-  let recentlyFocused = false; // Add this flag to manage focus/click interaction
-
   if (!sortAlphaBtn || !sortChronoBtn) {
-    console.error("Sort buttons not found");
+    console.log("Sort buttons not found");
     return;
   }
 
@@ -17,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let flexItems = Array.from(assortment.getElementsByClassName('flex-item'));
 
   if (flexItems.length === 0) {
-    console.error("No flex items found");
+    console.log("No flex items found");
     return;
   }
 
@@ -26,14 +24,27 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentIndex = 0;
 
   const toggleActiveClass = (event) => {
-    if (recentlyFocused) {
-      recentlyFocused = false; // Reset the flag
-    } else {
-      event.currentTarget.classList.toggle('active');
-      event.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+    const currentItem = event.currentTarget;
+    
+    flexItems.forEach(i => {
+      const navigableItem = i.querySelector('.navigable-item');
+      const imageCaption = navigableItem.querySelector('.image-caption');
+      
+      if(navigableItem !== currentItem) {
+        navigableItem.classList.remove('active');
+        if(imageCaption) imageCaption.style.opacity = "0";
+      }
+    });
+
+    currentItem.classList.toggle('active');
+    currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+
+    const imageCaption = currentItem.querySelector('.image-caption');
+    if (imageCaption) {
+      imageCaption.style.opacity = currentItem.classList.contains('active') ? "1" : "0";
     }
   };
-
+  
   const registerClickToToggle = () => {
     flexItems.forEach(item => {
       const navigableItem = item.querySelector('.navigable-item');
@@ -47,23 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const registerNavigation = () => {
     console.log("Registering navigation...");
     flexItems = Array.from(assortment.getElementsByClassName('flex-item'));
-    flexItems.forEach((item, index) => {
-      item.addEventListener('focus', () => {
-        console.log(`Item focused, index: ${index}`);
-        currentIndex = index;
-        recentlyFocused = true; // Set the flag
-        
-        // Remove 'active' class from all items
-        flexItems.forEach(i => i.querySelector('.navigable-item').classList.remove('active'));
-
-        // Add 'active' class to the currently focused item
-        const navigableItem = item.querySelector('.navigable-item');
-        if (navigableItem) {
-          navigableItem.classList.add('active');
-          navigableItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-        }
-      });
-    });
   };
 
   registerNavigation();  // Initial registration
@@ -71,25 +65,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.addEventListener('keydown', function(event) {
     console.log(`Keydown event: ${event.key}`);
-    if (event.key === 'ArrowRight') {
-      currentIndex = (currentIndex + 1) % flexItems.length;
-      console.log(`New index after ArrowRight: ${currentIndex}`);
-      flexItems[currentIndex].focus();
-    } else if (event.key === 'ArrowLeft') {
-      currentIndex = (currentIndex - 1 + flexItems.length) % flexItems.length;
-      console.log(`New index after ArrowLeft: ${currentIndex}`);
-      flexItems[currentIndex].focus();
+    
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+      const activeItem = flexItems[currentIndex].querySelector('.navigable-item');
+      const activeItemCaption = activeItem ? activeItem.querySelector('.image-caption') : null;
+      if (activeItem) {
+        activeItem.classList.remove('active');
+        if(activeItemCaption) activeItemCaption.style.opacity = "0";
+      }
+  
+      currentIndex = event.key === 'ArrowRight' 
+        ? (currentIndex + 1) % flexItems.length 
+        : (currentIndex - 1 + flexItems.length) % flexItems.length;
+  
+      const newActiveItem = flexItems[currentIndex].querySelector('.navigable-item');
+      const newActiveItemCaption = newActiveItem ? newActiveItem.querySelector('.image-caption') : null;
+      if (newActiveItem) {
+        newActiveItem.classList.add('active');
+        if(newActiveItemCaption) newActiveItemCaption.style.opacity = "1";
+      }
     }
   });
+  
 
   const sortItems = (type) => {
     let sortedItems;
     if (type === 'alpha') {
       sortedItems = flexItems.sort((a, b) => a.dataset.title.localeCompare(b.dataset.title));
-      console.log("Sorted alphabetically");
     } else {
       sortedItems = flexItems.sort((a, b) => parseInt(a.dataset.year, 10) - parseInt(b.dataset.year, 10));
-      console.log("Sorted chronologically");
     }
 
     assortment.innerHTML = '';
@@ -99,25 +103,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     registerNavigation();  // Re-register after sorting
     registerClickToToggle(); // Re-register click events after sorting
-    console.log("Re-registered navigation after sorting");
   };
 
   sortItems('alpha');
   sortAlphaBtn.classList.add('selected');
   document.getElementById('totalMdFiles').innerText = flexItems.length;
-  console.log("Initial sorting complete");
 
   sortAlphaBtn.addEventListener('click', () => {
     sortItems('alpha');
     sortAlphaBtn.classList.add('selected');
     sortChronoBtn.classList.remove('selected');
-    console.log("Sorted alphabetically via button");
   });
 
   sortChronoBtn.addEventListener('click', () => {
     sortItems('chrono');
     sortChronoBtn.classList.add('selected');
     sortAlphaBtn.classList.remove('selected');
-    console.log("Sorted chronologically via button");
   });
 });

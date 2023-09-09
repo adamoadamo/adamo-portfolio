@@ -22,7 +22,8 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install toml requests azure-cognitiveservices-vision-computervision
+          python -m pip install azure-ai-vision
+          pip install toml requests 
 
       - name: Run Python Script
         run: python ./assets/scripts/alt.py
