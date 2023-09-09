@@ -4,7 +4,7 @@ import yaml
 
 AZURE_API_KEY = os.getenv("AZURE_API")
 AZURE_ENDPOINT = "https://adamtoreilly.cognitiveservices.azure.com/"
-SITE_PATH = "../../content/work/"
+SITE_PATH = "content/work/"
 
 def get_image_description(image_path):
     try:
