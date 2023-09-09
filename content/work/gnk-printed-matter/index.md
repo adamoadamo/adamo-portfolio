@@ -26,5 +26,3 @@ src = "2.jpg"
 caption = "Garry Neill Kennedy at Printed Matter"
 alt = ""
 +++
-Alt text for image 1: a group of people looking at a laptop
-Alt text for image 0: text

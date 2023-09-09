@@ -20,4 +20,4 @@ src = "1.png"
 caption = "Lorraine O'Grady × Études × Brooklyn Museum"
 alt = ""
 +++
-Alt text for image 0: a man wearing a white shirt
+
