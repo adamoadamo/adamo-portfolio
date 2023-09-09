@@ -5,6 +5,7 @@ from azure.core.credentials import AzureKeyCredential
 
 AZURE_API_KEY = os.getenv("AZURE_API")
 AZURE_ENDPOINT = os.getenv("VISION_ENDPOINT")
+SITE_PATH = "content/work/"
 
 client = ComputerVisionClient(AZURE_ENDPOINT, AzureKeyCredential(AZURE_API_KEY))
 
