@@ -44,21 +44,30 @@ def get_image_description(image_path):
 
 def update_markdown_file(md_file_path, front_matter_toml, image_index, alt_text):
     try:
+        # Read the content of the file and find the TOML front matter
         with open(md_file_path, 'r', encoding='utf-8') as file:
             content = file.readlines()
         
         front_matter_end = content.index('+++\n', 3) + 1  # Find the end of the front matter block
 
-        print(f"Found end of front matter at line {front_matter_end}")
-        
-        # Insert the description as plain text after the TOML section
-        content.insert(front_matter_end, f"{alt_text}\n")
-        print(content[front_matter_end-2:front_matter_end+2])  # Print lines around the inserted text
+        # Identify the lines where the alt field for the given image is defined
+        alt_field_line = None
+        for i in range(3, front_matter_end):
+            if f'[[resources]]\nsrc = "{front_matter_toml["resources"][image_index]["src"]}"' in content[i]:
+                while 'alt =' not in content[i]:
+                    i += 1
+                alt_field_line = i
+                break
 
+        # If the alt field is found, update it with the new alt text
+        if alt_field_line is not None:
+            content[alt_field_line] = f'alt = "{alt_text}"\n'
+
+        # Write the modified content back to the file
         with open(md_file_path, 'w', encoding='utf-8') as file:
             file.writelines(content)    
 
-        print(f"Inserted description in {md_file_path} with: {alt_text}")  # Log the inserted description
+        print(f"Updated description in {md_file_path} with: {alt_text}")  # Log the updated description
     
     except Exception as e:
         print(f"Failed to update markdown file {md_file_path}: {e}")
