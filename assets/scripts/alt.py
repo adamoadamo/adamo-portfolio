@@ -43,7 +43,7 @@ def get_image_description(image_path):
 
 def update_markdown_file(md_file_path, front_matter_toml, image_index, alt_text):
     try:
-        front_matter_toml['resources'][image_index]['title'] = alt_text  # Updating the alt text
+        front_matter_toml['resources'][image_index]['params']['alt'] = alt_text  # Updating the alt text
         
         with open(md_file_path, 'r', encoding='utf-8') as file:
             content = file.readlines()
