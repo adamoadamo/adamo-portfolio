@@ -1,6 +1,6 @@
 import os
 import toml
-from azure.ai.visioncomputervision import ComputerVisionClient
+from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
 
 AZURE_API_KEY = os.getenv("AZURE_API")
