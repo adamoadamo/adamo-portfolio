@@ -18,11 +18,13 @@ def get_image_description(image_path):
             }
             response = requests.post(AZURE_ENDPOINT + 'vision/v3.1/analyze', headers=headers, params=params, data=image_data)
             response_data = response.json()
+            print(response_data)  # Add this line to print the response data
             description = response_data['description']['captions'][0]['text']
             return description
     except Exception as e:
         print(f"Failed to get description for {image_path}: {e}")
         return None
+
 
 def update_markdown_file(md_file_path, image_index, alt_text):
     try:
