@@ -1,18 +1,24 @@
----
-title: Project E
-section: work  
-data:
-  - title: Role
-    description: Lorem Ipsum
-  - title: Collaborators
-    description: Lorem Ipsum
-  - title: Year
-    description: 2005
-resources:
-- src: "1.png"
-  params:
-    caption: CAPTION
-    alt: ""
----
++++
+title = "Project D"
+section = "work"
 
-PROJECT E Occuscidi tem etur, sinus aspit, sitatur siment molupta con porenem re pratum dolupis enduciisque dolorOccuscidi tem etur, sinus aspit, sitatur siment molupta con porenem re pratum dolupis enduciisque dolorOccuscidi tem etur, sinus aspit, sitatur siment mol
+[[data]]
+title = "Role"
+description = "Lorem Ipsum"
+
+[[data]]
+title = "Collaborators"
+description = "Lorem Ipsum"
+
+[[data]]
+title = "Year"
+description = "2005"
+
+[[resources]]
+src = "1.png"
+[resources.params]
+caption = "CAPTION"
+alt = ""
++++
+
+PROJECT D Occuscidi tem etur, sinus aspit, sitatur siment molupta con porenem re pratum dolupis enduciisque dolorOccuscidi tem etur, sinus aspit, sitatur siment molupta con porenem re pratum dolupis enduciisque dolorOccuscidi tem etur, sinus aspit, sitatur siment mol
