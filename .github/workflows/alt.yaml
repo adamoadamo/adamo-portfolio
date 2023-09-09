@@ -20,5 +20,6 @@ jobs:
 
       - name: Run Python Script
         run: |
-          pip install toml
+          pip install toml requests
           python ./assets/scripts/alt.py
+

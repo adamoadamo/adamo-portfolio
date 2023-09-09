@@ -46,7 +46,7 @@ def update_markdown_file(md_file_path, image_index, alt_text):
 
         front_matter_toml["resources"][image_index]["params"]["alt"] = alt_text
 
-        front_matter_updated = toml.dumps(front_matter_toml)
+        front_matter_updated = "+++\n" + toml.dumps(front_matter_toml) + "+++\n"
         
         content = content[:len(front_matter)-1] + [front_matter_updated] + content[line_number:]
 

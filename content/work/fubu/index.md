@@ -17,6 +17,6 @@ description = "2022"
 [[resources]]
 src = "1.png"
 [resources.params]
-caption = "Fubu × Black Fashion Fair"
+caption = ""
 alt = ""
 +++
