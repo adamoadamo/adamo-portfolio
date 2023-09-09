@@ -54,9 +54,10 @@ def update_markdown_file(md_file_path, front_matter_toml, image_index, alt_text)
         alt_field_line = None
         for i in range(3, front_matter_end):
             if f'[[resources]]\nsrc = "{front_matter_toml["resources"][image_index]["src"]}"' in content[i]:
-                while 'alt =' not in content[i]:
-                    i += 1
-                alt_field_line = i
+                for j in range(i, front_matter_end):  # Start a new loop to find the alt field line
+                    if 'alt =' in content[j]:
+                        alt_field_line = j
+                        break
                 break
 
         # If the alt field is found, update it with the new alt text
