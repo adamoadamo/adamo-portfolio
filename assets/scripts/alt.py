@@ -79,6 +79,10 @@ for root, dirs, files in os.walk(SITE_PATH):
             # Find the front matter and extract resource information
             front_matter_end = content.find('---', 1)
             front_matter = content[4:front_matter_end]
+            
+            # Debugging line to print front matter content before loading it
+            print(f"Front matter content before loading: {front_matter}")
+
             data = yaml.safe_load(front_matter)
 
             resources = data.get('resources', [])
