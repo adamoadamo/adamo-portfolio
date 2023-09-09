@@ -13,12 +13,13 @@ def get_image_description(image_path):
     try:
         with open(image_path, 'rb') as image_data:
             # Using the describe_image_in_stream method to get image description
-            description = client.describe_image_in_stream(image_data)
+            analysis = client.describe_image_in_stream(image_data)
             
-            if description.captions:
-                return description.captions[0].text
-            else:
-                print(f"No description found for {image_path}")
+            if analysis.captions:
+                description = analysis.captions[0].text
+                return description
+
+        print(f"No description found for {image_path}")
 
     except Exception as e:
         print(f"Failed to get description for {image_path}: {e}")
