@@ -1,10 +1,9 @@
 import os
 import requests
 
-AZURE_API = os.environ["azure_api"]
+AZURE_API_KEY = os.getenv("AZURE_API")
 
 AZURE_ENDPOINT = "https://adamtoreilly.cognitiveservices.azure.com/"
-AZURE_API_KEY = "{AZURE_API}"
 
 SITE_PATH = "../content/work/"
 
