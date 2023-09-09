@@ -24,8 +24,7 @@ def get_image_description(image_path):
         print(f"No description found for {image_path}")
 
     except Exception as e:
-    print(f"Failed to get description for {image_path}: {e}")
-    print(traceback.format_exc())
+        print(f"Failed to get description for {image_path}: {e}")
 
     return None
 
