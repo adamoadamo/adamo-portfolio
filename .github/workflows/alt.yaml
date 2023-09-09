@@ -19,8 +19,9 @@ jobs:
         with: 
           python-version: '3.9'
 
-      - name: Run Python Script
+      - name: Install Dependencies
         run: |
-          pip install toml requests
-          python ./assets/scripts/alt.py
+          pip install toml requests azure-ai-vision
 
+      - name: Run Python Script
+        run: python ./assets/scripts/alt.py
