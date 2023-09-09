@@ -5,6 +5,7 @@ on:
 
 env:
   AZURE_API: ${{ secrets.AZURE_API }}
+  VISION_ENDPOINT: ${{ secrets.VISION_ENDPOINT }}
 
 jobs:
   run-python:
