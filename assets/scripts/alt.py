@@ -1,12 +1,14 @@
-import os
-import toml
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from azure.core.credentials import AzureKeyCredential
+import os
+import toml
+import traceback
 
 AZURE_API_KEY = os.getenv("AZURE_API")
-AZURE_ENDPOINT = "https://adamtoreilly.cognitiveservices.azure.com/"
+AZURE_ENDPOINT = os.getenv("VISION_ENDPOINT")
 SITE_PATH = "content/work/"
 
+print(AZURE_API_KEY, AZURE_ENDPOINT)  # Remove this line before pushing to public repository
 client = ComputerVisionClient(AZURE_ENDPOINT, AzureKeyCredential(AZURE_API_KEY))
 
 def get_image_description(image_path):
@@ -22,7 +24,8 @@ def get_image_description(image_path):
         print(f"No description found for {image_path}")
 
     except Exception as e:
-        print(f"Failed to get description for {image_path}: {e}")
+    print(f"Failed to get description for {image_path}: {e}")
+    print(traceback.format_exc())
 
     return None
 
