@@ -12,14 +12,13 @@ client = ComputerVisionClient(AZURE_ENDPOINT, AzureKeyCredential(AZURE_API_KEY))
 def get_image_description(image_path):
     try:
         with open(image_path, 'rb') as image_data:
-            # Using the analyze_image_in_stream method to get image description
-            analysis = client.analyze_image_in_stream(image_data, [VisualFeatureTypes.description])
+            # Using the describe_image_in_stream method to get image description
+            description = client.describe_image_in_stream(image_data)
             
-            if analysis.description and analysis.description.captions:
-                description = analysis.description.captions[0].text
-                return description
-
-        print(f"No description found for {image_path}")
+            if description.captions:
+                return description.captions[0].text
+            else:
+                print(f"No description found for {image_path}")
 
     except Exception as e:
         print(f"Failed to get description for {image_path}: {e}")
