@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }} # Use your personal access token to checkout
 
       - name: Setup Python
         uses: actions/setup-python@v3
@@ -38,10 +40,6 @@ jobs:
       # Commit the changes with a generic message. Only commit if there are changes to commit
       - name: Commit changes
         run: git commit -m "Update alt text descriptions" || echo "No changes to commit"
-
-      # Set remote URL with the personal access token for authentication
-      - name: Set remote URL with token
-        run: git remote set-url origin https://x-access-token:${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}@github.com/adamoadamo/adamo-portfolio.git
 
       # Push the changes back to your repository. Only push if there was a commit in the previous step
       - name: Push changes
