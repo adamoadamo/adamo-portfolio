@@ -42,25 +42,27 @@ def get_image_description(image_path):
 
     return None
 
-def update_markdown_file(md_file_path, image_index, alt_text):
-    with open(md_file_path, 'r', encoding='utf-8') as file:
-        content = file.readlines()
+def update_markdown_file(md_file_path, front_matter_toml, image_index, alt_text):
+    try:
+        with open(md_file_path, 'r', encoding='utf-8') as file:
+            content = file.readlines()
+        
+        front_matter_end = content.index('+++\n', 3) + 1  # Find the end of the front matter block
 
-    # Find the end of the TOML front matter
-    front_matter_end = content.index('+++\n') + 1
+        print(f"Found end of front matter at line {front_matter_end}")
+        
+        # Insert the description as plain text after the TOML section
+        content.insert(front_matter_end, f"Alt text for image {image_index}: {alt_text}\n")
+        print(content[front_matter_end-2:front_matter_end+2])  # Print lines around the inserted text
 
-    # Find and update the alt field for the relevant image
-    for i in range(front_matter_end):
-        if f'[[resources]]\nsrc = "{image_index}.png"' in content[i:i+2] or f'[[resources]]\nsrc = "{image_index}.jpg"' in content[i:i+2] or f'[[resources]]\nsrc = "{image_index}.gif"' in content[i:i+2]:
-            for j in range(i, front_matter_end):
-                if 'alt = ""' in content[j]:
-                    content[j] = f'alt = "{alt_text}"\n'
-                    break
-            break
+        with open(md_file_path, 'w', encoding='utf-8') as file:
+            file.writelines(content)    
 
-    # Write the updated content back to the file
-    with open(md_file_path, 'w', encoding='utf-8') as file:
-        file.writelines(content)
+        print(f"Inserted description in {md_file_path} with: {alt_text}")  # Log the inserted description
+    
+    except Exception as e:
+        print(f"Failed to update markdown file {md_file_path}: {e}")
+        traceback.print_exc()  # Print the full traceback to help diagnose the issue
 
 for root, dirs, files in os.walk(SITE_PATH):
     for file_name in files:
