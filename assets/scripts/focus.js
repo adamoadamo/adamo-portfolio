@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const sortAlphaBtn = document.getElementById('sortAlpha');
   const sortChronoBtn = document.getElementById('sortChrono');
-  
+
   if (!sortAlphaBtn || !sortChronoBtn) {
     console.log("Sort buttons not found");
     return;
@@ -25,26 +25,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const toggleActiveClass = (event) => {
     const currentItem = event.currentTarget;
-    
+  
+    // Update the currentIndex to the index of the clicked item
+    currentIndex = flexItems.findIndex(item => item.querySelector('.navigable-item') === currentItem);
+  
     flexItems.forEach(i => {
       const navigableItem = i.querySelector('.navigable-item');
       const imageCaption = navigableItem.querySelector('.image-caption');
-      
+  
       if(navigableItem !== currentItem) {
         navigableItem.classList.remove('active');
-        if(imageCaption) imageCaption.style.opacity = "0";
+        if(imageCaption) {
+          imageCaption.style.opacity = "0";
+          imageCaption.style.display = "none";
+        }
       }
     });
-
+  
     currentItem.classList.toggle('active');
     currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-
+  
     const imageCaption = currentItem.querySelector('.image-caption');
     if (imageCaption) {
-      imageCaption.style.opacity = currentItem.classList.contains('active') ? "1" : "0";
-    }
-  };
-  
+      if(currentItem.classList.contains('active')) {
+        imageCaption.style.display = "block"; // or "inline", "inline-block", whatever it was originally
+        imageCaption.style.opacity = "1";
+      } else {
+        imageCaption.style.display = "none"; 
+        imageCaption.style.opacity = "0";
+      }
+    }    
+  };  
+
   const registerClickToToggle = () => {
     flexItems.forEach(item => {
       const navigableItem = item.querySelector('.navigable-item');
@@ -71,22 +83,28 @@ document.addEventListener('DOMContentLoaded', function() {
       const activeItemCaption = activeItem ? activeItem.querySelector('.image-caption') : null;
       if (activeItem) {
         activeItem.classList.remove('active');
-        if(activeItemCaption) activeItemCaption.style.opacity = "0";
+        if(activeItemCaption) {
+          activeItemCaption.style.display = "none";
+          activeItemCaption.style.opacity = "0";
+        }
       }
-  
+
       currentIndex = event.key === 'ArrowRight' 
         ? (currentIndex + 1) % flexItems.length 
         : (currentIndex - 1 + flexItems.length) % flexItems.length;
-  
+
       const newActiveItem = flexItems[currentIndex].querySelector('.navigable-item');
       const newActiveItemCaption = newActiveItem ? newActiveItem.querySelector('.image-caption') : null;
       if (newActiveItem) {
         newActiveItem.classList.add('active');
-        if(newActiveItemCaption) newActiveItemCaption.style.opacity = "1";
+        if(newActiveItemCaption) {
+          newActiveItemCaption.style.display = "block"; 
+          newActiveItemCaption.style.opacity = "1";
+        }
+        newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
       }
     }
   });
-  
 
   const sortItems = (type) => {
     let sortedItems;

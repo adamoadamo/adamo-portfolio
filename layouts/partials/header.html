@@ -1,6 +1,21 @@
 <div class="flex-container">
     <div class="bio">
-    {{.Content}}
+        <div class="bio-content">
+            {{ with .Params.intro }} 
+                {{ . | safeHTML }}
+            {{ else }}
+                {{ .Content | safeHTML }}
+            {{ end }}
+        </div>
+        <div class="bio-expand hidden"> 
+            {{ .Content | safeHTML }}
+        </div>
+        <a href="#" class="toggle-bio">Show more <span class="arrow">↓</span></a>
+    </div>
+    <div class="contact">
+        <a href="mailto:{{ .Params.email_link }}">{{ .Params.email_text }}</a>
+        <a href="{{ .Params.instagram_link }}">{{ .Params.instagram_text }}</a>
+        <a href="{{ .Params.github_link }}">{{ .Params.github_text }}</a> 
     </div>
 </div>
 
@@ -18,7 +33,6 @@
         <button id="sortChrono" class="sort-button">Chronological</button>
       </div>
       <div class="sort-total">
-        {{ printf "Amt: %d" $totalMarkdownFiles }}
+        {{ printf "Projects: %d" $totalMarkdownFiles }}
     </div>
 </div>
-        

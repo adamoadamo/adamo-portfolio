@@ -1,4 +1,4 @@
-  :root {
+   :root {
     font-feature-settings: 'liga', 'kern';
   }
   
@@ -19,7 +19,7 @@
     color: black;
   }
   
-  $font-size-base: 1em;
+  $font-size-base: 1.25em;
   $line-height-base: 1.25em;
 
   @font-face {
@@ -30,23 +30,9 @@
     font-style: normal;
   }
 
-  .sort-total, .sort-button  {
-    @include aulac-styles;
-    font-size: $font-size-base * 0.75;
-  }
+  // Header——————————————————————————————————————————————
 
-  .sort-button.selected {
-    text-decoration: underline;
-  }   
-
-  .image-caption {
-    @include aulac-styles;
-    text-align: left;
-    font-size: $font-size-base * 0.75;
-    text-transform: uppercase;
-  }
-  
-  .bio, footer {
+  .bio-content, .bio-expand, footer {
     @include aulac-styles;
     text-align: left;
     font-size: $font-size-base;
@@ -56,11 +42,38 @@
       text-indent: calc(var(--space-unit) * 2);
     }
   }
-  
+
+  .toggle-bio {
+    @include aulac-styles;
+    text-align: left;
+    font-size: $font-size-base * 0.65;
+    line-height: $line-height-base;
+  }
+
+  .sort-total, .sort-button  {
+    @include aulac-styles;
+    font-size: $font-size-base * 0.65;
+  }
+
+  .sort-button.selected {
+    text-decoration: underline;
+  }   
+
+
+  // Project Grid——————————————————————————————————————————————
+
+  .image-caption {
+    @include aulac-styles;
+    text-align: left;
+    font-size: $font-size-base * 0.65;
+    line-height: $line-height-base;
+   // text-transform: uppercase;
+  }
+
   .project-content {
     @include aulac-styles;
     text-align: left;
-    font-size: $font-size-base * 0.75;
+    font-size: $font-size-base * 0.65;
     line-height: $line-height-base;
   
     p:nth-of-type(2) {
@@ -83,12 +96,3 @@
     max-width: 600px;
   }
 
-  ::selection {
-    background-color: black;
-    color: white;
-  }
-  
-  ::-moz-selection {
-    background-color: black;
-    color: white;
-  }

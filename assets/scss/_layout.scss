@@ -17,3 +17,17 @@ body {
   gap: var(--space-unit);
   align-items: baseline;
 }
+
+.hidden {
+  display: none;
+}
+
+::selection {
+  background-color: black;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: black;
+  color: white;
+}

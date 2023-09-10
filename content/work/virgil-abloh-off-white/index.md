@@ -4,7 +4,7 @@ section = "work"
 
 [[data]]
 title = "Role"
-description = "Designer"
+description = "Director of Graphic Design"
 
 [[data]]
 title = "Collaborators"
@@ -12,7 +12,7 @@ description = ""
 
 [[data]]
 title = "Year"
-description = "2021"
+description = "2022"
 
 [[resources]]
 src = "1.pngjpg"

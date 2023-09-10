@@ -9,11 +9,11 @@
   }
   
   img {
+    position: relative;
     max-width: 100%;
     height: auto;
     display: block;
-    background: white;
-    background-image: radial-gradient(black 1px, #f9f9f9 0);
+    background-image: radial-gradient(black 1px, #f9f9f9 0);  
     background-size:3px 3px;
     background-position: 0px 0px;
   }
@@ -28,6 +28,7 @@
     padding-bottom: var(--space-unit);
     padding-top: calc(var(--space-unit) / 2);
     opacity: 0;
+    display: none;
   }
 
   .image-item,
@@ -37,18 +38,19 @@
   
   .image-item img,
   .poem-item { 
-    width: 100%;
-    max-width: 250px;
-    margin: 0 auto;
+    max-width: 150px;
+    max-height: 150px; 
+    object-fit: contain;
   }
   
   .image-item.navigable-item.active img,
   .poem-item.navigable-item.active {
-    max-width: 550px;
+    max-width: 600px;
+    max-height: 600px; 
+    object-fit: contain;
   }
   
-  .project-content,
-  .poem-item { 
+  .project-content { 
     width: 100%;
     max-width: 250px;
     box-sizing: border-box;
@@ -59,11 +61,14 @@
     margin: 0; // Align the content to the left when active
   }
   
-
   .navigable-item:focus {
     outline: none;
   }
   
+  :focus {
+    outline: none;
+  }
+
   .poem-item.active {
     background-color: aquamarine;
   }
@@ -76,10 +81,6 @@
     -ms-user-select: none;
     user-select: none;
     text-decoration: none;
-  }
-  
-  :focus {
-    outline: none;
   }
   
   #totalMdFiles {

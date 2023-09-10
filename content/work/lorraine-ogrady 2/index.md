@@ -1,14 +1,14 @@
 +++
-title = "Lorraine O'Grady × Études"
+title = "Lorraine O'Grady × Études × Brooklyn Museum"
 section = "work"
 
 [[data]]
 title = "Role"
-description = "Creative Director"
+description = "Director of Graphic Design"
 
 [[data]]
 title = "Collaborators"
-description = ""
+description = "Chad Phillips, Director of Retail"
 
 [[data]]
 title = "Year"
