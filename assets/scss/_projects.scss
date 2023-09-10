@@ -23,13 +23,12 @@
     flex-wrap: nowrap;
     gap: calc(var(--space-unit) / 2);
   }
-
+  
   .image-caption {
     padding-bottom: var(--space-unit);
     padding-top: calc(var(--space-unit) / 2);
     opacity: 0;
   }
-
 
   .image-item,
   .poem-item { 
@@ -66,6 +65,7 @@
   }
   
   .poem-item.active {
+    background-color: aquamarine;
   }
   
   .poem-item {

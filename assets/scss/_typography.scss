@@ -41,12 +41,12 @@
 
   .image-caption {
     @include aulac-styles;
-    text-align: center;
+    text-align: left;
     font-size: $font-size-base * 0.75;
     text-transform: uppercase;
   }
   
-  .project-content, .bio {
+  .bio, footer {
     @include aulac-styles;
     text-align: left;
     font-size: $font-size-base;
@@ -57,6 +57,17 @@
     }
   }
   
+  .project-content {
+    @include aulac-styles;
+    text-align: left;
+    font-size: $font-size-base * 0.75;
+    line-height: $line-height-base;
+  
+    p:nth-of-type(2) {
+      text-indent: calc(var(--space-unit) * 2);
+    }
+  }
+
   .poem-item {
     @include aulac-styles;
     text-align: center;

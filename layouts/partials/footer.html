@@ -1,7 +1,4 @@
 <footer class="flex">
-    {{ if site.Copyright }}
-        <div class="pad-r-5px">{{ site.Copyright }}</div>
-    {{ else }}
-        <div class="pad-r-5px">{{- now.Format "2006" }} {{ site.Title }}</div>
-    {{ end }}
+    {{ $footerContent := readFile "content/footer.md" }}
+    {{ $footerContent | markdownify }}
 </footer>

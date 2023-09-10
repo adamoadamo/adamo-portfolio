@@ -1,0 +1,23 @@
++++
+title = "2"
+section = "work"
+
+[[data]]
+title = "Role"
+description = "Designer"
+
+[[data]]
+title = "Collaborators"
+description = ""
+
+[[data]]
+title = "Year"
+description = "2023"
+
+[[resources]]
+src = "1.png"
+[resources.params]
+caption = "2"
+alt = ""
++++
+

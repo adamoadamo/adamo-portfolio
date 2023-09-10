@@ -4,7 +4,7 @@ section = "work"
 
 [[data]]
 title = "Role"
-description = "Curator"
+description = "Curator and Designer"
 
 [[data]]
 title = "Collaborators"
