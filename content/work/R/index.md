@@ -1,5 +1,5 @@
 +++
-title = "R, Aulac"
+title = "R - Typeface"
 section = "work"
 
 [[data]]
@@ -17,7 +17,7 @@ description = "2021-Present"
 [[resources]]
 src = "1.png"
 [resources.params]
-caption = "R, Aulac"
+caption = "Aulac, typeface"
 alt = ""
 +++
 

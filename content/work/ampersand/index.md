@@ -1,5 +1,5 @@
 +++
-title = "Ampersand, Suer"
+title = "Ampersand"
 section = "work"
 
 [[data]]
@@ -18,6 +18,12 @@ description = "2021-Present"
 src = "1.png"
 [resources.params]
 caption = "Ampersand, Suer"
+alt = ""
+
+[[resources]]
+src = "1.png"
+[resources.params]
+caption = "Ampersand, Beausejour"
 alt = ""
 +++
 

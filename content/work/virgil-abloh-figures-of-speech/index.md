@@ -19,5 +19,41 @@ src = "1.jpg"
 [resources.params]
 caption = "Virgil Abloh—Figures of Speech, Brooklyn Museum"
 alt = ""
+
+[[resources]]
+src = "2.png"
+[resources.params]
+caption = "Virgil Abloh—Figures of Speech, Brooklyn Museum"
+alt = ""
+
+[[resources]]
+src = "3.png"
+[resources.params]
+caption = "Virgil Abloh—Figures of Speech, Brooklyn Museum"
+alt = ""
+
+[[resources]]
+src = "4.png"
+[resources.params]
+caption = "Virgil Abloh—Figures of Speech, Brooklyn Museum"
+alt = ""
+
+[[resources]]
+src = "5.png"
+[resources.params]
+caption = "Virgil Abloh—Figures of Speech, Brooklyn Museum"
+alt = ""
+
+[[resources]]
+src = "6.png"
+[resources.params]
+caption = "Virgil Abloh—Figures of Speech, Brooklyn Museum"
+alt = ""
+
+[[resources]]
+src = "7.png"
+[resources.params]
+caption = "Virgil Abloh—Figures of Speech, Mug, Brooklyn Museum"
+alt = ""
 +++
 

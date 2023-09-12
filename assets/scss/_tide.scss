@@ -1,0 +1,36 @@
+#screensaver {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  transition: opacity 5s;
+  background-color: #2e6469;
+  opacity: 0;
+  z-index: 1000;
+  mix-blend-mode: multiply;
+  backdrop-filter: url(#filter) blur(4px);
+  pointer-events: none;
+}
+
+#screensaver.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.tide-info {
+  @include aulac-styles;
+  text-align: left;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: white;
+  padding-top: var(--space-unit);
+  padding-left: var(--space-unit);
+  backdrop-filter: none;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}

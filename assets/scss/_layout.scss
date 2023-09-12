@@ -2,11 +2,12 @@
   --space-unit: 20px;
 }
 
-body {
+body, html {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
 }
-
 .container {
   padding: var(--space-unit);
 }

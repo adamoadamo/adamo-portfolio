@@ -1,4 +1,16 @@
-footer {
-    padding-bottom: var(--space-unit);
+.footer {
+    width: 100%; 
     padding-top: var(--space-unit);
-}
+  }
+  
+  @media(min-width: 600px) { 
+    .footer { 
+      width: 75%; 
+    }
+  }
+  
+  @media(min-width: 900px) { 
+    .footer { 
+      width: 50%; 
+    }
+  }

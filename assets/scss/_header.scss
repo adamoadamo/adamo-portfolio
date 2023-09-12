@@ -1,5 +1,33 @@
+.bio {
+    width: 100%; 
+  }
+  
+  @media(min-width: 600px) { 
+    .bio { 
+      width: 75%; 
+    }
+  }
+  
+  @media(min-width: 900px) { 
+    .bio { 
+      width: 50%; 
+    }
+  }
+  
+.toggle-bio-container {
+    padding-top: calc(var(--space-unit) / 2);
+}
+
 .toggle-bio {
-    padding-top: var(--space-unit);
+  a:link, a:visited {
+      color: black;
+      text-decoration: none;
+  }
+
+  a:hover, a:active {
+      color: black;
+      text-decoration: none;
+  }
 }
 
 .sort-button {

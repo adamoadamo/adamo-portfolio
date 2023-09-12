@@ -19,5 +19,11 @@ src = "1.png"
 [resources.params]
 caption = "Lorraine O'Grady × Études × Brooklyn Museum"
 alt = "a man wearing a white shirt"
+
+[[resources]]
+src = "2.png"
+[resources.params]
+caption = "Lorraine O'Grady × Études × Brooklyn Museum"
+alt = ""
 +++
 

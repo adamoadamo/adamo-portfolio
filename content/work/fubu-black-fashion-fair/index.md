@@ -8,7 +8,7 @@ description = "Director of Graphic Design"
 
 [[data]]
 title = "Collaborators"
-description = ""
+description = "Antonie Gregory, Black Fashion Fair"
 
 [[data]]
 title = "Year"

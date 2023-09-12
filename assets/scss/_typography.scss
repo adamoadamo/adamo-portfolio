@@ -13,7 +13,7 @@
   
   @mixin aulac-styles {
     font-family: "aulac";
-    font-kerning: auto;
+    font-kerning: normal;
     hyphens: none;
     letter-spacing: 0.0075em;
     color: black;
@@ -32,16 +32,45 @@
 
   // Header——————————————————————————————————————————————
 
-  .bio-content, .bio-expand, footer {
+  .bio-content, .bio-expand, .footer {
     @include aulac-styles;
     text-align: left;
     font-size: $font-size-base;
     line-height: $line-height-base;
   
-    p:nth-of-type(2) {
-      text-indent: calc(var(--space-unit) * 2);
-    }
+      p:nth-of-type(2) {
+        text-indent: calc(var(--space-unit) * 2);
+      }
+    
+      a:link, a:visited {
+        color: black;
+        text-decoration: underline;
+      }
+    
+      a:hover, a:active {
+        color: black;
+        text-decoration: none;
+      }
   }
+  
+  .contact {
+    @include aulac-styles;
+    text-align: left;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    display: flex;
+    flex-direction: column;
+
+    a:link, a:visited {
+        color: black;
+        text-decoration: none;
+    }
+
+    a:hover, a:active {
+        color: black;
+        text-decoration: none;
+    }
+}
 
   .toggle-bio {
     @include aulac-styles;
@@ -86,13 +115,9 @@
     text-align: center;
     font-size: $font-size-base * 2;
     line-height: $line-height-base;
-    max-width: 600px;
     max-width: 15ch;
   }
 
   .poem-item.active {
-    max-width: 15ch;
-    font-size: 3em;
-    max-width: 600px;
   }
 
