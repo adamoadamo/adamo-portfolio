@@ -18,6 +18,6 @@ description = "2022"
 src = "1.png"
 [resources.params]
 caption = "The Last Art College, MIT Press"
-alt = ""
+alt = "diagram"
 +++
 

@@ -18,12 +18,12 @@ description = "2018"
 src = "1.jpg"
 [resources.params]
 caption = "We Wanted a Revolution, Brooklyn Museum"
-alt = ""
+alt = "a bench in a room with pictures on the wall"
 
 [[resources]]
 src = "2.jpg"
 [resources.params]
 caption = "We Wanted a Revolution, Brooklyn Museum"
-alt = ""
+alt = "a black box with a white label"
 +++
 

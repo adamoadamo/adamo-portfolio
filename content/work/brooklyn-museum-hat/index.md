@@ -18,6 +18,6 @@ description = "2022"
 src = "1.png"
 [resources.params]
 caption = "Ballcap, Brooklyn Museum"
-alt = ""
+alt = "a black hat with white text"
 +++
 

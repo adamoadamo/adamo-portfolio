@@ -24,6 +24,6 @@ alt = "a man wearing a white shirt"
 src = "2.png"
 [resources.params]
 caption = "Lorraine O'Grady × Études × Brooklyn Museum"
-alt = ""
+alt = "a man wearing sunglasses"
 +++
 

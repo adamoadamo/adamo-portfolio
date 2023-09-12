@@ -18,6 +18,6 @@ description = "2013"
 src = "1.png"
 [resources.params]
 caption = "A Movement in Every Direction, Brooklyn Museum"
-alt = ""
+alt = "a group of posters on a wall"
 +++
 

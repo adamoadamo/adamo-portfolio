@@ -18,12 +18,12 @@ description = "2012"
 src = "1.jpeg"
 [resources.params]
 caption = "Archizeines, Arch-Art! Books, Storefront for Art and Architecture"
-alt = ""
+alt = "a building with a sign on it"
 
 [[resources]]
 src = "2.jpg"
 [resources.params]
 caption = "Archizeines, Arch-Art! Books, Storefront for Art and Architecture"
-alt = ""
+alt = "timeline"
 +++
 

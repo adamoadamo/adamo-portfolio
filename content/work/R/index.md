@@ -18,6 +18,6 @@ description = "2021-Present"
 src = "1.png"
 [resources.params]
 caption = "Aulac, typeface"
-alt = ""
+alt = "icon"
 +++
 

@@ -18,7 +18,7 @@ description = "2021-Present"
 src = "1.png"
 [resources.params]
 caption = "Ampersand, Suer"
-alt = ""
+alt = "a black and white logo"
 
 [[resources]]
 src = "1.png"
