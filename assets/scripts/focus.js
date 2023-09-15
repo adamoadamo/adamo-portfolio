@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
         currentItem.classList.toggle('active');
-        currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+        currentItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
         const imageCaption = currentItem.querySelector('.image-caption');
         if (imageCaption) {
             if (currentItem.classList.contains('active')) {
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     newActiveItemCaption.style.display = "block";
                     newActiveItemCaption.style.opacity = "1";
                 }
-                newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+                newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }
         }
     });
@@ -109,12 +109,28 @@ document.addEventListener('DOMContentLoaded', function () {
             sortedItems = flexItems.sort((a, b) => parseInt(b.dataset.year, 10) - parseInt(a.dataset.year, 10));
         }
         assortment.innerHTML = '';
-        sortedItems.forEach((item) => {
+        sortedItems.forEach((item, index) => {
             assortment.appendChild(item);
+    
+            // Update overlay-caption with the index
+            let overlayCaption = item.querySelector('.overlay-caption');
+            if (overlayCaption) {
+                const captionText = overlayCaption.textContent.replace(/^\d+\.\s*/, '');
+                overlayCaption.textContent = `${index + 1}`;
+            }
+    
+            // New code to update image-caption with the index
+            let imageNumberSpan = item.querySelector('.image-number');
+            if (imageNumberSpan) {
+                imageNumberSpan.textContent = `Fig. ${index + 1}.`;
+            }
         });
+        
         registerNavigation();
         registerClickToToggle();
     };
+    
+    
   
     sortItems('alpha');
     sortAlphaBtn.classList.add('selected');
@@ -132,3 +148,4 @@ document.addEventListener('DOMContentLoaded', function () {
         sortAlphaBtn.classList.remove('selected');
     });
   });
+  

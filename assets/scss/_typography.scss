@@ -1,123 +1,118 @@
-   :root {
-    font-feature-settings: 'liga', 'kern';
-  }
-  
-  :root * {
-    -moz-osx-font-smoothing:  grayscale;
-    -webkit-font-smoothing:   antialiased;
-    -webkit-text-size-adjust: none;
-    font-kerning:             normal;
-    font-smooth:              always;
-    text-rendering:           optimizeLegibility;
-  }
-  
-  @mixin aulac-styles {
-    font-family: "aulac";
-    font-kerning: normal;
-    hyphens: none;
-    letter-spacing: 0.0075em;
-    color: black;
-  }
-  
-  $font-size-base: 1.25em;
-  $line-height-base: 1.25em;
-
-  @font-face {
-    font-family: 'aulac';
-    src: url(/fonts/aulac/AulacRegular.woff2) format('woff2'),
-         url(/fonts/aulac/AulacRegular.woff) format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  // Header——————————————————————————————————————————————
-
-  .bio-content, .bio-expand, .footer {
-    @include aulac-styles;
-    text-align: left;
-    font-size: $font-size-base;
-    line-height: $line-height-base;
-  
-      p:nth-of-type(2) {
-        text-indent: calc(var(--space-unit) * 2);
-      }
-    
-      a:link, a:visited {
-        color: black;
-        text-decoration: underline;
-      }
-    
-      a:hover, a:active {
-        color: black;
-        text-decoration: none;
-      }
-  }
-  
-  .contact {
-    @include aulac-styles;
-    text-align: left;
-    font-size: $font-size-base;
-    line-height: $line-height-base;
-    display: flex;
-    flex-direction: column;
-
-    a:link, a:visited {
-        color: black;
-        text-decoration: none;
-    }
-
-    a:hover, a:active {
-        color: black;
-        text-decoration: none;
-    }
+// Typography Setup———————————————————————————————————————
+:root * {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+  font-variant-ligatures: contextual;
+  font-smooth: always;
+  hyphens: none;
+  text-rendering: optimizeLegibility;
 }
 
-  .toggle-bio {
-    @include aulac-styles;
-    text-align: left;
-    font-size: $font-size-base * 0.65;
-    line-height: $line-height-base;
+$font-size-base: 1.25em;
+$line-height-base: 1.25em;
+
+@font-face {
+  font-family: 'aulac';
+  src: url(/fonts/aulac/AulacRegular.woff2) format('woff2'),
+       url(/fonts/aulac/AulacRegular.woff) format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin aulac-styles {
+  font-family: "aulac";
+  font-kerning: normal;
+  font-display: fallback;
+  letter-spacing: 0.0075em;
+  color: var(--color);
+}
+
+// Header——————————————————————————————————————————————
+.bio-content, .bio-expand, .footer {
+  @include aulac-styles;
+  text-align: left;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+
+  p:nth-of-type(2) {
+    text-indent: calc(var(--space-unit) * 2);
   }
-
-  .sort-total, .sort-button  {
-    @include aulac-styles;
-    font-size: $font-size-base * 0.65;
-  }
-
-  .sort-button.selected {
-    text-decoration: underline;
-  }   
-
-
-  // Project Grid——————————————————————————————————————————————
-
-  .image-caption {
-    @include aulac-styles;
-    text-align: left;
-    font-size: $font-size-base * 0.65;
-    line-height: $line-height-base;
-   // text-transform: uppercase;
-  }
-
-  .project-content {
-    @include aulac-styles;
-    text-align: left;
-    font-size: $font-size-base * 0.65;
-    line-height: $line-height-base;
   
-    p:nth-of-type(2) {
-      text-indent: calc(var(--space-unit) * 2);
-    }
+  a:link, a:visited {
+    color: var(--color);
+    text-decoration: underline;
+  }
+  
+  a:hover, a:active {
+    color: var(--color);
+    text-decoration: none;
+  }
+}
+
+.contact {
+  @include aulac-styles;
+  text-align: left;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  display: flex;
+  flex-direction: column;
+
+  a:link, a:visited {
+    color: var(--color);
+    text-decoration: none;
   }
 
-  .poem-item {
-    @include aulac-styles;
-    text-align: center;
-    font-size: $font-size-base * 2;
-    line-height: $line-height-base;
-    max-width: 15ch;
+  a:hover, a:active {
+    color: var(--color);
+    text-decoration: none;
   }
+}
 
-  .poem-item.active {
+.toggle-bio {
+  @include aulac-styles;
+  text-align: left;
+  font-size: $font-size-base * 0.65;
+  line-height: $line-height-base;
+}
+
+
+.sort-total, .sort-button {
+  @include aulac-styles;
+  font-size: $font-size-base * 0.65;
+}
+
+.sort-button.selected {
+  text-decoration: underline;
+}   
+
+// Project Grid——————————————————————————————————————————————
+.image-caption, .overlay-caption {
+  @include aulac-styles;
+  text-align: left;
+  font-size: $font-size-base * 0.65;
+  line-height: $line-height-base;
+}
+
+.image-number {
+}
+
+.project-content {
+  @include aulac-styles;
+  text-align: left;
+  font-size: $font-size-base * 0.65;
+  line-height: $line-height-base;
+
+  p:nth-of-type(2) {
+    text-indent: calc(var(--space-unit) * 2);
   }
+}
 
+// 404 Error——————————————————————————————————————————————
+.fourzerofour {
+  @include aulac-styles;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: $font-size-base * 3;
+  line-height: $line-height-base;
+}

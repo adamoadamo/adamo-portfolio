@@ -18,12 +18,15 @@
     <meta content="{{block "og:image" . }}{{(resources.Get "/icons/preview.png").Permalink}}{{end}}" name="og:image">
     <meta content="{{block "og:title" .}}{{- .Site.Title -}}{{end}}" name="og:title">
     <meta content="{{block "og:description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{end}}" name="og:description">
+    <meta content="{{block "description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{end}}" name="description">
     <meta content="{{ .Site.BaseURL }}" name="og:url">
     <meta content="website" name="og:type">
     {{ $sass := resources.Get "scss/main.scss" }}
     {{ $options := (dict "enableSourceMap" (not hugo.IsProduction) "transpiler" "dartsass") }}
     {{ $mainCss := $sass | resources.ToCSS $options | resources.Minify }}
     <link href="{{($mainCss | resources.Fingerprint "sha512").RelPermalink}}" rel="stylesheet">
+    {{- $js := resources.Get "scripts/lazy.js" | js.Build | resources.Minify -}}
+    <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
     {{- $js := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
     <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
     {{- $js := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
@@ -43,7 +46,7 @@
 			{{- partial "footer.html" . -}}
 		</footer>
 	</div>
-  <!--
+  
   <svg xmlns="http://www.w3.org/2000/svg">
     <filter id="filter">
       <feColorMatrix type="matrix" result="grayscale"
@@ -60,6 +63,5 @@
       </feComponentTransfer> 
     </filter>        
   </svg>
-    -->
 </body>
 </html>
