@@ -18,12 +18,12 @@ description = "2021"
 src = "1.jpg"
 [resources.params]
 caption = "Nobody Promised You Tomorrow, Brooklyn Museum"
-alt = ""
+alt = "a red and white stopwatch"
 
 [[resources]]
 src = "2.jpg"
 [resources.params]
 caption = "Nobody Promised You Tomorrow, Brooklyn Museum"
-alt = ""
+alt = "a white t-shirt with a red and white image on it"
 +++
 

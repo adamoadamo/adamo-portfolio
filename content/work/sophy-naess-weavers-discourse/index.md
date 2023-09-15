@@ -18,6 +18,6 @@ description = "2018"
 src = "1.png"
 [resources.params]
 caption = "Sophy Naess"
-alt = ""
+alt = "text, shape"
 +++
 

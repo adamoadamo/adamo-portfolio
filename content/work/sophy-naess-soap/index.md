@@ -18,6 +18,6 @@ description = "2019"
 src = "1.jpg"
 [resources.params]
 caption = "Sophy Naess"
-alt = ""
+alt = "text"
 +++
 

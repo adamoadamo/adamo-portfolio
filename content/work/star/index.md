@@ -18,6 +18,6 @@ description = "2021-Present"
 src = "1.png"
 [resources.params]
 caption = "Star, Aulac"
-alt = ""
+alt = "a black and white star"
 +++
 

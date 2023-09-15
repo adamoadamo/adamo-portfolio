@@ -18,6 +18,6 @@ description = "2017"
 src = "1.png"
 [resources.params]
 caption = "Walking in a Room"
-alt = ""
+alt = "diagram"
 +++
 
