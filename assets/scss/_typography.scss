@@ -18,12 +18,12 @@ $line-height-base: 1.25em;
        url(/fonts/aulac/AulacRegular.woff) format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @mixin aulac-styles {
   font-family: "aulac";
   font-kerning: normal;
-  font-display: fallback;
   letter-spacing: 0.0075em;
   color: var(--color);
 }
