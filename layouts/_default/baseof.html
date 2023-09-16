@@ -31,11 +31,6 @@
     <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
     {{- $js := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
     <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
-
-    {{- $js := resources.Get "scripts/image.js" | js.Build | resources.Minify -}}
-    <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
-
-
      <!-- {{- $js := resources.Get "scripts/tide.js" | js.Build | resources.Minify -}}
     <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>-->
     {{- with .Site.Params.GoatCounter }}
