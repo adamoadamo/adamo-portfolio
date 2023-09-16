@@ -8,16 +8,20 @@
       {{ $imageResources := .Resources.ByType "image" }}
       {{ if $imageResources }}
         {{ range $index, $element := $imageResources }}
-          {{ $resizedImage := $element.Fit "1200x1200 webp" }}
+          {{ $smallImage := $element.Fit "300x300 webp" }}
+          {{ $largeImage := $element.Fit "1200x1200 webp" }}
           <div class="flex-item" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}" tabindex="0">
             <div class="image-container">
               <div class="image-item navigable-item">
                 <div class="image-background">
-                  {{ with $resizedImage }}
-                    <img src="{{ .RelPermalink }}" class="lazy"
-                         alt="{{ with .Params.alt }}{{ . }}{{ else }}{{ .Title }}{{ end }}" 
-                         {{ if and .Width .Height }} width="{{ .Width }}" height="{{ .Height }}" {{ end }} />
-                  {{ end }}
+                  <img src="{{ $smallImage.RelPermalink }}" 
+                       data-large-src="{{ $largeImage.RelPermalink }}"
+                       alt="{{ with $element.Params.alt }}{{ . }}{{ else }}{{ $element.Title }}{{ end }}" 
+                       width="{{ $smallImage.Width }}" 
+                       height="{{ $smallImage.Height }}" 
+                       data-large-width="{{ $largeImage.Width }}" 
+                       data-large-height="{{ $largeImage.Height }}" 
+                       class="lazy" />
                   <div class="overlay-caption"></div>
                 </div>
                 <div class="image-caption">

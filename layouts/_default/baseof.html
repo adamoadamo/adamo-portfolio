@@ -31,6 +31,11 @@
     <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
     {{- $js := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
     <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
+
+    {{- $js := resources.Get "scripts/image.js" | js.Build | resources.Minify -}}
+    <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
+
+
      <!-- {{- $js := resources.Get "scripts/tide.js" | js.Build | resources.Minify -}}
     <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>-->
     {{- with .Site.Params.GoatCounter }}
@@ -46,7 +51,7 @@
 			{{- partial "footer.html" . -}}
 		</footer>
 	</div>
-  
+  <!--
   <svg xmlns="http://www.w3.org/2000/svg">
     <filter id="filter">
       <feColorMatrix type="matrix" result="grayscale"
@@ -63,5 +68,6 @@
       </feComponentTransfer> 
     </filter>        
   </svg>
+-->
 </body>
 </html>
