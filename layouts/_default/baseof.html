@@ -50,7 +50,7 @@
     {{- $focus := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
     {{- $header := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
     {{- $jsBundle := slice $lazy $focus $header | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" -}}
-    <script type="module" src="{{ $jsBundle.RelPermalink }}"></script>
+    <script type="module" src="{{ $jsBundle.RelPermalink }}" crossorigin="anonymous"></script>
 
     <!-- External Video JS Pulls -->
     <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet" />
