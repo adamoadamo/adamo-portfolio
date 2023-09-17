@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     
-
     const toggleActiveClass = (event) => {
         const currentItem = event.currentTarget;
         currentIndex = flexItems.findIndex(item => item.querySelector('.navigable-item') === currentItem);
@@ -204,12 +203,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const loadLargeImages = () => {
         flexItems.forEach(item => {
             const img = item.querySelector('img');
-            const largeSrc = img.getAttribute('data-large-src');
-            if (largeSrc && img.src !== largeSrc) {
-                img.src = largeSrc;
+            if (img) {
+                const largeSrc = img.getAttribute('data-large-src');
+                if (largeSrc && img.src !== largeSrc) {
+                    img.src = largeSrc;
+                }
             }
         });
     };
-
-    setTimeout(loadLargeImages, 50);  
+    
+    setTimeout(loadLargeImages, 50);
+    
 });
