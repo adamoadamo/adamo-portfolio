@@ -35,8 +35,18 @@ document.addEventListener('DOMContentLoaded', function () {
             img.setAttribute('height', largeHeight);
         }
     }
-    
 
+    function updateVideoToLarge(video) {
+        if (video) {
+            video.classList.toggle('active');
+            if (video.classList.contains('active')) {
+                video.style.height = '600px';
+            } else {
+                video.style.height = '150px';
+            }
+        }
+    }
+    
 
     const toggleActiveClass = (event) => {
         const currentItem = event.currentTarget;
@@ -53,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
         currentItem.classList.toggle('active');
-        currentItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
         const imageCaption = currentItem.querySelector('.image-caption');
         if (imageCaption) {
             if (currentItem.classList.contains('active')) {
@@ -68,8 +77,17 @@ document.addEventListener('DOMContentLoaded', function () {
         if (img) {
             updateImageToLarge(img);
         }
+        const video = currentItem.querySelector('video');
+        if (video) {
+            updateVideoToLarge(video);
+            requestAnimationFrame(() => {
+                currentItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+            });
+        } else {
+            currentItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+        }
     };
-
+    
     const registerClickToToggle = () => {
         flexItems.forEach(item => {
             const navigableItem = item.querySelector('.navigable-item');
@@ -90,18 +108,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.addEventListener('keydown', function (event) {
         console.log(`Keydown event: ${event.key}`);
-
+    
         if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
             const activeItem = flexItems[currentIndex].querySelector('.navigable-item');
             const activeItemCaption = activeItem ? activeItem.querySelector('.image-caption') : null;
+            const activeVideo = activeItem ? activeItem.querySelector('video') : null;
+            
             if (activeItem) {
                 activeItem.classList.remove('active');
                 if (activeItemCaption) {
                     activeItemCaption.style.display = "none";
                     activeItemCaption.style.opacity = "0";
                 }
+                if (activeVideo) {
+                    activeVideo.style.height = '150px';
+                    activeVideo.classList.remove('active');
+                }
             }
-
+            
             currentIndex = event.key === 'ArrowRight'
                 ? (currentIndex + 1) % flexItems.length
                 : (currentIndex - 1 + flexItems.length) % flexItems.length;
@@ -114,12 +138,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     newActiveItemCaption.style.display = "block";
                     newActiveItemCaption.style.opacity = "1";
                 }
-                newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });  // Existing code for scrolling into view
+            
                 const newActiveImg = newActiveItem ? newActiveItem.querySelector('img') : null;
                 if (newActiveImg) {
                     updateImageToLarge(newActiveImg);
                 }
-            }
+                const newActiveVideo = newActiveItem ? newActiveItem.querySelector('video') : null;
+                if (newActiveVideo) {
+                    updateVideoToLarge(newActiveVideo);
+                    requestAnimationFrame(() => {
+                        newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+                    });
+                } else {
+                    newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+                }
+                
+            }            
         }
     });
 
@@ -176,5 +211,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     };
 
-    setTimeout(loadLargeImages, 500);  
+    setTimeout(loadLargeImages, 50);  
 });

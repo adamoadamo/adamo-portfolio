@@ -3,40 +3,65 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    {{- block "head" .}}{{ end -}}
-    {{- $favicon := resources.Get "/icons/favicon.ico" -}}
-    <link href="{{$favicon.RelPermalink}}" rel="icon" sizes="64x64" type="image/x-icon">
-    {{- $faviconSvg := resources.Get "/icons/favicon.svg" -}}
-    <link href="{{$faviconSvg.RelPermalink}}" rel="icon" type="image/svg+xml">
-    {{- $touchIcon := resources.Get "/icons/touch.png" -}}
-    <link href="{{$touchIcon.RelPermalink}}" rel="apple-touch-icon">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="{{ .Site.Title }}">
+    <meta name="description" content="{{ block "description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{ end }}">
+
     <title>
-    {{- block "title" . -}}
-        {{ .Site.Title }}
-    {{- end -}}
+      {{- block "title" . -}}
+          {{ .Site.Title }}
+      {{- end -}}
     </title>
-    <meta content="{{block "og:image" . }}{{(resources.Get "/icons/preview.png").Permalink}}{{end}}" name="og:image">
-    <meta content="{{block "og:title" .}}{{- .Site.Title -}}{{end}}" name="og:title">
-    <meta content="{{block "og:description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{end}}" name="og:description">
-    <meta content="{{block "description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{end}}" name="description">
-    <meta content="{{ .Site.BaseURL }}" name="og:url">
-    <meta content="website" name="og:type">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="{{ block "og:title" . }}{{- .Site.Title -}}{{ end }}">
+    <meta property="og:description" content="{{ block "og:description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{ end }}">
+    <meta property="og:image" content="{{ block "og:image" . }}{{ (resources.Get "/icons/preview.png").Permalink }}{{ end }}">
+    <meta property="og:url" content="{{ .Site.BaseURL }}">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    <meta property="og:updated_time" content="{{ .Lastmod }}">    
+
+    <!-- Icons -->
+    {{- $favicon := resources.Get "/icons/favicon.ico" -}}
+    <link rel="icon" href="{{$favicon.RelPermalink}}" sizes="64x64" type="image/x-icon">
+    {{- $faviconSvg := resources.Get "/icons/favicon.svg" -}}
+    <link rel="icon" href="{{$faviconSvg.RelPermalink}}" type="image/svg+xml">
+    {{- $touchIcon := resources.Get "/icons/touch.png" -}}
+    <link rel="apple-touch-icon" href="{{$touchIcon.RelPermalink}}">
+
+    <!-- SEO -->
+    <link rel="canonical" href="{{ .Permalink }}" />
+    <link rel="alternate" href="{{ .Permalink }}" hreflang="{{ .Site.LanguageCode }}" />
+
+    <!-- Preload Fonts -->
+    <link rel="preload" href="/fonts/aulac/AulacRegular.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="/fonts/aulac/AulacRegular2.woff" as="font" type="font/woff" crossorigin>
+
+    <!-- Styles -->
     {{ $sass := resources.Get "scss/main.scss" }}
     {{ $options := (dict "enableSourceMap" (not hugo.IsProduction) "transpiler" "dartsass") }}
     {{ $mainCss := $sass | resources.ToCSS $options | resources.Minify }}
     <link href="{{($mainCss | resources.Fingerprint "sha512").RelPermalink}}" rel="stylesheet">
-    {{- $js := resources.Get "scripts/lazy.js" | js.Build | resources.Minify -}}
-    <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
-    {{- $js := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
-    <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
-    {{- $js := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
-    <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>
-     <!-- {{- $js := resources.Get "scripts/tide.js" | js.Build | resources.Minify -}}
-    <script type="module" src="{{ ($js | resources.Fingerprint "sha512").RelPermalink }}"></script>-->
+
+    <!-- Scripts -->
+    {{- $lazy := resources.Get "scripts/lazy.js" | js.Build | resources.Minify -}}
+    {{- $focus := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
+    {{- $header := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
+    {{- $jsBundle := slice $lazy $focus $header | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" -}}
+    <script type="module" src="{{ $jsBundle.RelPermalink }}"></script>
+
+    <!-- External Video JS Pulls -->
+    <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
+
+    <!-- Goat Counter -->
     {{- with .Site.Params.GoatCounter }}
     <script data-goatcounter="https://{{.}}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     {{end -}}
-</head>
+
+  </head>
 <body {{ block "bodyMeta" .}}{{end}} {{ if hugo.IsProduction }}data-production="true"{{ end }}>
 	<div class="container">
 		<main>

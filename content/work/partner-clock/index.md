@@ -15,7 +15,7 @@ title = "Year"
 description = "2023"
 
 [[resources]]
-src = "1.gif"
+src = "1.mp4"
 [resources.params]
 caption = "Partner Clock"
 alt = "shape"

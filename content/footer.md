@@ -1,3 +1,3 @@
 Copyright 2023 Adam O'Reilly. 
 
-Typeset in a Aulac, a work-in-progess typeface. Built with [Hugo](https://gohugo.io/), hosted on [Github Pages](https://pages.github.com/). This site utilizes [Azure Computer Vision](https://portal.vision.cognitive.azure.com/) to generate alt text for images during compilation, and the screensaver pulls local NYC tide data from [NOAA Tides and Currents](https://tidesandcurrents.noaa.gov/).
+Typeset in a Aulac, a work-in-progess typeface. Built with [Hugo](https://gohugo.io/), hosted on [Github Pages](https://pages.github.com/). The screensaver pulls local NYC tide data from [NOAA Tides and Currents](https://tidesandcurrents.noaa.gov/).
