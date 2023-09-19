@@ -37,3 +37,38 @@
     padding-top: calc(var(--space-unit) / 2);
 }
 
+.border-bottom {
+  border-bottom: 1px solid var(--color);
+  margin-bottom: var(--space-unit);
+}
+
+// –––––––––––––––––– Search
+
+.search-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+#clear-search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 0px; 
+}
+
+#clear-search-btn.hidden {
+  visibility: hidden;
+}
+
+#clear-search-btn:focus {
+  outline: none;
+}
+
+#search-input {
+  border: none; 
+}
+
+#search-input:focus {
+  outline: none; 
+}

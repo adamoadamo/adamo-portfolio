@@ -1,4 +1,4 @@
-// Typography Setup———————————————————————————————————————
+// ———————————————————————————— Typo Setup
 :root * {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -28,7 +28,7 @@ $line-height-base: 1.25em;
   color: var(--color);
 }
 
-// Header——————————————————————————————————————————————
+// ———————————————————————————— Header
 .bio-content, .bio-expand, .footer {
   @include aulac-styles;
   text-align: left;
@@ -97,14 +97,12 @@ $line-height-base: 1.25em;
   }
 }
 
-
 .toggle-bio {
   @include aulac-styles;
   text-align: left;
   font-size: $font-size-base * 0.65;
   line-height: $line-height-base;
 }
-
 
 .sort-total, .sort-button {
   @include aulac-styles;
@@ -115,8 +113,27 @@ $line-height-base: 1.25em;
   text-decoration: underline;
 }   
 
-// Project Grid——————————————————————————————————————————————
-.image-caption, .overlay-caption {
+#clear-search-btn {
+  @include aulac-styles;
+  text-align: left;
+  font-size: $font-size-base * 0.65;
+  line-height: $line-height-base;
+}
+
+#search-input {
+  @include aulac-styles;
+  text-align: left;
+  font-size: $font-size-base * 0.65;
+  line-height: $line-height-base;
+  color: var(--color);
+}
+
+#search-input::placeholder {
+  color: var(--color);
+}
+
+// ———————————————————————————— Project Grid
+.image-fig, .overlay-caption {
   @include aulac-styles;
   text-align: left;
   font-size: $font-size-base * 0.65;
@@ -126,7 +143,7 @@ $line-height-base: 1.25em;
 .image-number {
 }
 
-.project-content {
+.project-description {
   @include aulac-styles;
   text-align: left;
   font-size: $font-size-base * 0.65;
@@ -137,7 +154,7 @@ $line-height-base: 1.25em;
   }
 }
 
-// 404 Error——————————————————————————————————————————————
+// ———————————————————————————— 404 Error
 .fourzerofour {
   @include aulac-styles;
   text-align: left;

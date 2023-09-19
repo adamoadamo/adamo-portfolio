@@ -1,10 +1,11 @@
-<!-- 
+
 <div id="screensaver-container">
-    <div id="screensaver">
-        <div class="tide-info" id="tide-info"></div>
-    </div>
+    <div id="screensaver"></div>
 </div>
--->
+
+
+<!-- Biography and Contact-->
+
 <div class="flex-container">
     <div class="bio">
         <div class="bio-content">
@@ -25,20 +26,29 @@
         <a href="mailto:{{ .Params.email_link }}">{{ .Params.email_text }}</a>
         <a href="{{ .Params.instagram_link }}">{{ .Params.instagram_text }}</a>
         <a href="{{ .Params.github_link }}">{{ .Params.github_text }}</a>
+        
+        <div class="tide-info" id="tide-info"></div>
+ 
     </div>
 </div>
+
+
+<!-- Sorting, Indexing, and Search -->
+
 {{ $totalMarkdownFiles := 0 }} 
 {{ range .Site.RegularPages }}
     {{ if eq .Section "work" }}
     {{ $totalMarkdownFiles = add $totalMarkdownFiles 1 }}
     {{ end }}
 {{ end }}
-<div class="flex-container">
+<div class="flex-container border-bottom">
     <div class="sort-container">
         <button id="sortAlpha" class="sort-button selected">Alphabetical</button>
         <button id="sortChrono" class="sort-button">Chronological</button>
-      </div>
-      <div class="sort-total">
-        {{ printf "Projects: %d" $totalMarkdownFiles }}
     </div>
+    <div class="search-container">
+        <button id="clear-search-btn" aria-label="Clear search" class="hidden">×</button>
+        <input type="text" id="search-input" placeholder="Search" />
+    </div>     
 </div>
+<div class="tide-info" id="tide-info"></div>

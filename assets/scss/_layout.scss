@@ -1,7 +1,7 @@
 :root {
   --space-unit: 20px;
-  --color: black;
-  --background-color: white;
+  --color: rgb(7, 7, 7);
+  --background-color: rgb(255, 255, 255);
 }
 
 body, html {
@@ -9,6 +9,7 @@ body, html {
   padding: 0;
   height: 100%;
   width: 100%;
+  background-color: var(--background-color);
 }
 
 .container {
@@ -35,3 +36,4 @@ body, html {
   background-color: var(--color);
   color: var(--background-color);
 }
+

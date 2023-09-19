@@ -18,12 +18,13 @@ description = "2021"
 src = "1.png"
 [resources.params]
 caption = "Lorraine O'Grady × Études × Brooklyn Museum"
-alt = "a man wearing a white shirt"
+alt = "a man wearing a white shirt that features artwork by the artist lorraine o'grady"
+highlight = "true"
 
 [[resources]]
 src = "2.png"
 [resources.params]
 caption = "Lorraine O'Grady × Études × Brooklyn Museum"
-alt = "a man wearing sunglasses"
+alt = "a man wearing a sunglasses, black pants, and white shirt that features artwork by the artist lorraine o'grady"
 +++
 

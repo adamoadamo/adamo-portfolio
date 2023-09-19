@@ -16,3 +16,12 @@ unsafe = true
 [permalinks]
 work = "/:sections[last]-:filename/"
 
+[outputFormats]
+  [outputFormats.JSON]
+    mediaType = "application/json"
+    baseName = "index"
+    isPlainText = true
+    notAlternative = true
+
+[outputs]
+  home = ["HTML", "JSON"]

@@ -46,22 +46,19 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
-    
+
+ // ——————–––––––––––––––––– Click Highlight
+
     const toggleActiveClass = (event) => {
         const currentItem = event.currentTarget;
-        currentIndex = flexItems.findIndex(item => item.querySelector('.navigable-item') === currentItem);
-        flexItems.forEach(i => {
-            const navigableItem = i.querySelector('.navigable-item');
-            const imageCaption = navigableItem.querySelector('.image-caption');
-            if (navigableItem !== currentItem) {
-                navigableItem.classList.remove('active');
-                if (imageCaption) {
-                    imageCaption.style.opacity = "0";
-                    imageCaption.style.display = "none";
-                }
-            }
-        });
+    
+        const clickedIndex = flexItems.findIndex(item => item.querySelector('.navigable-item') === currentItem);
+        if (clickedIndex !== -1) {
+            currentIndex = clickedIndex;
+        }
+        
         currentItem.classList.toggle('active');
+        
         const imageCaption = currentItem.querySelector('.image-caption');
         if (imageCaption) {
             if (currentItem.classList.contains('active')) {
@@ -72,20 +69,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 imageCaption.style.opacity = "0";
             }
         }
+    
         const img = currentItem.querySelector('img');
         if (img) {
             updateImageToLarge(img);
         }
+    
         const video = currentItem.querySelector('video');
         if (video) {
             updateVideoToLarge(video);
-            requestAnimationFrame(() => {
-                currentItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-            });
-        } else {
-            currentItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
         }
+    
+        requestAnimationFrame(() => {
+            currentItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+        });
     };
+    
     
     const registerClickToToggle = () => {
         flexItems.forEach(item => {
@@ -105,57 +104,53 @@ document.addEventListener('DOMContentLoaded', function () {
     registerNavigation();
     registerClickToToggle();
 
-    document.addEventListener('keydown', function (event) {
-        console.log(`Keydown event: ${event.key}`);
-    
-        if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
-            const activeItem = flexItems[currentIndex].querySelector('.navigable-item');
-            const activeItemCaption = activeItem ? activeItem.querySelector('.image-caption') : null;
-            const activeVideo = activeItem ? activeItem.querySelector('video') : null;
-            
-            if (activeItem) {
-                activeItem.classList.remove('active');
-                if (activeItemCaption) {
-                    activeItemCaption.style.display = "none";
-                    activeItemCaption.style.opacity = "0";
-                }
-                if (activeVideo) {
-                    activeVideo.style.height = '150px';
-                    activeVideo.classList.remove('active');
-                }
-            }
-            
-            currentIndex = event.key === 'ArrowRight'
-                ? (currentIndex + 1) % flexItems.length
-                : (currentIndex - 1 + flexItems.length) % flexItems.length;
+// ——————–––––––––––––––––– Keyboard Navigation
 
-            const newActiveItem = flexItems[currentIndex].querySelector('.navigable-item');
-            const newActiveItemCaption = newActiveItem ? newActiveItem.querySelector('.image-caption') : null;
-            if (newActiveItem) {
-                newActiveItem.classList.add('active');
-                if (newActiveItemCaption) {
-                    newActiveItemCaption.style.display = "block";
-                    newActiveItemCaption.style.opacity = "1";
-                }
-                newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });  // Existing code for scrolling into view
-            
-                const newActiveImg = newActiveItem ? newActiveItem.querySelector('img') : null;
-                if (newActiveImg) {
-                    updateImageToLarge(newActiveImg);
-                }
-                const newActiveVideo = newActiveItem ? newActiveItem.querySelector('video') : null;
-                if (newActiveVideo) {
-                    updateVideoToLarge(newActiveVideo);
-                    requestAnimationFrame(() => {
-                        newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-                    });
-                } else {
-                    newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-                }
-                
-            }            
+document.addEventListener('keydown', function (event) {
+    console.log(`Keydown event: ${event.key}`);
+
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        const activeItem = flexItems[currentIndex].querySelector('.navigable-item');
+        const activeItemCaption = activeItem ? activeItem.querySelector('.image-caption') : null;
+        const activeVideo = activeItem ? activeItem.querySelector('video') : null;
+
+        if (activeItem) {
+            activeItem.classList.remove('active');
+            if (activeItemCaption) {
+                activeItemCaption.style.display = "none";
+                activeItemCaption.style.opacity = "0";
+            }
+            if (activeVideo) {
+                activeVideo.style.height = '150px';
+                activeVideo.classList.remove('active');
+            }
         }
-    });
+
+        currentIndex = event.key === 'ArrowRight'
+            ? (currentIndex + 1) % flexItems.length
+            : (currentIndex - 1 + flexItems.length) % flexItems.length;
+
+        const newActiveItem = flexItems[currentIndex].querySelector('.navigable-item');
+        const newActiveItemCaption = newActiveItem ? newActiveItem.querySelector('.image-caption') : null;
+        
+        const isHighlighted = newActiveItem.querySelector('[data-highlight="true"]');
+
+        if (newActiveItem) {
+            newActiveItem.classList.add('active');
+            if (newActiveItemCaption) {
+                newActiveItemCaption.style.display = "block";
+                newActiveItemCaption.style.opacity = "1";
+            }
+            if (isHighlighted) {
+                updateMediaToLarge(newActiveItem);  
+            }
+        }
+
+        newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+    }
+});
+
+// ——————–––––––––––––––––– Sort Function
 
     const sortItems = (type) => {
         let sortedItems;
@@ -214,4 +209,33 @@ document.addEventListener('DOMContentLoaded', function () {
     
     setTimeout(loadLargeImages, 50);
     
+
+
+// ——————–––––––––––––––––– Highlight Function
+
+flexItems.forEach(item => {
+    const media = item.querySelector('[data-highlight="true"]');
+    if (media) {
+        const navigableItem = media.closest('.navigable-item');
+        if (navigableItem) {
+            navigableItem.classList.add('active');
+            // additional logic to show image caption and large image/video
+            const imageCaption = navigableItem.querySelector('.image-caption');
+            if (imageCaption) {
+                imageCaption.style.display = "block";
+                imageCaption.style.opacity = "1";
+            }
+
+            // If it's an image, update it to the large version
+            if (media.tagName.toLowerCase() === 'img') {
+                updateImageToLarge(media);
+            }
+
+            // If it's a video, update it to the large version
+            if (media.tagName.toLowerCase() === 'video') {
+                updateVideoToLarge(media);
+            }
+        }
+    }
+});
 });

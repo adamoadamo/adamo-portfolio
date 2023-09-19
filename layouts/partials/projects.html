@@ -1,3 +1,5 @@
+<!-- Numbering and Sorting -->
+
 <div id="totalMdFiles"></div>
 <div id="assortment" class="flex-container">
   {{ $sortedPages := sort .Site.RegularPages "Title" "asc" }}
@@ -6,14 +8,14 @@
       {{ $currentPage := . }}
       {{ $year := index .Params.data 2 "description" }}
       
-      <!-- Handling image resources -->
+ <!-- Handling image resources -->
+
       {{ $imageResources := .Resources.ByType "image" }}
       {{ if $imageResources }}
         {{ range $index, $element := $imageResources }}
           {{ $smallImage := $element.Fit "300x300 webp" }}
           {{ $largeImage := $element.Fit "1200x1200 webp" }}
-          <div class="flex-item" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}" tabindex="0">
-            <div class="image-container">
+          <div class="flex-item" data-url="{{ .RelPermalink }}" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}" tabindex="0">
               <div class="image-item navigable-item">
                 <div class="image-background">
                   <img src="{{ $smallImage.RelPermalink }}" 
@@ -23,61 +25,57 @@
                        height="{{ $smallImage.Height }}" 
                        data-large-width="{{ $largeImage.Width }}" 
                        data-large-height="{{ $largeImage.Height }}" 
+                       data-highlight="{{ with $element.Params.highlight }}{{ . }}{{ else }}false{{ end }}"
                        class="lazy" />
                   <div class="overlay-caption"></div>
                 </div>
                 <div class="image-caption">
-                  <span class="image-number"></span>
-                  {{ with $element.Params.caption }}{{ . }}{{ else }}NO CAPTION{{ end }}
-                  {{ $role := index $currentPage.Params.data 0 "description" }}
-                  {{ $collaborators := index $currentPage.Params.data 1 "description" }}
-                  {{ if $collaborators }}({{ $collaborators }}){{ end }} {{ if $role }}{{ $role }}{{ end }}{{ if $year }}, {{ $year }}{{ end }}		
+                  <div class="image-fig">
+                    <span class="image-number"></span>
+                    {{ with $element.Params.caption }}{{ . }}{{ else }}NO CAPTION{{ end }}
+                    {{ $role := index $currentPage.Params.data 0 "description" }}
+                    {{ $collaborators := index $currentPage.Params.data 1 "description" }}
+                    {{ if $collaborators }}({{ $collaborators }}){{ end }} {{ if $role }}{{ $role }}{{ end }}{{ if $year }}, {{ $year }}{{ end }}	
+                  </div>  	
+                  {{ if and (eq $index 0) $currentPage.Content }}<div class="project-description">{{ $currentPage.Content }}</div>{{ end }}
                 </div>
-                {{ if and (eq $index 0) $currentPage.Content }}
-                  <div class="project-content">
-                    {{ $currentPage.Content }}
-                  </div>
-                {{ end }}
               </div>
-            </div>
           </div>
         {{ end }}
       {{ end }}
       
-      <!-- Handling video resources -->
+ <!-- Handling video resources -->
+
       {{ $videoResources := .Resources.ByType "video" }}
       {{ if $videoResources }}
         {{ range $index, $element := $videoResources }}
           <div class="flex-item" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}" tabindex="0">
-            <div class="image-container">
               <div class="image-item navigable-item">
                 <div class="image-background">
-                  <video
-                    id='video-js'
-                    class='vjs-default-skin video-js video-item'
-                    autoplay
-                    muted
-                    loop
-                    style="width: auto; height: 150px;"
-                    >
-                    <source src="{{ $element.RelPermalink }}" type='video/mp4'>
-                    </video>
+                    <video
+                        id='video-js'
+                        class='vjs-default-skin video-js video-item'
+                        autoplay
+                        muted
+                        loop
+                        style="width: auto; height: 150px;"
+                        data-highlight="{{ with $element.Params.highlight }}{{ . }}{{ else }}false{{ end }}"
+                        >
+                        <source src="{{ $element.RelPermalink }}" type='video/mp4'>
+                    </video>              
                   <div class="overlay-caption"></div>
                 </div>
                 <div class="image-caption">
-                  <span class="image-number"></span>
-                  {{ with $element.Params.caption }}{{ . }}{{ else }}NO CAPTION{{ end }}
-                  {{ $role := index $currentPage.Params.data 0 "description" }}
-                  {{ $collaborators := index $currentPage.Params.data 1 "description" }}
-                  {{ if $collaborators }}({{ $collaborators }}){{ end }} {{ if $role }}{{ $role }}{{ end }}{{ if $year }}, {{ $year }}{{ end }}		
+                  <div class="image-fig">
+                    <span class="image-number"></span>
+                    {{ with $element.Params.caption }}{{ . }}{{ else }}NO CAPTION{{ end }}
+                    {{ $role := index $currentPage.Params.data 0 "description" }}
+                    {{ $collaborators := index $currentPage.Params.data 1 "description" }}
+                    {{ if $collaborators }}({{ $collaborators }}){{ end }} {{ if $role }}{{ $role }}{{ end }}{{ if $year }}, {{ $year }}{{ end }}	
+                  </div>  	
+                  {{ if and (eq $index 0) $currentPage.Content }}<div class="project-description">{{ $currentPage.Content }}</div>{{ end }}
                 </div>
-                {{ if and (eq $index 0) $currentPage.Content }}
-                  <div class="project-content">
-                    {{ $currentPage.Content }}
-                  </div>
-                {{ end }}
               </div>
-            </div>
           </div>
         {{ end }}
       {{ end }}

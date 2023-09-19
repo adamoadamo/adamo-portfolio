@@ -1,67 +1,72 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="{{ .Site.Title }}">
-    <meta name="description" content="{{ block "description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{ end }}">
 
-    <title>
-      {{- block "title" . -}}
-          {{ .Site.Title }}
-      {{- end -}}
-    </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="{{ .Site.Title }}">
+  <meta name="description" content="{{ block "description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{ end }}">
 
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="{{ block "og:title" . }}{{- .Site.Title -}}{{ end }}">
-    <meta property="og:description" content="{{ block "og:description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{ end }}">
-    <meta property="og:image" content="{{ block "og:image" . }}{{ (resources.Get "/icons/preview.png").Permalink }}{{ end }}">
-    <meta property="og:url" content="{{ .Site.BaseURL }}">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:site_name" content="{{ .Site.Title }}">
-    <meta property="og:updated_time" content="{{ .Lastmod }}">    
+  <title>
+    {{- block "title" . -}}
+        {{ .Site.Title }}
+    {{- end -}}
+  </title>
 
-    <!-- Icons -->
-    {{- $favicon := resources.Get "/icons/favicon.ico" -}}
-    <link rel="icon" href="{{$favicon.RelPermalink}}" sizes="64x64" type="image/x-icon">
-    {{- $faviconSvg := resources.Get "/icons/favicon.svg" -}}
-    <link rel="icon" href="{{$faviconSvg.RelPermalink}}" type="image/svg+xml">
-    {{- $touchIcon := resources.Get "/icons/touch.png" -}}
-    <link rel="apple-touch-icon" href="{{$touchIcon.RelPermalink}}">
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="{{ block "og:title" . }}{{- .Site.Title -}}{{ end }}">
+  <meta property="og:description" content="{{ block "og:description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{ end }}">
+  <meta property="og:image" content="{{ block "og:image" . }}{{ (resources.Get "/icons/preview.png").Permalink }}{{ end }}">
+  <meta property="og:url" content="{{ .Site.BaseURL }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:updated_time" content="{{ .Lastmod }}">    
 
-    <!-- SEO -->
-    <link rel="canonical" href="{{ .Permalink }}" />
-    <link rel="alternate" href="{{ .Permalink }}" hreflang="{{ .Site.LanguageCode }}" />
+  <!-- Icons -->
+  {{- $favicon := resources.Get "/icons/favicon.ico" -}}
+  <link rel="icon" href="{{$favicon.RelPermalink}}" sizes="64x64" type="image/x-icon">
+  {{- $faviconSvg := resources.Get "/icons/favicon.svg" -}}
+  <link rel="icon" href="{{$faviconSvg.RelPermalink}}" type="image/svg+xml">
+  {{- $touchIcon := resources.Get "/icons/touch.png" -}}
+  <link rel="apple-touch-icon" href="{{$touchIcon.RelPermalink}}">
 
-    <!-- Preload Fonts -->
-    <link rel="preload" href="/fonts/aulac/AulacRegular.woff" as="font" type="font/woff" crossorigin>
-    <link rel="preload" href="/fonts/aulac/AulacRegular.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- SEO -->
+  <link rel="canonical" href="{{ .Permalink }}" />
+  <link rel="alternate" href="{{ .Permalink }}" hreflang="{{ .Site.LanguageCode }}" />
 
-    <!-- Styles -->
-    {{ $sass := resources.Get "scss/main.scss" }}
-    {{ $options := (dict "enableSourceMap" (not hugo.IsProduction) "transpiler" "dartsass") }}
-    {{ $mainCss := $sass | resources.ToCSS $options | resources.Minify }}
-    <link href="{{($mainCss | resources.Fingerprint "sha512").RelPermalink}}" rel="stylesheet">
+  <!-- Preload Fonts -->
+  <link rel="preload" href="/fonts/aulac/AulacRegular.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="/fonts/aulac/AulacRegular.woff2" as="font" type="font/woff2" crossorigin>
 
-    <!-- Scripts -->
-    {{- $lazy := resources.Get "scripts/lazy.js" | js.Build | resources.Minify -}}
-    {{- $focus := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
-    {{- $header := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
-    {{- $jsBundle := slice $lazy $focus $header | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" -}}
-    <script type="module" src="{{ $jsBundle.RelPermalink }}" crossorigin="anonymous"></script>
+  <!-- Styles -->
+  {{ $sass := resources.Get "scss/main.scss" }}
+  {{ $options := (dict "enableSourceMap" (not hugo.IsProduction) "transpiler" "dartsass") }}
+  {{ $mainCss := $sass | resources.ToCSS $options | resources.Minify }}
+  <link href="{{($mainCss | resources.Fingerprint "sha512").RelPermalink}}" rel="stylesheet">
 
-    <!-- External Video JS Pulls -->
-    <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet" />
-    <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
+  <!-- Scripts -->
+  {{- $lazy := resources.Get "scripts/lazy.js" | js.Build | resources.Minify -}}
+  {{- $focus := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
+  {{- $header := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
+  {{- $search := resources.Get "scripts/search.js" | js.Build | resources.Minify -}}
+  {{- $jsBundle := slice $lazy $focus $header $search | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" -}}
+  <script type="module" src="{{ $jsBundle.RelPermalink }}" crossorigin="anonymous"></script>
 
-    <!-- Goat Counter -->
-    {{- with .Site.Params.GoatCounter }}
-    <script data-goatcounter="https://{{.}}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    {{end -}}
+  <!-- External Video JS Pulls -->
+  <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet" />
+  <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
 
-  </head>
+  <!-- External Search Fuse JS Pull -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.basic.min.js"></script>
+
+  <!-- Goat Counter -->
+  {{- with .Site.Params.GoatCounter }}
+  <script data-goatcounter="https://{{.}}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  {{end -}}
+
+</head>
 <body {{ block "bodyMeta" .}}{{end}} {{ if hugo.IsProduction }}data-production="true"{{ end }}>
 	<div class="container">
 		<main>
@@ -71,23 +76,5 @@
 			{{- partial "footer.html" . -}}
 		</footer>
 	</div>
-  <!--
-  <svg xmlns="http://www.w3.org/2000/svg">
-    <filter id="filter">
-      <feColorMatrix type="matrix" result="grayscale"
-        values="1 0 0 0 0
-                1 0 0 0 0
-                1 0 0 0 0
-                0 0 0 1 0" >
-      </feColorMatrix>
-      <feComponentTransfer color-interpolation-filters="sRGB" result="duotone">
-        <feFuncR type="table" tableValues="0.7411764706 0.9882352941"></feFuncR>
-        <feFuncG type="table" tableValues="0.0431372549 0.7333333333"></feFuncG>
-        <feFuncB type="table" tableValues="0.568627451 0.05098039216"></feFuncB>
-        <feFuncA type="table" tableValues="0 1"></feFuncA>
-      </feComponentTransfer> 
-    </filter>        
-  </svg>
--->
 </body>
 </html>
