@@ -36,73 +36,79 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function updateVideoToLarge(video) {
-        if (video) {
-            video.classList.toggle('active');
-            if (video.classList.contains('active')) {
-                video.style.height = '600px';
-            } else {
-                video.style.height = '150px';
-            }
+    function toggleVideoSize(container) {
+        if (container) {
+            container.classList.toggle('active');
         }
     }
+    
 
  // ——————–––––––––––––––––– Click Highlight
 
-    const toggleActiveClass = (event) => {
-        const currentItem = event.currentTarget;
-    
-        const clickedIndex = flexItems.findIndex(item => item.querySelector('.navigable-item') === currentItem);
-        if (clickedIndex !== -1) {
-            currentIndex = clickedIndex;
+
+ function toggleVideoSize(container) {
+    if (container) {
+        container.classList.toggle('active');
+    }
+}
+
+const toggleActiveClass = (event) => {
+    const currentItem = event.currentTarget;
+
+    const clickedIndex = flexItems.findIndex(item => item.querySelector('.navigable-item') === currentItem);
+    if (clickedIndex !== -1) {
+        currentIndex = clickedIndex;
+    }
+
+    currentItem.classList.toggle('active');
+
+    const imageCaption = currentItem.querySelector('.image-caption');
+    if (imageCaption) {
+        if (currentItem.classList.contains('active')) {
+            imageCaption.style.display = "block";
+            imageCaption.style.opacity = "1";
+        } else {
+            imageCaption.style.display = "none";
+            imageCaption.style.opacity = "0";
         }
-        
-        currentItem.classList.toggle('active');
-        
-        const imageCaption = currentItem.querySelector('.image-caption');
-        if (imageCaption) {
-            if (currentItem.classList.contains('active')) {
-                imageCaption.style.display = "block";
-                imageCaption.style.opacity = "1";
-            } else {
-                imageCaption.style.display = "none";
-                imageCaption.style.opacity = "0";
-            }
-        }
-    
-        const img = currentItem.querySelector('img');
-        if (img) {
-            updateImageToLarge(img);
-        }
-    
-        const video = currentItem.querySelector('video');
-        if (video) {
-            updateVideoToLarge(video);
-        }
-    
+    }
+
+    const img = currentItem.querySelector('img');
+    if (img) {
+        updateImageToLarge(img);
+    }
+
+    const videoContainer = currentItem.querySelector('.video-container');
+    if (videoContainer) {
+        toggleVideoSize(videoContainer);
+    }
+
+    // Check if the currentItem is active, then scroll into view
+    if (currentItem.classList.contains('active')) {
         requestAnimationFrame(() => {
             currentItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
         });
-    };
-    
-    
-    const registerClickToToggle = () => {
-        flexItems.forEach(item => {
-            const navigableItem = item.querySelector('.navigable-item');
-            if (navigableItem) {
-                navigableItem.removeEventListener('click', toggleActiveClass);
-                navigableItem.addEventListener('click', toggleActiveClass);
-            }
-        });
-    };
+    }
+};
 
-    const registerNavigation = () => {
-        console.log("Registering navigation...");
-        flexItems = Array.from(assortment.getElementsByClassName('flex-item'));
-    };
+const registerClickToToggle = () => {
+    flexItems.forEach(item => {
+        const navigableItem = item.querySelector('.navigable-item');
+        if (navigableItem) {
+            navigableItem.removeEventListener('click', toggleActiveClass);
+            navigableItem.addEventListener('click', toggleActiveClass);
+        }
+    });
+};
 
-    registerNavigation();
-    registerClickToToggle();
+const registerNavigation = () => {
+    console.log("Registering navigation...");
+    flexItems = Array.from(assortment.getElementsByClassName('flex-item'));
+};
+
+registerNavigation();
+registerClickToToggle();
+
 
 // ——————–––––––––––––––––– Keyboard Navigation
 
@@ -112,7 +118,7 @@ document.addEventListener('keydown', function (event) {
     if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
         const activeItem = flexItems[currentIndex].querySelector('.navigable-item');
         const activeItemCaption = activeItem ? activeItem.querySelector('.image-caption') : null;
-        const activeVideo = activeItem ? activeItem.querySelector('video') : null;
+        const activeVideoContainer = activeItem ? activeItem.querySelector('.video-container') : null;
 
         if (activeItem) {
             activeItem.classList.remove('active');
@@ -120,9 +126,8 @@ document.addEventListener('keydown', function (event) {
                 activeItemCaption.style.display = "none";
                 activeItemCaption.style.opacity = "0";
             }
-            if (activeVideo) {
-                activeVideo.style.height = '150px';
-                activeVideo.classList.remove('active');
+            if (activeVideoContainer) {
+                activeVideoContainer.classList.remove('active');
             }
         }
 
@@ -132,7 +137,8 @@ document.addEventListener('keydown', function (event) {
 
         const newActiveItem = flexItems[currentIndex].querySelector('.navigable-item');
         const newActiveItemCaption = newActiveItem ? newActiveItem.querySelector('.image-caption') : null;
-        
+        const newActiveVideoContainer = newActiveItem ? newActiveItem.querySelector('.video-container') : null;
+
         const isHighlighted = newActiveItem.querySelector('[data-highlight="true"]');
 
         if (newActiveItem) {
@@ -140,6 +146,9 @@ document.addEventListener('keydown', function (event) {
             if (newActiveItemCaption) {
                 newActiveItemCaption.style.display = "block";
                 newActiveItemCaption.style.opacity = "1";
+            }
+            if (newActiveVideoContainer) {
+                newActiveVideoContainer.classList.add('active');
             }
             if (isHighlighted) {
                 updateMediaToLarge(newActiveItem);  
@@ -149,6 +158,7 @@ document.addEventListener('keydown', function (event) {
         newActiveItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
     }
 });
+
 
 // ——————–––––––––––––––––– Sort Function
 
@@ -171,7 +181,7 @@ document.addEventListener('keydown', function (event) {
 
             let imageNumberSpan = item.querySelector('.image-number');
             if (imageNumberSpan) {
-                imageNumberSpan.textContent = `Fig. ${index + 1}.`;
+                imageNumberSpan.textContent = `Fig. ${index + 1}`;
             }
         });
         
@@ -219,23 +229,24 @@ flexItems.forEach(item => {
         const navigableItem = media.closest('.navigable-item');
         if (navigableItem) {
             navigableItem.classList.add('active');
-            // additional logic to show image caption and large image/video
             const imageCaption = navigableItem.querySelector('.image-caption');
             if (imageCaption) {
                 imageCaption.style.display = "block";
                 imageCaption.style.opacity = "1";
             }
 
-            // If it's an image, update it to the large version
             if (media.tagName.toLowerCase() === 'img') {
                 updateImageToLarge(media);
             }
 
-            // If it's a video, update it to the large version
             if (media.tagName.toLowerCase() === 'video') {
-                updateVideoToLarge(media);
+                const videoContainer = navigableItem.querySelector('.video-container');
+                if (videoContainer) {
+                    toggleVideoSize(videoContainer);
+                }
             }
         }
     }
 });
 });
+

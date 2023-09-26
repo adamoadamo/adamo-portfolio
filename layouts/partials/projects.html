@@ -30,15 +30,18 @@
                   <div class="overlay-caption"></div>
                 </div>
                 <div class="image-caption">
-                  <div class="image-fig">
-                    <span class="image-number"></span>
-                    {{ with $element.Params.caption }}{{ . }}{{ else }}NO CAPTION{{ end }}
-                    {{ $role := index $currentPage.Params.data 0 "description" }}
-                    {{ $collaborators := index $currentPage.Params.data 1 "description" }}
-                    {{ if $collaborators }}({{ $collaborators }}){{ end }} {{ if $role }}{{ $role }}{{ end }}{{ if $year }}, {{ $year }}{{ end }}	
+                  <div class="image-content">
+                      <div class="image-number"></div>
+                      <div class="image-fig">
+                          {{ with $element.Params.caption }}{{ . }}{{ else }}NO CAPTION{{ end }}
+                          {{ $role := index $currentPage.Params.data 0 "description" }}
+                          {{ $collaborators := index $currentPage.Params.data 1 "description" }}
+                          {{ if $collaborators }}({{ $collaborators }}){{ end }} {{ if $role }}{{ $role }}{{ end }}{{ if $year }}, {{ $year }}{{ end }}
+                      </div>
                   </div>  	
                   {{ if and (eq $index 0) $currentPage.Content }}<div class="project-description">{{ $currentPage.Content }}</div>{{ end }}
-                </div>
+              </div>
+              
               </div>
           </div>
         {{ end }}
@@ -52,26 +55,29 @@
           <div class="flex-item" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}" tabindex="0">
               <div class="image-item navigable-item">
                 <div class="image-background">
+                  <div class="video-container">
                     <video
-                        id='video-js'
-                        class='vjs-default-skin video-js video-item'
-                        autoplay
-                        muted
-                        loop
-                        style="width: auto; height: 150px;"
-                        data-highlight="{{ with $element.Params.highlight }}{{ . }}{{ else }}false{{ end }}"
-                        >
-                        <source src="{{ $element.RelPermalink }}" type='video/mp4'>
-                    </video>              
+                          id='video-js'
+                          class='vjs-default-skin video-js video-item'
+                          autoplay
+                          muted
+                          loop
+                          data-highlight="{{ with $element.Params.highlight }}{{ . }}{{ else }}false{{ end }}"
+                          >
+                          <source src="{{ $element.RelPermalink }}" type='video/mp4'>
+                      </video>  
+                    </div>           
                   <div class="overlay-caption"></div>
                 </div>
                 <div class="image-caption">
-                  <div class="image-fig">
-                    <span class="image-number"></span>
-                    {{ with $element.Params.caption }}{{ . }}{{ else }}NO CAPTION{{ end }}
-                    {{ $role := index $currentPage.Params.data 0 "description" }}
-                    {{ $collaborators := index $currentPage.Params.data 1 "description" }}
-                    {{ if $collaborators }}({{ $collaborators }}){{ end }} {{ if $role }}{{ $role }}{{ end }}{{ if $year }}, {{ $year }}{{ end }}	
+                  <div class="image-content">
+                      <div class="image-number"></div>
+                      <div class="image-fig">
+                          {{ with $element.Params.caption }}{{ . }}{{ else }}NO CAPTION{{ end }}
+                          {{ $role := index $currentPage.Params.data 0 "description" }}
+                          {{ $collaborators := index $currentPage.Params.data 1 "description" }}
+                          {{ if $collaborators }}({{ $collaborators }}){{ end }} {{ if $role }}{{ $role }}{{ end }}{{ if $year }}, {{ $year }}{{ end }}
+                      </div>
                   </div>  	
                   {{ if and (eq $index 0) $currentPage.Content }}<div class="project-description">{{ $currentPage.Content }}</div>{{ end }}
                 </div>

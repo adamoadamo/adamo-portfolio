@@ -10,35 +10,49 @@
 }
 
 $font-size-base: 1.25em;
-$line-height-base: 1.25em;
+$line-height-base: 1.35em;
 
 @font-face {
-  font-family: 'aulac';
-  src: url(/fonts/aulac/AulacRegular.woff2) format('woff2'),
-       url(/fonts/aulac/AulacRegular.woff) format('woff');
+  font-family: 'oror-round';
+  src: url(/fonts/oror/OrorMono-Round-Regular.woff2) format('woff2'),
+       url(/fonts/oror/OrorMono-Round-Regular.woff) format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: fallback;
 }
 
-@mixin aulac-styles {
-  font-family: "aulac";
+@font-face {
+  font-family: 'oror-round-italic';
+  src: url(/fonts/oror/OrorMono-Round-Italic.woff2) format('woff2'),
+       url(/fonts/oror/OrorMono-Round-Italic.woff) format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@mixin font-style {
+  font-family: "oror-round";
   font-kerning: normal;
-  letter-spacing: 0.0075em;
+  color: var(--color);
+}
+
+em {
+  font-family: "oror-round-italic";
+  font-kerning: normal;
   color: var(--color);
 }
 
 // ———————————————————————————— Header
 .bio-content, .bio-expand, .footer {
-  @include aulac-styles;
+  @include font-style;
   text-align: left;
   font-size: $font-size-base;
   line-height: $line-height-base;
 
-  p:nth-of-type(2) {
+  p:nth-of-type(n+2) {
     text-indent: calc(var(--space-unit) * 2);
-  }
-  
+}
+
   a:link, a:visited {
     color: var(--color);
     text-decoration: underline;
@@ -51,7 +65,7 @@ $line-height-base: 1.25em;
 }
 
 .contact {
-  @include aulac-styles;
+  @include font-style;
   text-align: left;
   font-size: $font-size-base;
   line-height: $line-height-base;
@@ -98,14 +112,14 @@ $line-height-base: 1.25em;
 }
 
 .toggle-bio {
-  @include aulac-styles;
+  @include font-style;
   text-align: left;
   font-size: $font-size-base * 0.65;
   line-height: $line-height-base;
 }
 
 .sort-total, .sort-button {
-  @include aulac-styles;
+  @include font-style;
   font-size: $font-size-base * 0.65;
 }
 
@@ -114,14 +128,14 @@ $line-height-base: 1.25em;
 }   
 
 #clear-search-btn {
-  @include aulac-styles;
+  @include font-style;
   text-align: left;
   font-size: $font-size-base * 0.65;
   line-height: $line-height-base;
 }
 
 #search-input {
-  @include aulac-styles;
+  @include font-style;
   text-align: left;
   font-size: $font-size-base * 0.65;
   line-height: $line-height-base;
@@ -133,18 +147,15 @@ $line-height-base: 1.25em;
 }
 
 // ———————————————————————————— Project Grid
-.image-fig, .overlay-caption {
-  @include aulac-styles;
+.image-fig, .image-number, .overlay-caption {
+  @include font-style;
   text-align: left;
   font-size: $font-size-base * 0.65;
   line-height: $line-height-base;
 }
 
-.image-number {
-}
-
 .project-description {
-  @include aulac-styles;
+  @include font-style;
   text-align: left;
   font-size: $font-size-base * 0.65;
   line-height: $line-height-base;
@@ -152,11 +163,31 @@ $line-height-base: 1.25em;
   p:nth-of-type(2) {
     text-indent: calc(var(--space-unit) * 2);
   }
+
+  a:link, a:visited {
+    color: var(--color);
+    text-decoration: underline;
+    position: relative;
+    padding-left: 1em; 
+  }
+
+  a:hover, a:active {
+    color: var(--color);
+    text-decoration: none;
+  }
+
+  a::before {
+    content: '↗';
+    text-decoration: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 
 // ———————————————————————————— 404 Error
 .fourzerofour {
-  @include aulac-styles;
+  @include font-style;
   text-align: left;
   text-transform: uppercase;
   font-size: $font-size-base * 3;

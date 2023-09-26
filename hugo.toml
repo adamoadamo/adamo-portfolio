@@ -1,6 +1,7 @@
 baseURL = "http://adamtoreilly.info/"
 languageCode = "en-us"
 title = "Adam Taylor O'Reilly"
+enableGitInfo = true
 
 [Params]
 mainSections = "work"

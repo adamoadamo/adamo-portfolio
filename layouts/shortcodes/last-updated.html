@@ -1,0 +1,5 @@
+{{ with .Page.GitInfo }}
+Last updated on {{ .AuthorDate.Format "January 2, 2006" }}
+{{ else }}
+Page creation date: {{ .Page.Date.Format "January 2, 2006" }}
+{{ end }}

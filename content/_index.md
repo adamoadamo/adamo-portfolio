@@ -1,5 +1,5 @@
 +++
-intro = "ADAM TAYLOR O'REILLY (1985) Edmonton, Canada, he/him. Lives and works, Lenapehoking (Brooklyn, New York)."
+intro = "ADAM TAYLOR O'REILLY (b. 1985) Edmonton, Canada, he/him. Lives and works, Lenapehoking (Brooklyn, New York)."
 
 email_text = "Email"
 email_link = "adam@adamtoreilly.info"

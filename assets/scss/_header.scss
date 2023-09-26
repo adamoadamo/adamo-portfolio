@@ -18,6 +18,10 @@
     padding-top: calc(var(--space-unit) / 2);
 }
 
+#sortAlpha {
+   padding-right: calc(var(--space-unit) / 2);
+}
+
 .sort-button {
     background: none;
     border: none;
@@ -44,17 +48,11 @@
 
 // –––––––––––––––––– Search
 
-.search-container {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
 #clear-search-btn {
   background: none;
   border: none;
   cursor: pointer;
-  margin-right: 0px; 
+  margin-right: -8px; 
 }
 
 #clear-search-btn.hidden {

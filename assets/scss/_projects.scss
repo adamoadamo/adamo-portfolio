@@ -30,16 +30,18 @@ img {
 
 .image-background {
   position: relative;
-  display: inline-block; 
+  display: inline-block;
   background-image: radial-gradient(var(--color) 1px, var(--background-color) 0);  
   background-size: 3px 3px;
   background-position: 0 0;
 }
 
 .image-background img {
-  width: 100%; 
+  width: auto; 
+  max-width: 100%; 
   object-fit: cover; 
 }
+
 
 .image-background:hover .overlay-caption {
   opacity: 1;
@@ -56,12 +58,35 @@ img {
   object-fit: contain;
 }
 
+@media screen and (max-width: 480px) {
+  .image-item.navigable-item.active img {
+    max-width: auto;
+    max-height: 300px;
+  }
+}
+
 .image-item.navigable-item.active .image-background:hover .overlay-caption {
   opacity: 0;
 }
 
 .navigable-item.active .project-content {
   margin: 0; 
+}
+// ———————————————————————————— Videos
+.video-container.active video {
+  max-width: 700px;
+  max-height: 700px;
+  width: 100%;
+  height: auto;
+}
+
+.video-container video {
+  height: 150px;
+}
+
+.video-js {
+  background: content-box;
+  position: static;
 }
 
 // ———————————————————————————— Fig Number Overlay
@@ -80,6 +105,7 @@ img {
 // ———————————————————————————— Image Caption and Image Description
 .image-caption {
   padding-top: calc(var(--space-unit) / 2);
+  padding-bottom: var(--space-unit);
   opacity: 0;
   display: none;
   max-width: 400px;
@@ -88,6 +114,18 @@ img {
 
 .project-description {
   margin-top: var(--space-unit);
-  padding-bottom: var(--space-unit);
-  border-bottom: 1px solid var(--color);
+}
+
+.image-content {
+  display: flex;
+  align-items:flex-start;
+}
+
+.image-number, .image-fig {
+  margin-right: var(--space-unit);
+}
+
+.image-number {
+  display: inline-block;
+  white-space: nowrap;
 }
