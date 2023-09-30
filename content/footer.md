@@ -2,4 +2,4 @@ Typeface (*Oror Mono Round*) and programming by Adam Taylor O'Reilly. This websi
 <br>
 &#169; {{< current-year >}} Adam Taylor O'Reilly
 <br>
-&#8277; Last updated {{< last-updated >}}
+&#8277; {{< last-updated >}}

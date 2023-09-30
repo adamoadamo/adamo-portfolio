@@ -26,12 +26,6 @@
 
 <!-- Sorting, Indexing, and Search -->
 
-{{ $totalMarkdownFiles := 0 }} 
-{{ range .Site.RegularPages }}
-    {{ if eq .Section "work" }}
-    {{ $totalMarkdownFiles = add $totalMarkdownFiles 1 }}
-    {{ end }}
-{{ end }}
 <div class="flex-container border-bottom">
     <div class="sort-container">
         <button id="sortAlpha" class="sort-button selected">Alphabetical</button>

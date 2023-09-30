@@ -168,22 +168,26 @@ em {
     color: var(--color);
     text-decoration: underline;
     position: relative;
-    padding-left: 1em; 
   }
 
   a:hover, a:active {
     color: var(--color);
     text-decoration: none;
   }
-
-  a::before {
-    content: '↗';
-    text-decoration: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
 }
+
+a.download-link {
+  position: relative;
+  text-decoration: none;
+}
+
+a.download-link::after {
+  content: "↘"; 
+  position: absolute;
+  top: 0;
+  right: -1em; 
+}
+
 
 // ———————————————————————————— 404 Error
 .fourzerofour {

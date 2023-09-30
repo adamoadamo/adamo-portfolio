@@ -33,15 +33,21 @@
                   <div class="image-content">
                       <div class="image-number"></div>
                       <div class="image-fig">
-                          {{ with $element.Params.caption }}{{ . }}{{ else }}NO CAPTION{{ end }}
-                          {{ $role := index $currentPage.Params.data 0 "description" }}
-                          {{ $collaborators := index $currentPage.Params.data 1 "description" }}
-                          {{ if $collaborators }}({{ $collaborators }}){{ end }} {{ if $role }}{{ $role }}{{ end }}{{ if $year }}, {{ $year }}{{ end }}
+                        {{ with $element.Params.caption }}
+                        <em>{{ . }}</em>{{ if $element.Params.location }},{{ end }}
+                      {{ end }}
+                      {{ with $element.Params.location }}
+                        {{ . }}
+                      {{ end }}
+                      {{ $role := index $currentPage.Params.data 0 "description" }}
+                      {{ $collaborators := index $currentPage.Params.data 1 "description" }}
+                      {{ if $role }}({{ $role }}){{ end }}
+                      {{ if $collaborators }}w/ {{ $collaborators }}, {{ end }}{{ if $year }}{{ $year }}{{ end }}
+                                        
                       </div>
                   </div>  	
                   {{ if and (eq $index 0) $currentPage.Content }}<div class="project-description">{{ $currentPage.Content }}</div>{{ end }}
               </div>
-              
               </div>
           </div>
         {{ end }}
@@ -73,10 +79,12 @@
                   <div class="image-content">
                       <div class="image-number"></div>
                       <div class="image-fig">
-                          {{ with $element.Params.caption }}{{ . }}{{ else }}NO CAPTION{{ end }}
-                          {{ $role := index $currentPage.Params.data 0 "description" }}
-                          {{ $collaborators := index $currentPage.Params.data 1 "description" }}
-                          {{ if $collaborators }}({{ $collaborators }}){{ end }} {{ if $role }}{{ $role }}{{ end }}{{ if $year }}, {{ $year }}{{ end }}
+                        {{ with $element.Params.caption }}<em>{{ . }}</em>,{{ else }}{{ end }}
+                        {{ with $element.Params.location }}{{ . }}{{ else }}{{ end }}
+                        {{ $role := index $currentPage.Params.data 0 "description" }}
+                        {{ $collaborators := index $currentPage.Params.data 1 "description" }}
+                        {{ if $role }}({{ $role }}){{ end }}
+                        {{ if $collaborators }}w/ {{ $collaborators }}, {{ end }}{{ if $year }}{{ $year }}{{ end }}
                       </div>
                   </div>  	
                   {{ if and (eq $index 0) $currentPage.Content }}<div class="project-description">{{ $currentPage.Content }}</div>{{ end }}

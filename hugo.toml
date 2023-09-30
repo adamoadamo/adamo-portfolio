@@ -6,7 +6,7 @@ enableGitInfo = true
 [Params]
 mainSections = "work"
 goatCounter = "adamoadamo"
-tagline = "Adam Taylor O'Reilly is a designer and developer based in Brooklyn, <nobr>New York</nobr>."
+tagline = "Adam Taylor O'Reilly is a designer and developer based in Brooklyn, NY."
 ga = "G-TF8P2JE3M4"
 
 disableKinds = ["taxonomy", "term", "RSS"]

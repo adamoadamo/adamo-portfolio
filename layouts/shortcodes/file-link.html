@@ -1,0 +1,7 @@
+{{ with .Page.Resources.GetMatch (.Get 0) }}
+  {{ $file := . }}
+  {{ $fileType := upper (index (split $file.Name ".") 1) }}
+  <a href="{{ .Permalink }}" class="download-link"{{ if eq $fileType "PDF" }} target="_blank"{{ end }}>Download{{ if ne $fileType "" }} {{ $fileType }}{{ end }}</a>
+{{ else }}
+  File not found: {{ .Get 0 }}
+{{ end }}

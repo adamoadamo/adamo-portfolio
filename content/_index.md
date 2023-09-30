@@ -13,7 +13,7 @@ github_link = "https://github.com/adamoadamo"
 
 Brooklyn Museum as Director of Graphic Design. My design practice focuses on decentralized brand systems,decolonization of design practices, design education, DEIA (Diversity, Equity, Inclusion, & Accessibility) in design. Over the course of my career I’ve primarily collaborated withartists, architects, curators, publishers and institutions, on books, exhibitions, identities, and websites.
 
-Aperture Magazine, Canadian Art, Cura Magazine, Art Papers, Interview Magazine, Muse Magazine, Kaleidoscope, ArtinAmerica, 01 Magazine, FlashArt, and Bad Day Magazine.
+writing for Aperture Magazine, Canadian Art, Cura Magazine, Art Papers, Interview Magazine, Muse Magazine, Kaleidoscope, ArtinAmerica, 01 Magazine, FlashArt, and Bad Day Magazine.
 
 Werkplaats Typografie, Jan Van Eyck Acadamie, Marres: Huis voor Hedendaagse Cultuur, Nova Scotia College of Arts & Design, MoMA Library, Amsterdam Art Book Fair, Extrapool, Khyber ICA
 
