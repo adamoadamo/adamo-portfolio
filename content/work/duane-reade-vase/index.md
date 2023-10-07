@@ -1,6 +1,7 @@
 +++
-title = "Walking in a Room"
+title = "Duane Reade Vase"
 section = "work"
+project_tags = ["poetry", "poem", "writing", "book", "book design"]
 
 [[data]]
 title = "Role"

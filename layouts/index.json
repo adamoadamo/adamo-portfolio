@@ -4,18 +4,19 @@
     {{- $role := index .Params.data 0 "description" -}}
     {{- $collaborators := index .Params.data 1 "description" -}}
     {{- $year := index .Params.data 2 "description" -}}
+    {{- $tags := .Params.project_tags -}}
     
     {{- $imageResources := slice -}}
     {{- range .Resources.ByType "image" -}}
-      {{- $imageResources = $imageResources | append (dict "url" .RelPermalink "alt" (.Params.alt | default .Title) "caption" .Params.caption "title" .Title) -}}
+      {{- $imageResources = $imageResources | append (dict "url" .RelPermalink "alt" (.Params.alt | default .Title) "caption" .Params.caption "title" .Title "location" .Params.location) -}}
     {{- end -}}
 
     {{- $videoResources := slice -}}
     {{- range .Resources.ByType "video" -}}
-      {{- $videoResources = $videoResources | append (dict "url" .RelPermalink "caption" .Params.caption "title" .Title) -}}
+      {{- $videoResources = $videoResources | append (dict "url" .RelPermalink "alt" (.Params.alt | default .Title) "caption" .Params.caption "title" .Title "location" .Params.location) -}}
     {{- end -}}
     
-    {{- $.Scratch.Add "index" (dict "title" .Title "description" .Description "year" $year "role" $role "collaborators" $collaborators "images" $imageResources "videos" $videoResources) -}}
+    {{- $.Scratch.Add "index" (dict "title" .Title "description" .Description "year" $year "role" $role "collaborators" $collaborators "tags" $tags "images" $imageResources "videos" $videoResources) -}}
   {{- end -}}
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}

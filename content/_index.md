@@ -1,5 +1,5 @@
 +++
-intro = "ADAM TAYLOR O'REILLY (b. 1985) Edmonton, Canada, he/him. Lives and works, Lenapehoking (Brooklyn, New York)."
+intro = "ADAM TAYLOR O'REILLY (b. 1985) Edmonton, Canada. Lives and works, Lenapehoking (Brooklyn, New York)."
 
 email_text = "Email"
 email_link = "adam@adamtoreilly.info"
@@ -11,10 +11,8 @@ github_text = "Github"
 github_link = "https://github.com/adamoadamo"
 +++
 
-Brooklyn Museum as Director of Graphic Design. My design practice focuses on decentralized brand systems,decolonization of design practices, design education, DEIA (Diversity, Equity, Inclusion, & Accessibility) in design. Over the course of my career I’ve primarily collaborated withartists, architects, curators, publishers and institutions, on books, exhibitions, identities, and websites.
+I am currently the Director of Graphic Design at the Brooklyn Museum, as well as working on independant programming and creative consulting projects. 
 
-writing for Aperture Magazine, Canadian Art, Cura Magazine, Art Papers, Interview Magazine, Muse Magazine, Kaleidoscope, ArtinAmerica, 01 Magazine, FlashArt, and Bad Day Magazine.
+My writing and interviews have appeared in Aperture Magazine, Art Papers, ArtinAmerica, Bad Day Magazine, Canadian Art, Cura Magazine, FlashArt, Interview Magazine, Kaleidoscope, and Muse Magazine. etc. I have been invited to talk/present at tge Amsterdam Art Book Fair, Jan Van Eyck Academie, Marres (Maastricht), Mondriaan Fonds Visitor Programme, MoMA Library, New York Art Book Fair, Nova Scotia College of Arts & Design, and Werkplaats Typografie, etc.  
 
-Werkplaats Typografie, Jan Van Eyck Acadamie, Marres: Huis voor Hedendaagse Cultuur, Nova Scotia College of Arts & Design, MoMA Library, Amsterdam Art Book Fair, Extrapool, Khyber ICA
-
-Storefront for Art and Architecture, Printed Matter, Khyber ICA, the Museum of Arts and Design, the Elizabeth Foundation for the Arts, the Robert Rauschenberg Project Space, MoMA Ps1, Mondriaan Fonds Visitor Programme, Grants from the The Authors Guild, Foundation for Contemporary Art, Arts Nova Scotia, and the Canada Council for the Arts. Juries: Brooklyn Arts Council, Staten Island Arts Council, and the Nova Scotia Arts Council.
+&#8277; This site serves as a shelf to arrange a selection of projects, rather than a comprehensive index. You can use the left and right arrow keys to navigate.

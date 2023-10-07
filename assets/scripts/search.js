@@ -45,9 +45,9 @@ fetch('/index.json')
   .then(response => response.json())
   .then(data => {
     fuse = new Fuse(data, {
-      keys: ['title', 'description', 'year', 'role', 'collaborators', 'images.caption', 'videos.caption'],
-      threshold: 0.1
-    });
+        keys: ['title', 'description', 'year', 'role', 'collaborators', 'images.caption', 'videos.caption', 'tags', 'location', 'alt'], // Include 'tags' here
+        threshold: 0.1
+      });
     console.log('Fuse instance:', fuse); // log the Fuse instance
   });
 

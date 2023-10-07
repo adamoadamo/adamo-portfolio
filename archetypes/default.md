@@ -1,6 +1,7 @@
 +++
 title = ""
 section = "work"
+project_tags = ["", "", ""]
 
 [[data]]
 title = "Role"
@@ -18,5 +19,7 @@ description = ""
 src = ""
 [resources.params]
 caption = ""
+location = ""
 alt = ""
+highlight = ""
 +++

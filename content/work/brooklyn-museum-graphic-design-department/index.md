@@ -1,6 +1,7 @@
 +++
 title = "Graphic Design Department, Brooklyn Museum"
 section = "work"
+project_tags = ["hoodie", "apparel", "clothing", "brooklyn museum", "merch design", "branding"]
 
 [[data]]
 title = "Role"
@@ -12,12 +13,13 @@ description = ""
 
 [[data]]
 title = "Year"
-description = "2022"
+description = "2021"
 
 [[resources]]
-src = "1.png"
+src = "1.jpg"
 [resources.params]
-caption = "Aunts et Uncles × Brooklyn Museum"
+caption = "Graphic Design Department Uniform"
+location = "Brooklyn Museum"
 alt = ""
 +++
 

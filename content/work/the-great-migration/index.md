@@ -17,7 +17,6 @@ description = "2023"
 [[resources]]
 src = "1.png"
 [resources.params]
-highlight = "true"
 caption = "A Movement in Every Direction"
 location = "Brooklyn Museum"
 alt = "a group of posters on a wall"

@@ -83,7 +83,6 @@ const toggleActiveClass = (event) => {
         toggleVideoSize(videoContainer);
     }
 
-    // Check if the currentItem is active, then scroll into view
     if (currentItem.classList.contains('active')) {
         requestAnimationFrame(() => {
             currentItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });

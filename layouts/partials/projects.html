@@ -15,6 +15,7 @@
         {{ range $index, $element := $imageResources }}
           {{ $smallImage := $element.Fit "300x300 webp" }}
           {{ $largeImage := $element.Fit "1200x1200 webp" }}
+
           <div class="flex-item" data-url="{{ .RelPermalink }}" data-title="{{ $currentPage.Title }}" data-year="{{ $year }}" tabindex="0">
               <div class="image-item navigable-item">
                 <div class="image-background">

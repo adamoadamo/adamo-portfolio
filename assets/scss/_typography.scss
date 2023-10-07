@@ -94,20 +94,12 @@ em {
 @media(min-width: 600px) { 
   .contact { 
     flex-direction: column;
-    
-    a:not(:last-child)::after {
-      content: '';
-    }
   }
 }
 
 @media(min-width: 900px) { 
   .contact { 
     flex-direction: column;
-
-    a:not(:last-child)::after {
-      content: '';
-    }
   }
 }
 
@@ -174,6 +166,13 @@ em {
     color: var(--color);
     text-decoration: none;
   }
+  
+  a:after {
+    content: "↗"; 
+    position: absolute;
+    top: 0;
+    right: -1em; 
+  }  
 }
 
 a.download-link {
@@ -186,6 +185,29 @@ a.download-link::after {
   position: absolute;
   top: 0;
   right: -1em; 
+}
+
+// ———————————————————————————— Footer
+
+.footer {
+  @include font-style;
+  text-align: left;
+  font-size: $font-size-base * 0.65;
+  line-height: $line-height-base;
+
+  p:nth-of-type(n+2) {
+    text-indent: calc(var(--space-unit) * 2);
+}
+
+  a:link, a:visited {
+    color: var(--color);
+    text-decoration: underline;
+  }
+  
+  a:hover, a:active {
+    color: var(--color);
+    text-decoration: none;
+  }
 }
 
 

@@ -1,6 +1,7 @@
 +++
 title = "B, Aulac"
 section = "work"
+project_tags = ["typography", "font", "letter", "number", "type design"]
 
 [[data]]
 title = "Role"

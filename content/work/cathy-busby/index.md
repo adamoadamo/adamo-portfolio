@@ -8,16 +8,19 @@ description = "Designer"
 
 [[data]]
 title = "Collaborators"
-description = ""
+description = "Cathy Busby (Artist)"
 
 [[data]]
 title = "Year"
 description = "2013"
 
 [[resources]]
-src = "1.jpg"
+src = "1.png"
 [resources.params]
-caption = "Cathy Busby, Sorry"
+caption = "Sorry"
+location = "by Cathy Busby, published by Printed Matter, Inc."
 alt = ""
 +++
+
+
 

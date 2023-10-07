@@ -1,6 +1,7 @@
 +++
-title = "Walking in a Room"
+title = "Reclining Figure"
 section = "work"
+project_tags = ["art", "artwork", "drawing", "relax", "sketch"]
 
 [[data]]
 title = "Role"
@@ -17,7 +18,8 @@ description = "2017"
 [[resources]]
 src = "1.png"
 [resources.params]
-caption = "Walking in a Room, drawing"
+caption = "Reclining Figure"
+location = "drawing"
 highlight = "true"
 alt = "a loose, cursive, line drawing of a person without a face, in a reclined position"
 +++
