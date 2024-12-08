@@ -2,7 +2,7 @@
 intro = "ADAM TAYLOR O'REILLY (b. 1985) Edmonton, Canada. Lives and works, Lenapehoking (Brooklyn, New York)."
 
 email_text = "Email"
-email_link = "adam@adamtoreilly.info"
+email_link = "adamtaylororeilly@gmail.com"
 
 instagram_text = "Instagram"
 instagram_link = "https://www.instagram.com/adamtoreilly"
@@ -11,8 +11,8 @@ github_text = "Github"
 github_link = "https://github.com/adamoadamo"
 +++
 
-I am currently the Director of Graphic Design at the Brooklyn Museum, as well as working on independant programming and creative consulting projects. 
+He currently serves as the Director of Graphic Design and Brand Creative at the Brooklyn Museum and works on independent programming and consulting projects. Feel free to [reach out](mailto:adamtaylororeilly@gmail.com).
 
-My writing and interviews have appeared in Aperture Magazine, Art Papers, ArtinAmerica, Bad Day Magazine, Canadian Art, Cura Magazine, FlashArt, Interview Magazine, Kaleidoscope, and Muse Magazine. etc. I have been invited to talk/present at tge Amsterdam Art Book Fair, Jan Van Eyck Academie, Marres (Maastricht), Mondriaan Fonds Visitor Programme, MoMA Library, New York Art Book Fair, Nova Scotia College of Arts & Design, and Werkplaats Typografie, etc.  
+His writing and interviews have appeared in publications including Aperture Magazine, Art Papers, Art in America, Bad Day Magazine, Canadian Art, Cura Magazine, Flash Art, Interview Magazine, Kaleidoscope, and Muse Magazine, among others. He has been invited to speak and present at the Amsterdam Art Book Fair, Jan Van Eyck Academie, Marres (Maastricht), Mondriaan Fonds Visitor Programme, MoMA Library, New York Art Book Fair, Nova Scotia College of Art & Design, and Werkplaats Typografie, among other venues.
 
 &#8277; This site serves as a shelf to arrange a selection of projects, rather than a comprehensive index. You can use the left and right arrow keys to navigate.

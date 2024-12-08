@@ -37,3 +37,13 @@ body, html {
   color: var(--background-color);
 }
 
+/* Class to fade images to 5% opacity */
+.low-opacity {
+  opacity: 0;  /* Fade images to 5% opacity */
+  transition: opacity 2.5s ease;  /* Smooth transition to low opacity */
+}
+
+/* Ensure smooth transition when resetting to full opacity */
+img {
+  transition: opacity 5s ease;  /* Smooth transition for opacity changes */
+}

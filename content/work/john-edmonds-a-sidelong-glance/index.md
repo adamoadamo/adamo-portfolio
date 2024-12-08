@@ -19,11 +19,5 @@ src = "1.png"
 [resources.params]
 caption = "John Edmonds: A Sidelong Glance, Brooklyn Museum"
 alt = ""
-
-[[resources]]
-src = "2.png"
-[resources.params]
-caption = "John Edmonds: A Sidelong Glance, Brooklyn Museum"
-alt = ""
 +++
 

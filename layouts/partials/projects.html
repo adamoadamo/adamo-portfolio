@@ -32,7 +32,6 @@
                 </div>
                 <div class="image-caption">
                   <div class="image-content">
-                      <div class="image-number"></div>
                       <div class="image-fig">
                         {{ with $element.Params.caption }}
                         <em>{{ . }}</em>{{ if $element.Params.location }},{{ end }}
@@ -78,7 +77,6 @@
                 </div>
                 <div class="image-caption">
                   <div class="image-content">
-                      <div class="image-number"></div>
                       <div class="image-fig">
                         {{ with $element.Params.caption }}<em>{{ . }}</em>,{{ else }}{{ end }}
                         {{ with $element.Params.location }}{{ . }}{{ else }}{{ end }}
