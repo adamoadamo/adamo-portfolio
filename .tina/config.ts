@@ -21,53 +21,51 @@ export default defineConfig({
         label: "Work",
         path: "content/work",
         format: "md",
-        ui: {
-          filename: {
-            readonly: true
+        templates: [
+          {
+            name: "project",
+            label: "Project",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Title",
+                required: true,
+              },
+              {
+                type: "datetime",
+                name: "date",
+                label: "Date",
+              },
+              {
+                type: "image",
+                name: "image",
+                label: "Featured Image",
+              },
+              {
+                type: "string",
+                name: "caption",
+                label: "Caption",
+              },
+              {
+                type: "rich-text",
+                name: "description",
+                label: "Description",
+              },
+            ],
           }
-        },
-        fields: [
-          {
-            type: "string",
-            name: "title",
-            label: "Title",
-            required: true,
-          },
-          {
-            type: "datetime",
-            name: "date",
-            label: "Date",
-          },
-          {
-            type: "image",
-            name: "image",
-            label: "Featured Image",
-          },
-          {
-            type: "string",
-            name: "caption",
-            label: "Caption",
-          },
-          {
-            type: "rich-text",
-            name: "description",
-            label: "Description",
-          },
-        ],
+        ]
       },
       {
-        name: "content",
-        label: "Site Content",
+        name: "pages",
+        label: "Pages",
         path: "content",
         format: "md",
-        match: {
-          include: "_index",
-        },
         fields: [
           {
             type: "rich-text",
             name: "body",
-            label: "Bio",
+            label: "Content",
             isBody: true,
           },
         ],
