@@ -1,13 +1,8 @@
-+++
-email_text = "Email"
-email_link = "adamtaylororeilly@gmail.com"
-
-instagram_text = "Instagram"
-instagram_link = "https://www.instagram.com/adamtoreilly"
-
-github_text = "Github"
-github_link = "https://github.com/adamoadamo"
-+++
+---
+email_link: adamtaylororeilly@gmail.com
+instagram_link: 'https://www.instagram.com/adamtoreilly'
+github_link: 'https://github.com/adamoadamo'
+---
 
 ADAM TAYLOR O'REILLY (b. 1985) Edmonton, Canada. Lives and works, Lenapehoking (Brooklyn, New York). He currently serves as the Director of Graphic Design and Brand Creative at the Brooklyn Museum and works on independent programming and consulting projects. Feel free to [reach out](mailto:adamtaylororeilly@gmail.com).
 

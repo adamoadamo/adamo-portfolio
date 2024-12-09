@@ -33,6 +33,44 @@ export default defineConfig({
           },
           {
             type: "object",
+            label: "Resources",
+            name: "resources",
+            list: true,
+            ui: {
+              itemProps: (item) => {
+                return { label: item?.src || "New Image" }
+              },
+            },
+            fields: [
+              {
+                type: "string",
+                label: "Image Path",
+                name: "src",
+                description: "Path to the image file",
+              },
+              {
+                type: "object",
+                label: "Parameters",
+                name: "params",
+                fields: [
+                  {
+                    type: "string",
+                    label: "Caption",
+                    name: "caption",
+                    description: "Add a caption for this image",
+                  },
+                  {
+                    type: "string",
+                    label: "Alt Text",
+                    name: "alt",
+                    description: "Describe the image for accessibility",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: "object",
             label: "Project Details",
             name: "data",
             list: true,
@@ -49,36 +87,6 @@ export default defineConfig({
               },
             ],
           },
-          {
-            type: "object",
-            label: "Resources",
-            name: "resources",
-            list: true,
-            fields: [
-              {
-                type: "string",
-                label: "Source",
-                name: "src",
-              },
-              {
-                type: "object",
-                label: "Parameters",
-                name: "params",
-                fields: [
-                  {
-                    type: "string",
-                    label: "Caption",
-                    name: "caption",
-                  },
-                  {
-                    type: "string",
-                    label: "Alt Text",
-                    name: "alt",
-                  },
-                ],
-              },
-            ],
-          },
         ],
       },
       {
@@ -92,34 +100,39 @@ export default defineConfig({
         fields: [
           {
             type: "string",
-            label: "Email Text",
-            name: "email_text",
-          },
-          {
-            type: "string",
-            label: "Email Link",
+            label: "Email",
             name: "email_link",
+            description: "Your email address",
           },
           {
             type: "string",
-            label: "Instagram Text",
-            name: "instagram_text",
-          },
-          {
-            type: "string",
-            label: "Instagram Link",
+            label: "Instagram",
             name: "instagram_link",
+            description: "Your Instagram profile URL",
           },
           {
             type: "string",
-            label: "Github Text",
-            name: "github_text",
-          },
-          {
-            type: "string",
-            label: "Github Link",
+            label: "Github",
             name: "github_link",
+            description: "Your Github profile URL",
           },
+          {
+            type: "rich-text",
+            label: "Content",
+            name: "body",
+            isBody: true,
+          },
+        ],
+      },
+      {
+        format: "md",
+        label: "Footer",
+        name: "footer",
+        path: "content",
+        match: {
+          include: "footer",
+        },
+        fields: [
           {
             type: "rich-text",
             label: "Content",
