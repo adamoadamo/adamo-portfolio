@@ -29,6 +29,13 @@
       <description>&lt;p&gt;Archizines + Arch-Art! Books was a double exhibition consisting of Archizines curated by Elias Redstone  and Arch-Art! Books, curated by Adam O&amp;rsquo;Reilly for Printed Matter, Inc. &lt;a href=&#34;https://storefrontnews.org/programming/archizines-arch-art-books/&#34;&gt;Read more&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Aulac, Typeface</title>
+      <link>http://localhost:1313/projects/aulac-r/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/aulac-r/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>B, Aulac</title>
       <link>http://localhost:1313/projects/b/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -40,7 +47,14 @@
       <link>http://localhost:1313/projects/brooklyn-museum-hat/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/brooklyn-museum-hat/</guid>
-      <description>&lt;p&gt;This hat signaled a move away from the Brooklyn Museum&amp;rsquo;s 2004 identity by 2x4, and the beginning multi-year exploration and cultivation of the Museum&amp;rsquo;s in-house design department.&lt;/p&gt;</description>
+      <description></description>
+    </item>
+    <item>
+      <title>Beausejour, Typeface</title>
+      <link>http://localhost:1313/projects/beausejour-t/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/beausejour-t/</guid>
+      <description></description>
     </item>
     <item>
       <title>Cathy Busby, Sorry</title>
@@ -176,13 +190,6 @@
       <description>&lt;p&gt;A 12-hour clock design where the hour hand is in the traditional clockface position, the minute hand is chained to the end of the hour hand, and the second hand chained to the end of the minute hand. Both the minute and second hands keep relative 12 hour clock positioning. Written in Swift as a macOS (12+) screensaver.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>R - Typeface</title>
-      <link>http://localhost:1313/projects/r/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/r/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Reclining Figure</title>
       <link>http://localhost:1313/projects/drawing-recline/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -204,17 +211,17 @@
       <description></description>
     </item>
     <item>
-      <title>T — Beausejour, Typeface</title>
-      <link>http://localhost:1313/projects/t/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/t/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Tamara Henderson, Tapped out and spirling in stride, Grazer Kunstverein</title>
       <link>http://localhost:1313/projects/tamara-henderson/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/tamara-henderson/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test</title>
+      <link>http://localhost:1313/projects/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/test/</guid>
       <description></description>
     </item>
     <item>
