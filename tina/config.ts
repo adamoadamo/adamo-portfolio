@@ -8,6 +8,12 @@ export default defineConfig({
     outputFolder: "admin",
     publicFolder: "static",
   },
+  media: {
+    tina: {
+      publicFolder: "static",
+      mediaRoot: "images"
+    }
+  },
   schema: {
     collections: [
       {
@@ -19,19 +25,15 @@ export default defineConfig({
           include: "**/index",
         },
         ui: {
-          router: ({ document }) => `/work/${document._sys.filename}`,
           filename: {
             readonly: true,
-            slugify: values => {
+            slugify: (values) => {
               return `${values?.title?.toLowerCase().replace(/ /g, '-')}`
             },
           },
-          beforeSubmit: async ({ values }) => {
-            return {
-              ...values,
-              thumbnail: values?.resources?.[0]?.src || "",
-            }
-          },
+          router: ({ document }) => {
+            return `/work/${document._sys.filename}`
+          }
         },
         fields: [
           {
@@ -48,45 +50,28 @@ export default defineConfig({
             options: ["Design", "Development", "Research"]
           },
           {
-            type: "image",
-            label: "Thumbnail",
-            name: "thumbnail",
-            ui: {
-              parse: (media) => `/work/${media.filename}`,
-            }
-          },
-          {
             type: "object",
             label: "Project Images",
             name: "resources",
             list: true,
             ui: {
-              itemProps: (item) => ({
-                label: item?.params?.caption || item?.src || "Image",
-                preview: item?.src ? (
-                  <img
-                    src={item.src}
-                    alt={item?.params?.alt || ""}
-                    style={{
-                      maxWidth: "100px",
-                      maxHeight: "100px",
-                      objectFit: "cover",
-                      borderRadius: "4px",
-                    }}
-                  />
-                ) : null,
-              }),
               visualSelector: true,
-              layout: "grid",
+              itemProps: (item) => ({
+                label: item?.params?.caption || "Image",
+              }),
+              defaultItem: {
+                src: "",
+                params: {
+                  caption: "",
+                  alt: ""
+                }
+              }
             },
             fields: [
               {
                 type: "image",
                 label: "Image",
-                name: "src",
-                ui: {
-                  parse: (media) => `/work/${media.filename}`,
-                }
+                name: "src"
               },
               {
                 type: "object",
@@ -105,10 +90,10 @@ export default defineConfig({
                     type: "string",
                     label: "Alt Text",
                     name: "alt"
-                  },
-                ],
-              },
-            ],
+                  }
+                ]
+              }
+            ]
           },
           {
             type: "object",
@@ -117,8 +102,8 @@ export default defineConfig({
             list: true,
             ui: {
               itemProps: (item) => ({
-                label: item?.title || "Detail",
-              }),
+                label: item?.title || "Detail"
+              })
             },
             fields: [
               {
@@ -133,10 +118,10 @@ export default defineConfig({
                 ui: {
                   component: "textarea"
                 }
-              },
-            ],
-          },
-        ],
+              }
+            ]
+          }
+        ]
       },
       {
         format: "md",
@@ -167,8 +152,8 @@ export default defineConfig({
             label: "Content",
             name: "body",
             isBody: true,
-          },
-        ],
+          }
+        ]
       },
       {
         format: "md",
@@ -184,9 +169,9 @@ export default defineConfig({
             label: "Content",
             name: "body",
             isBody: true,
-          },
-        ],
-      },
-    ],
-  },
+          }
+        ]
+      }
+    ]
+  }
 });

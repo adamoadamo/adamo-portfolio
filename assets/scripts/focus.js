@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+    document.body.classList.add('js-enabled');
+    
     console.log("DOM Content Loaded");
   
     const sortAlphaBtn = document.getElementById('sortAlpha');
@@ -172,12 +174,6 @@ document.addEventListener('keydown', function (event) {
         sortedItems.forEach((item, index) => {
             assortment.appendChild(item);
 
-            let overlayCaption = item.querySelector('.overlay-caption');
-            if (overlayCaption) {
-                const captionText = overlayCaption.textContent.replace(/^\d+\.\s*/, '');
-                overlayCaption.textContent = `${index + 1}`;
-            }
-
             let imageNumberSpan = item.querySelector('.image-number');
             if (imageNumberSpan) {
                 imageNumberSpan.textContent = `Fig. ${index + 1}`;
@@ -218,5 +214,38 @@ document.addEventListener('keydown', function (event) {
     };
     
     setTimeout(loadLargeImages, 50);
+
+    // Typing animation for images
+    function initTypewriterEffect() {
+        const cursor = document.createElement('div');
+        cursor.className = 'typing-cursor';
+        document.body.appendChild(cursor);
+
+        const images = document.querySelectorAll('.image-item');
+        let delay = 0;
+        
+        images.forEach((image, index) => {
+            setTimeout(() => {
+                const rect = image.getBoundingClientRect();
+                cursor.style.top = `${rect.top + window.scrollY}px`;
+                cursor.style.left = `${rect.left}px`;
+                
+                setTimeout(() => {
+                    image.classList.add('typed');
+                }, 19);
+                
+                if (index === images.length - 1) {
+                    setTimeout(() => {
+                        cursor.remove();
+                    }, 47);
+                }
+            }, delay);
+            
+            delay += 28;
+        });
+    }
+
+    // Initialize typing effect
+    initTypewriterEffect();
 });
 

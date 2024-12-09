@@ -139,3 +139,44 @@ img {
   align-items:flex-start;
 }
 
+// Typing animation styles
+.js-enabled .image-item {
+    opacity: 0;
+    transition: opacity 0.047s ease-out;
+
+    &.typed {
+        opacity: 1;
+    }
+}
+
+.typing-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 20px;
+    background-color: var(--text-color);
+    animation: blink 1s infinite;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 100;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+// Year pill styling
+.year-pill {
+    display: inline-block;
+    background-color: var(--color);
+    color: var(--background-color);
+    padding: 0.1em 0.5em;
+    border-radius: 1em;
+    font-size: 0.75em;
+    line-height: 1.25;
+    position: relative;
+    top: -0.1em;
+}
+

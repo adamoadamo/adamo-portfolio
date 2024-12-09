@@ -50,12 +50,13 @@
 
   <!-- Scripts -->
   {{- $lazy := resources.Get "scripts/lazy.js" | js.Build | resources.Minify -}}
-{{- $focus := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
-{{- $header := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
-{{- $search := resources.Get "scripts/search.js" | js.Build | resources.Minify -}}
-{{- $hide := resources.Get "scripts/hide.js" | js.Build | resources.Minify -}}  <!-- Add hide.js -->
-{{- $jsBundle := slice $lazy $focus $header $search $hide | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" -}}  <!-- Add $hide to the bundle -->
-<script type="module" src="{{ $jsBundle.RelPermalink }}" crossorigin="anonymous"></script>
+  {{- $focus := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
+  {{- $header := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
+  {{- $search := resources.Get "scripts/search.js" | js.Build | resources.Minify -}}
+  {{- $hide := resources.Get "scripts/hide.js" | js.Build | resources.Minify -}}
+  {{- $scroll := resources.Get "scripts/scroll.js" | js.Build | resources.Minify -}}
+  {{- $jsBundle := slice $lazy $focus $header $search $hide $scroll | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" -}}
+  <script type="module" src="{{ $jsBundle.RelPermalink }}" crossorigin="anonymous"></script>
 
 
   <!-- External Video JS Pulls -->

@@ -33,7 +33,7 @@ function wrapMedia() {
             mediaClone.style.width = '100%';
             mediaClone.style.height = '100%';
             mediaClone.style.opacity = '0';
-            mediaClone.style.transition = 'opacity 0.5s ease-in-out';
+            mediaClone.style.transition = 'opacity 1s ease-in-out';
             mediaClone.style.pointerEvents = 'none';
             
             if (media.tagName.toLowerCase() === 'video') {
@@ -111,14 +111,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Wrap all media in containers
         wrapMedia();
 
-        // Start initial effect after delay
-        setTimeout(applyDuotone, 1000);
-
         // Listen for any mouse movement
         window.addEventListener('mousemove', function() {
             resetMedia();
             clearTimeout(mouseMoveTimeout);
-            mouseMoveTimeout = setTimeout(applyDuotone, 4000);
+            mouseMoveTimeout = setTimeout(applyDuotone, 6000);
         });
     }
 });

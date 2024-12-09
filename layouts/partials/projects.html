@@ -33,6 +33,7 @@
                 <div class="image-caption">
                   <div class="image-content">
                       <div class="image-fig">
+                        {{ if $year }}<span class="year-pill">{{ $year }}</span> {{ end }}
                         {{ with $element.Params.caption }}
                         <em>{{ . }}</em>{{ if $element.Params.location }},{{ end }}
                       {{ end }}
@@ -42,8 +43,7 @@
                       {{ $role := index $currentPage.Params.data 0 "description" }}
                       {{ $collaborators := index $currentPage.Params.data 1 "description" }}
                       {{ if $role }}({{ $role }}){{ end }}
-                      {{ if $collaborators }}w/ {{ $collaborators }}, {{ end }}{{ if $year }}{{ $year }}{{ end }}
-                                        
+                      {{ if $collaborators }}w/ {{ $collaborators }}{{ end }}
                       </div>
                   </div>  	
                   {{ if and (eq $index 0) $currentPage.Content }}<div class="project-description">{{ $currentPage.Content }}</div>{{ end }}
@@ -78,12 +78,13 @@
                 <div class="image-caption">
                   <div class="image-content">
                       <div class="image-fig">
+                        {{ if $year }}<span class="year-pill">{{ $year }}</span> {{ end }}
                         {{ with $element.Params.caption }}<em>{{ . }}</em>,{{ else }}{{ end }}
                         {{ with $element.Params.location }}{{ . }}{{ else }}{{ end }}
                         {{ $role := index $currentPage.Params.data 0 "description" }}
                         {{ $collaborators := index $currentPage.Params.data 1 "description" }}
                         {{ if $role }}({{ $role }}){{ end }}
-                        {{ if $collaborators }}w/ {{ $collaborators }}, {{ end }}{{ if $year }}{{ $year }}{{ end }}
+                        {{ if $collaborators }}w/ {{ $collaborators }}{{ end }}
                       </div>
                   </div>  	
                   {{ if and (eq $index 0) $currentPage.Content }}<div class="project-description">{{ $currentPage.Content }}</div>{{ end }}
