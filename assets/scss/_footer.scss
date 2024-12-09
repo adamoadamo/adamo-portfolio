@@ -1,17 +1,16 @@
 .footer {
-    width: 100%; 
+    width: 75%;
+    max-width: 75%;
     padding-top: calc(var(--space-unit) * 2);
-  }
-  
-  @media(min-width: 600px) { 
-    .footer { 
-      width: 75%; 
+    
+    @media screen and (min-width: 1400px) {
+      width: 50%;
+      max-width: 50%;
     }
-  }
-  
-  @media(min-width: 900px) { 
-    .footer { 
-      width: 50%; 
+    
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      max-width: 100%;
     }
   }
 
