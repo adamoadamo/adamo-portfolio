@@ -1,0 +1,17 @@
+(()=>{document.addEventListener("DOMContentLoaded",e=>{console.log("DOMContentLoaded event triggered");const t=document.querySelector(".toggle-bio"),n=document.querySelector(".bio-expand"),s=document.querySelector(".arrow");console.log("toggleBio:",t),console.log("bioExpand:",n),console.log("arrow:",s),t&&n&&s&&t.addEventListener("click",e=>{console.log("toggleBio clicked"),e.preventDefault(),n.classList.toggle("hidden"),n.classList.contains("hidden")?t.textContent="Show more ↓":t.textContent="Show less ↑"})})})(),(()=>{function e(){const s=document.getElementById("search-input"),o=document.getElementById("clear-search-btn");if(!s||!o)return;const e=s.value;o.classList.toggle("hidden",!e);const i=document.querySelectorAll("#assortment .flex-item");if(e.trim()===""){i.forEach(e=>{e.style.display="block"});return}const a=t.search(e),n=new Set;a.forEach(e=>{e.item.images.forEach(e=>{n.add(e.url)}),e.item.videos.forEach(e=>{n.add(e.url)})}),i.forEach(e=>{const t=e.getAttribute("data-url");n.has(t)?e.style.display="block":e.style.display="none"})}var t;fetch("/index.json").then(e=>e.json()).then(e=>{t=new Fuse(e,{keys:["title","description","year","role","collaborators","images.caption","videos.caption","tags","location","alt"],threshold:.1})}),document.addEventListener("DOMContentLoaded",function(){const t=document.getElementById("search-input"),n=document.getElementById("clear-search-btn");t&&t.addEventListener("input",e),n&&n.addEventListener("click",()=>{t&&(t.value="",e())})})})(),(()=>{var e;function n(){return"ontouchstart"in window||navigator.maxTouchPoints>0}function t(){return{r:Math.random(),g:Math.random(),b:Math.random()}}function s(){const o="duotone-filter-"+Date.now(),e=t(),n=t(),i=document.querySelectorAll("svg");i.forEach(e=>e.remove());const s=document.createElementNS("http://www.w3.org/2000/svg","svg");s.style.display="none",s.innerHTML=`
+        <defs>
+            <filter id="${o}">
+                <feColorMatrix type="matrix"
+                    values="0.333 0.333 0.333 0 0
+                            0.333 0.333 0.333 0 0
+                            0.333 0.333 0.333 0 0
+                            0 0 0 1 0" />
+                
+                <feComponentTransfer color-interpolation-filters="sRGB">
+                    <feFuncR type="table" tableValues="${e.r} ${n.r}"/>
+                    <feFuncG type="table" tableValues="${e.g} ${n.g}"/>
+                    <feFuncB type="table" tableValues="${e.b} ${n.b}"/>
+                </feComponentTransfer>
+            </filter>
+        </defs>
+    `,document.body.appendChild(s),document.querySelectorAll("img, video").forEach(function(e){e.style.filter=`url(#${o})`,e.style.transition="filter 1s ease-in-out"})}function o(){document.querySelectorAll("img, video").forEach(function(e){e.style.filter="none"})}document.addEventListener("DOMContentLoaded",function(){n()||window.addEventListener("mousemove",function(){o(),clearTimeout(e),e=setTimeout(s,8e3)})})})(),(()=>{var n=!1,t=window.scrollY,e=window.scrollY,o=.075;window.addEventListener("wheel",o=>{o.preventDefault(),n||(e=window.scrollY),t=Math.max(0,Math.min(t+o.deltaY,document.documentElement.scrollHeight-window.innerHeight)),n||(n=!0,s())},{passive:!1});function s(){const i=t-e,a=Math.abs(i)<.1?i:i*o;if(e+=a,window.scrollTo(0,Math.round(e)),Math.abs(t-e)<.1){n=!1;return}requestAnimationFrame(s)}document.addEventListener("DOMContentLoaded",()=>{e=window.scrollY,t=window.scrollY})})()

@@ -1,5 +1,4 @@
 let mouseMoveTimeout;
-let currentFilter = null;
 
 // Function to detect if it's a touch device
 function is_touch_device() {
@@ -33,7 +32,7 @@ function wrapMedia() {
             mediaClone.style.width = '100%';
             mediaClone.style.height = '100%';
             mediaClone.style.opacity = '0';
-            mediaClone.style.transition = 'opacity 1s ease-in-out';
+            mediaClone.style.transition = 'opacity 2s ease-in-out';
             mediaClone.style.pointerEvents = 'none';
             
             if (media.tagName.toLowerCase() === 'video') {
@@ -63,9 +62,8 @@ function applyDuotone() {
     const highlight = randomRGBColor();
     
     // Remove any existing filters
-    if (currentFilter) {
-        currentFilter.remove();
-    }
+    const existingFilters = document.querySelectorAll('svg');
+    existingFilters.forEach(filter => filter.remove());
     
     // Create new SVG filter
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -88,9 +86,8 @@ function applyDuotone() {
         </defs>
     `;
     document.body.appendChild(svg);
-    currentFilter = svg;
     
-    // Apply filter to cloned media
+    // Apply filter to duotone media elements
     document.querySelectorAll('.duotone-media').forEach(function(media) {
         media.style.filter = `url(#${filterId})`;
         media.style.opacity = '1';
@@ -108,14 +105,14 @@ function resetMedia() {
 document.addEventListener('DOMContentLoaded', function() {
     // Apply behavior only for non-touch devices
     if (!is_touch_device()) {
-        // Wrap all media in containers
+        // Set up media wrappers
         wrapMedia();
 
         // Listen for any mouse movement
         window.addEventListener('mousemove', function() {
             resetMedia();
             clearTimeout(mouseMoveTimeout);
-            mouseMoveTimeout = setTimeout(applyDuotone, 6000);
+            mouseMoveTimeout = setTimeout(applyDuotone, 8000);
         });
     }
 });

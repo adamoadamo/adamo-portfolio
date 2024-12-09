@@ -3,19 +3,13 @@
   "version": "1.0.0",
   "description": "Adam O's Portfolio",
   "scripts": {
-    "dev": "tinacms dev -c \"hugo server -D\"",
-    "build": "tinacms build && hugo",
-    "clean": "rm -rf .tina/tina-lock.json node_modules/.tina",
-    "tina-init": "tinacms init",
-    "tina-dev": "npm run clean && npm run dev",
+    "dev": "concurrently \"hugo server -D\" \"./watch-and-rename.sh\"",
+    "build": "hugo",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "@tinacms/cli": "^1.5.39",
-    "tinacms": "^2.5.0"
   },
   "devDependencies": {
     "@types/node": "^20.17.9",
+    "concurrently": "^8.2.2",
     "typescript": "^5.3.3"
   },
   "main": "index.js",

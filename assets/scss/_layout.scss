@@ -3,7 +3,11 @@
   --border-width: clamp(1px, 0.1vw, 100vh);
   --color: rgb(7, 7, 7);
   --background-color: rgb(255, 255, 255);
-  font-size: clamp(16px, 1.1vw, 100vh);
+  font-size: clamp(16px, 0.8vw, 100vh);
+
+  @media screen and (max-width: 768px) {
+    font-size: clamp(13.6px, 0.68vw, 100vh); /* 16px * 0.85 = 13.6px, 0.8vw * 0.85 = 0.68vw */
+  }
 }
 
 body, html {

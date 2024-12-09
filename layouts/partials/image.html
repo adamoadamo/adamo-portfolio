@@ -1,0 +1,42 @@
+{{- $image := .image -}}
+{{- $alt := .alt -}}
+{{- $class := .class -}}
+{{- $sizes := default "(min-width: 35em) 1200px, 100vw" .sizes -}}
+
+{{- if $image -}}
+  {{- $tiny := ($image.Resize "50x") -}}
+  {{- $small := ($image.Resize "400x") -}}
+  {{- $medium := ($image.Resize "800x") -}}
+  {{- $large := ($image.Resize "1200x") -}}
+
+  {{- $tinyw := ($image.Resize "50x webp") -}}
+  {{- $smallw := ($image.Resize "400x webp") -}}
+  {{- $mediumw := ($image.Resize "800x webp") -}}
+  {{- $largew := ($image.Resize "1200x webp") -}}
+
+  {{- $lqip := $tiny.Permalink -}}
+  
+  <picture class="lazy-picture {{ with $class }}{{ . }}{{ end }}">
+    <source
+      type="image/webp"
+      data-srcset="{{ $tinyw.Permalink }} 50w, {{ $smallw.Permalink }} 400w, {{ $mediumw.Permalink }} 800w, {{ $largew.Permalink }} 1200w"
+      data-sizes="{{ $sizes }}"
+    >
+    <source
+      type="image/jpeg"
+      data-srcset="{{ $tiny.Permalink }} 50w, {{ $small.Permalink }} 400w, {{ $medium.Permalink }} 800w, {{ $large.Permalink }} 1200w"
+      data-sizes="{{ $sizes }}"
+    >
+    <img
+      src="{{ $lqip }}"
+      data-src="{{ $image.Permalink }}"
+      width="{{ $image.Width }}"
+      height="{{ $image.Height }}"
+      alt="{{ $alt }}"
+      class="lazy {{ with $class }}{{ . }}{{ end }}"
+      loading="lazy"
+      decoding="async"
+      style="background-size: cover; background-image: url('data:image/jpeg;base64,{{ $tiny.Content | base64Encode }}')"
+    >
+  </picture>
+{{- end -}} 

@@ -11,6 +11,9 @@
   <title>Adam Taylor O&#39;Reilly</title>
 
   
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  
   <meta property="og:title" content="Adam Taylor O&#39;Reilly">
   <meta property="og:description" content="Adam Taylor O&#39;Reilly is a designer and developer based in Brooklyn, NY.">
   <meta property="og:image" content="http://localhost:1313/icons/preview.png">
@@ -36,9 +39,9 @@
   
   
   
-  <link href="/scss/main.min.2f77c2b9539038f74988c23dd61c86096d4e1e395af6bd4385268d6796ae7f9980992fc29027910849e750c91246773f866720973738244045ffc5098645de2a.css" rel="stylesheet">
+  <link href="/scss/main.min.c8ee44dfcd56d5806244588cc4514f420bd645452027c965988b8f0d1a761caf37c665ecdc704d54470eed3aaae9a3dd0ec0bb651330d6281055ad5b4dffe2b0.css" rel="stylesheet">
 
-  <script type="module" src="/js/bundle.min.6465ada7bc0d0309e35aef3f6265e867033f01f9fd8c47f014b21ef83a28d0b46d7d4dabe723f3fc619e2d1e0a0afc75c4622b78e0a3f972ef98ee1c8e3d9e3e.js" crossorigin="anonymous"></script>
+  <script type="module" src="/js/bundle.min.0381d7d063a8362e0fcae526bec256994349131c66b5bb3175ebe0e23a17f047dcd6811ebc563e1f0b67e1ebeef094fe165bd286997e6d49600dc75cf92f5bb7.js" crossorigin="anonymous"></script>
 
 
   
@@ -84,7 +87,7 @@
 	<div class="flex">
 		<a href="/work-sophy-naess-weavers-discourse/">
 			&lt;&lt; Weavers Discourse, Sophy Naess</a> 
-				<a class="flex-right" href="/work-brooklyn-museum-icons/">Wayfinding Icons, Brooklyn Museum >></a>
+				<a class="flex-right" href="/work-drawing-standing-in-a-room/">Walking in a Room >></a>
 	</div>
 	
 
@@ -98,7 +101,7 @@
 		<footer><div class="flex-container border-top">
     <div class="footer">
     
-    Typeface (<em>Oror Mono Round</em>) and programming by Adam Taylor O&rsquo;Reilly. This website was built with <a href="https://gohugo.io/">Hugo</a>, hosted on <a href="https://github.com/adamoadamo/adamo-portfolio">Github Pages</a>.
+    Typeface (Oror Mono Round) and programming by Adam Taylor O&rsquo;Reilly. This website was built with <a href="https://gohugo.io/">Hugo</a>, <a href="https://decapcms.org/">Decap</a>, and is hosted on <a href="https://github.com/adamoadamo/adamo-portfolio">Github Pages</a>.
 <br>
 © 2024
  Adam Taylor O&rsquo;Reilly
@@ -108,5 +111,18 @@ Last updated on December 8, 2024
     </div>
 </div>    </footer>
 	</div>
+
+  
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>

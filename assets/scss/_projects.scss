@@ -53,12 +53,24 @@ img {
   max-width: clamp(600px, 45vw, 100vw);
   max-height: clamp(600px, 45vw, 100vh);
   object-fit: contain;
+  margin: 0 auto;
+  display: block;
 }
 
 @media screen and (max-width: 480px) {
+  .image-item.navigable-item.active {
+    width: 100%;
+    padding: 0 var(--space-unit);
+    box-sizing: border-box;
+  }
+
   .image-item.navigable-item.active img {
-    max-width: auto;
-    max-height: 300px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    margin: 0 auto;
   }
 }
 
@@ -67,7 +79,10 @@ img {
 }
 
 .navigable-item.active .project-content {
-  margin: 0; 
+  margin: 0;
+  width: 100%;
+  padding: 0 var(--space-unit);
+  box-sizing: border-box;
 }
 // ———————————————————————————— Videos
 .video-container {
@@ -83,8 +98,9 @@ img {
 }
 
 .video-container.active {
-  position: relative;
-  width: auto;
+  width: 100%;
+  padding: 0 var(--space-unit);
+  box-sizing: border-box;
   
   video {
     max-width: clamp(600px, 45vw, 100vw);
@@ -92,13 +108,25 @@ img {
     width: auto;
     height: auto;
     object-fit: contain;
+    margin: 0 auto;
+    display: block;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .video-container.active video {
-    max-width: auto;
-    max-height: 300px;
+  .video-container.active {
+    width: 100%;
+    padding: 0 var(--space-unit);
+    box-sizing: border-box;
+    
+    video {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      margin: 0 auto;
+    }
   }
 }
 

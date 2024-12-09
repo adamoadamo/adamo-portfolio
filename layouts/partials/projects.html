@@ -4,9 +4,9 @@
 <div id="assortment" class="flex-container">
   {{ $sortedPages := sort .Site.RegularPages "Title" "asc" }}
   {{ range $sortedPages }}
-    {{ if eq .Section "work" }}
+    {{ if eq .Section "projects" }}
       {{ $currentPage := . }}
-      {{ $year := index .Params.data 2 "description" }}
+      {{ $year := .Params.year }}
       
  <!-- Handling image resources -->
 
@@ -21,7 +21,7 @@
                 <div class="image-background">
                   <img src="{{ $smallImage.RelPermalink }}" 
                        data-large-src="{{ $largeImage.RelPermalink }}"
-                       alt="{{ with $element.Params.alt }}{{ . }}{{ else }}{{ $element.Title }}{{ end }}" 
+                       alt="{{ $currentPage.Title }}"
                        width="{{ $smallImage.Width }}" 
                        height="{{ $smallImage.Height }}" 
                        data-large-width="{{ $largeImage.Width }}" 
@@ -34,16 +34,12 @@
                   <div class="image-content">
                       <div class="image-fig">
                         {{ if $year }}<span class="year-pill">{{ $year }}</span> {{ end }}
-                        {{ with $element.Params.caption }}
-                        <em>{{ . }}</em>{{ if $element.Params.location }},{{ end }}
-                      {{ end }}
-                      {{ with $element.Params.location }}
-                        {{ . }}
-                      {{ end }}
-                      {{ $role := index $currentPage.Params.data 0 "description" }}
-                      {{ $collaborators := index $currentPage.Params.data 1 "description" }}
-                      {{ if $role }}({{ $role }}){{ end }}
-                      {{ if $collaborators }}w/ {{ $collaborators }}{{ end }}
+                        <em>{{ $currentPage.Title }}</em>
+                        {{ with $element.Params.location }}
+                          {{ . }}
+                        {{ end }}
+                        {{ with $currentPage.Params.role }}({{ . }}){{ end }}
+                        {{ with $currentPage.Params.collaborators }}w/ {{ . }}{{ end }}
                       </div>
                   </div>  	
                   {{ if and (eq $index 0) $currentPage.Content }}<div class="project-description">{{ $currentPage.Content }}</div>{{ end }}
@@ -79,12 +75,10 @@
                   <div class="image-content">
                       <div class="image-fig">
                         {{ if $year }}<span class="year-pill">{{ $year }}</span> {{ end }}
-                        {{ with $element.Params.caption }}<em>{{ . }}</em>,{{ else }}{{ end }}
-                        {{ with $element.Params.location }}{{ . }}{{ else }}{{ end }}
-                        {{ $role := index $currentPage.Params.data 0 "description" }}
-                        {{ $collaborators := index $currentPage.Params.data 1 "description" }}
-                        {{ if $role }}({{ $role }}){{ end }}
-                        {{ if $collaborators }}w/ {{ $collaborators }}{{ end }}
+                        <em>{{ $currentPage.Title }}</em>
+                        {{ with $element.Params.location }}{{ . }}{{ end }}
+                        {{ with $currentPage.Params.role }}({{ . }}){{ end }}
+                        {{ with $currentPage.Params.collaborators }}w/ {{ . }}{{ end }}
                       </div>
                   </div>  	
                   {{ if and (eq $index 0) $currentPage.Content }}<div class="project-description">{{ $currentPage.Content }}</div>{{ end }}

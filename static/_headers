@@ -1,0 +1,24 @@
+/*
+  Cache-Control: public, max-age=31536000
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: interest-cohort=()
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.js
+  Cache-Control: public, max-age=31536000
+  Content-Type: text/javascript; charset=utf-8
+
+/*.css
+  Cache-Control: public, max-age=31536000
+  Content-Type: text/css; charset=utf-8
+
+/images/*
+  Cache-Control: public, max-age=31536000
+
+/fonts/*
+  Cache-Control: public, max-age=31536000
+  Access-Control-Allow-Origin: * 

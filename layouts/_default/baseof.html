@@ -14,15 +14,11 @@
     {{- end -}}
   </title>
 
-  <!-- Open Graph Tags -->
-  <meta property="og:title" content="{{ block "og:title" . }}{{- .Site.Title -}}{{ end }}">
-  <meta property="og:description" content="{{ block "og:description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{ end }}">
-  <meta property="og:image" content="{{ block "og:image" . }}{{ (resources.Get "/icons/preview.png").Permalink }}{{ end }}">
-  <meta property="og:url" content="{{ .Site.BaseURL }}">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:site_name" content="{{ .Site.Title }}">
-  <meta property="og:updated_time" content="{{ .Lastmod }}">    
+  <!-- Preload Critical Resources -->
+  {{ partial "preload.html" . }}
+
+  <!-- Critical CSS -->
+  {{- partial "critical-css.html" . -}}
 
   <!-- Icons -->
   {{- $favicon := resources.Get "/icons/favicon.ico" -}}
@@ -36,41 +32,33 @@
   <link rel="canonical" href="{{ .Permalink }}" />
   <link rel="alternate" href="{{ .Permalink }}" hreflang="{{ .Site.LanguageCode }}" />
 
-  <!-- Preload Fonts -->
-  <link rel="preload" href="/fonts/oror/OrorMono-Round-Regular.woff" as="font" type="font/woff" crossorigin>
-  <link rel="preload" href="/fonts/oror/OrorMono-Round-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/oror/OrorMono-Round-Italic.woff" as="font" type="font/woff" crossorigin>
-  <link rel="preload" href="/fonts/oror/OrorMono-Round-Italic.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="{{ block "og:title" . }}{{- .Site.Title -}}{{ end }}">
+  <meta property="og:description" content="{{ block "og:description" . }}{{ htmlUnescape .Site.Params.Tagline | safeHTML }}{{ end }}">
+  <meta property="og:image" content="{{ block "og:image" . }}{{ (resources.Get "/icons/preview.png").Permalink }}{{ end }}">
+  <meta property="og:url" content="{{ .Site.BaseURL }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:updated_time" content="{{ .Lastmod }}">    
 
   <!-- Styles -->
   {{ $sass := resources.Get "scss/main.scss" }}
   {{ $options := (dict "enableSourceMap" (not hugo.IsProduction) "transpiler" "dartsass") }}
-  {{ $mainCss := $sass | resources.ToCSS $options | resources.Minify }}
-  <link href="{{($mainCss | resources.Fingerprint "sha512").RelPermalink}}" rel="stylesheet">
+  {{ $mainCss := $sass | resources.ToCSS $options | resources.Minify | resources.Fingerprint "sha512" }}
+  <link href="{{ $mainCss.RelPermalink }}" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="{{ $mainCss.RelPermalink }}" rel="stylesheet"></noscript>
 
-  <!-- Scripts -->
+  <!-- Critical Scripts -->
   {{- $lazy := resources.Get "scripts/lazy.js" | js.Build | resources.Minify -}}
   {{- $focus := resources.Get "scripts/focus.js" | js.Build | resources.Minify -}}
-  {{- $header := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
-  {{- $search := resources.Get "scripts/search.js" | js.Build | resources.Minify -}}
-  {{- $hide := resources.Get "scripts/hide.js" | js.Build | resources.Minify -}}
-  {{- $scroll := resources.Get "scripts/scroll.js" | js.Build | resources.Minify -}}
-  {{- $jsBundle := slice $lazy $focus $header $search $hide $scroll | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" -}}
-  <script type="module" src="{{ $jsBundle.RelPermalink }}" crossorigin="anonymous"></script>
-
-
-  <!-- External Video JS Pulls -->
-  <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet" />
-  <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
-
-  <!-- External Search Fuse JS Pull -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.basic.min.js"></script>
+  {{- $criticalJs := slice $lazy $focus | resources.Concat "js/critical.js" | resources.Minify | resources.Fingerprint "sha512" -}}
+  <script type="module" src="{{ $criticalJs.RelPermalink }}" async></script>
 
   <!-- Goat Counter -->
   {{- with .Site.Params.GoatCounter }}
   <script data-goatcounter="https://{{.}}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   {{end -}}
-
 </head>
 <body {{ block "bodyMeta" .}}{{end}} {{ if hugo.IsProduction }}data-production="true"{{ end }}>
 	<div class="container">
@@ -81,5 +69,32 @@
 			{{- partial "footer.html" . -}}
 		</footer>
 	</div>
+
+  <!-- Non-critical Scripts -->
+  {{- $header := resources.Get "scripts/header.js" | js.Build | resources.Minify -}}
+  {{- $search := resources.Get "scripts/search.js" | js.Build | resources.Minify -}}
+  {{- $hide := resources.Get "scripts/hide.js" | js.Build | resources.Minify -}}
+  {{- $scroll := resources.Get "scripts/scroll.js" | js.Build | resources.Minify -}}
+  {{- $jsBundle := slice $header $search $hide $scroll | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" -}}
+  <script type="module" src="{{ $jsBundle.RelPermalink }}" defer></script>
+
+  <!-- External Libraries -->
+  <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet" media="print" onload="this.media='all'" />
+  <script src="https://unpkg.com/video.js/dist/video.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.basic.min.js" defer></script>
+
+  <!-- Netlify Identity -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
