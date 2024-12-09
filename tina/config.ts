@@ -1,49 +1,129 @@
 import { defineConfig } from "tinacms";
 
-// Your hosting provider likely exposes this as an environment variable
-const branch =
-  process.env.GITHUB_BRANCH ||
-  process.env.VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD ||
-  "main";
-
 export default defineConfig({
-  branch,
-
-  // Get this from tina.io
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  // Get this from tina.io
-  token: process.env.TINA_TOKEN,
-
+  branch: "main",
+  clientId: "3be951b7-73ae-48af-90a9-eea8b0233bbb",
+  token: "642a871367fbe9501e6ba75a6c5aea98e05e24ec",
   build: {
     outputFolder: "admin",
     publicFolder: "static",
   },
-  media: {
-    tina: {
-      mediaRoot: "",
-      publicFolder: "static",
-    },
-  },
-  // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
     collections: [
       {
-        name: "post",
-        label: "Posts",
-        path: "content/posts",
+        format: "md",
+        label: "Work",
+        name: "work",
+        path: "content/work",
+        match: {
+          include: "**/index",
+        },
         fields: [
           {
             type: "string",
-            name: "title",
             label: "Title",
-            isTitle: true,
+            name: "title",
             required: true,
+            isTitle: true,
+          },
+          {
+            type: "string",
+            label: "Section",
+            name: "section",
+          },
+          {
+            type: "object",
+            label: "Project Details",
+            name: "data",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                label: "Title",
+                name: "title",
+              },
+              {
+                type: "string",
+                label: "Description",
+                name: "description",
+              },
+            ],
+          },
+          {
+            type: "object",
+            label: "Resources",
+            name: "resources",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                label: "Source",
+                name: "src",
+              },
+              {
+                type: "object",
+                label: "Parameters",
+                name: "params",
+                fields: [
+                  {
+                    type: "string",
+                    label: "Caption",
+                    name: "caption",
+                  },
+                  {
+                    type: "string",
+                    label: "Alt Text",
+                    name: "alt",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        format: "md",
+        label: "Pages",
+        name: "pages",
+        path: "content",
+        match: {
+          include: "_index",
+        },
+        fields: [
+          {
+            type: "string",
+            label: "Email Text",
+            name: "email_text",
+          },
+          {
+            type: "string",
+            label: "Email Link",
+            name: "email_link",
+          },
+          {
+            type: "string",
+            label: "Instagram Text",
+            name: "instagram_text",
+          },
+          {
+            type: "string",
+            label: "Instagram Link",
+            name: "instagram_link",
+          },
+          {
+            type: "string",
+            label: "Github Text",
+            name: "github_text",
+          },
+          {
+            type: "string",
+            label: "Github Link",
+            name: "github_link",
           },
           {
             type: "rich-text",
+            label: "Content",
             name: "body",
-            label: "Body",
             isBody: true,
           },
         ],
