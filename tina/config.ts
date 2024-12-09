@@ -18,6 +18,21 @@ export default defineConfig({
         match: {
           include: "**/index",
         },
+        ui: {
+          router: ({ document }) => `/work/${document._sys.filename}`,
+          filename: {
+            readonly: true,
+            slugify: values => {
+              return `${values?.title?.toLowerCase().replace(/ /g, '-')}`
+            },
+          },
+          beforeSubmit: async ({ values }) => {
+            return {
+              ...values,
+              thumbnail: values?.resources?.[0]?.src || "",
+            }
+          },
+        },
         fields: [
           {
             type: "string",
@@ -30,40 +45,66 @@ export default defineConfig({
             type: "string",
             label: "Section",
             name: "section",
+            options: ["Design", "Development", "Research"]
+          },
+          {
+            type: "image",
+            label: "Thumbnail",
+            name: "thumbnail",
+            ui: {
+              parse: (media) => `/work/${media.filename}`,
+            }
           },
           {
             type: "object",
-            label: "Resources",
+            label: "Project Images",
             name: "resources",
             list: true,
             ui: {
-              itemProps: (item) => {
-                return { label: item?.src || "New Image" }
-              },
+              itemProps: (item) => ({
+                label: item?.params?.caption || item?.src || "Image",
+                preview: item?.src ? (
+                  <img
+                    src={item.src}
+                    alt={item?.params?.alt || ""}
+                    style={{
+                      maxWidth: "100px",
+                      maxHeight: "100px",
+                      objectFit: "cover",
+                      borderRadius: "4px",
+                    }}
+                  />
+                ) : null,
+              }),
+              visualSelector: true,
+              layout: "grid",
             },
             fields: [
               {
-                type: "string",
-                label: "Image Path",
+                type: "image",
+                label: "Image",
                 name: "src",
-                description: "Path to the image file",
+                ui: {
+                  parse: (media) => `/work/${media.filename}`,
+                }
               },
               {
                 type: "object",
-                label: "Parameters",
+                label: "Image Details",
                 name: "params",
                 fields: [
                   {
                     type: "string",
                     label: "Caption",
                     name: "caption",
-                    description: "Add a caption for this image",
+                    ui: {
+                      component: "textarea"
+                    }
                   },
                   {
                     type: "string",
                     label: "Alt Text",
-                    name: "alt",
-                    description: "Describe the image for accessibility",
+                    name: "alt"
                   },
                 ],
               },
@@ -74,16 +115,24 @@ export default defineConfig({
             label: "Project Details",
             name: "data",
             list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.title || "Detail",
+              }),
+            },
             fields: [
               {
                 type: "string",
                 label: "Title",
-                name: "title",
+                name: "title"
               },
               {
                 type: "string",
                 label: "Description",
                 name: "description",
+                ui: {
+                  component: "textarea"
+                }
               },
             ],
           },
@@ -102,19 +151,16 @@ export default defineConfig({
             type: "string",
             label: "Email",
             name: "email_link",
-            description: "Your email address",
           },
           {
             type: "string",
             label: "Instagram",
             name: "instagram_link",
-            description: "Your Instagram profile URL",
           },
           {
             type: "string",
             label: "Github",
             name: "github_link",
-            description: "Your Github profile URL",
           },
           {
             type: "rich-text",
