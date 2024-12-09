@@ -5,14 +5,29 @@
   "scripts": {
     "dev": "tinacms dev -c \"hugo server -D\"",
     "build": "tinacms build && hugo",
+    "clean": "rm -rf .tina/tina-lock.json node_modules/.tina",
+    "tina-init": "tinacms init",
+    "tina-dev": "npm run clean && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@tinacms/cli": "^1.5.29",
-    "tinacms": "^1.5.20"
+    "@tinacms/cli": "^1.5.39",
+    "tinacms": "^1.5.28"
   },
   "devDependencies": {
-    "@types/node": "^22.10.1",
-    "typescript": "^5.0.0"
-  }
+    "@types/node": "^20.10.4",
+    "typescript": "^5.3.3"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamoadamo/adamo-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamoadamo/adamo-portfolio/issues"
+  },
+  "homepage": "https://github.com/adamoadamo/adamo-portfolio#readme"
 }
