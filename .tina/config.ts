@@ -14,6 +14,14 @@ export default defineConfig({
       publicFolder: "static",
     },
   },
+  search: {
+    tina: {
+      indexerToken: "642a871367fbe9501e6ba75a6c5aea98e05e24ec",
+      stopwordLanguages: ["eng"],
+    },
+  },
+  contentApiUrlOverride: "/api/tina/gql",
+  localContentPath: "./content",
   schema: {
     collections: [
       {
@@ -21,47 +29,126 @@ export default defineConfig({
         label: "Work",
         path: "content/work",
         format: "md",
-        templates: [
+        ui: {
+          filename: {
+            readonly: true,
+            slugify: values => {
+              return `${values?.title?.toLowerCase().replace(/ /g, '-')}`
+            },
+          }
+        },
+        defaultItem: () => {
+          return {
+            title: 'New Project',
+            section: 'work',
+            data: [],
+            resources: []
+          }
+        },
+        fields: [
           {
-            name: "project",
-            label: "Project",
+            type: "string",
+            name: "title",
+            label: "Title",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "section",
+            label: "Section",
+            required: true,
+          },
+          {
+            type: "object",
+            name: "data",
+            label: "Project Details",
+            list: true,
             fields: [
               {
                 type: "string",
                 name: "title",
-                label: "Title",
-                required: true,
-              },
-              {
-                type: "datetime",
-                name: "date",
-                label: "Date",
-              },
-              {
-                type: "image",
-                name: "image",
-                label: "Featured Image",
+                label: "Detail Title",
               },
               {
                 type: "string",
-                name: "caption",
-                label: "Caption",
-              },
-              {
-                type: "rich-text",
                 name: "description",
-                label: "Description",
+                label: "Detail Description",
               },
             ],
-          }
-        ]
+          },
+          {
+            type: "object",
+            name: "resources",
+            label: "Images",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "src",
+                label: "Image Source",
+              },
+              {
+                type: "object",
+                name: "params",
+                label: "Image Parameters",
+                fields: [
+                  {
+                    type: "string",
+                    name: "caption",
+                    label: "Caption",
+                  },
+                  {
+                    type: "string",
+                    name: "alt",
+                    label: "Alt Text",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
       {
         name: "pages",
         label: "Pages",
         path: "content",
         format: "md",
+        ui: {
+          filename: {
+            readonly: true
+          }
+        },
         fields: [
+          {
+            type: "string",
+            name: "email_text",
+            label: "Email Text",
+          },
+          {
+            type: "string",
+            name: "email_link",
+            label: "Email Link",
+          },
+          {
+            type: "string",
+            name: "instagram_text",
+            label: "Instagram Text",
+          },
+          {
+            type: "string",
+            name: "instagram_link",
+            label: "Instagram Link",
+          },
+          {
+            type: "string",
+            name: "github_text",
+            label: "Github Text",
+          },
+          {
+            type: "string",
+            name: "github_link",
+            label: "Github Link",
+          },
           {
             type: "rich-text",
             name: "body",
