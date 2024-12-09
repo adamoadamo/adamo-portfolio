@@ -3,20 +3,8 @@
 <div class="flex-container">
     <div class="bio">
         <div class="bio-content">
-            {{ with .Params.intro }} 
-                {{ . | safeHTML }}
-            {{ else }}
-                {{ .Content | safeHTML }}
-            {{ end }}
-        </div>
-        <div class="bio-expand"> 
             {{ .Content | safeHTML }}
         </div>
-        <!-- 
-        <div class="toggle-bio-container">
-            <a href="#" class="toggle-bio">Show more <span class="arrow">↓</span></a>
-        </div>
-        -->
     </div>
 </div>
 
@@ -25,12 +13,13 @@
 
 <div class="flex-container border-bottom">
     <div class="sort-container">
-        <button id="sortList" class="sort-button">List</button>
         <button id="sortAlpha" class="sort-button selected">Alphabetical</button>
         <button id="sortChrono" class="sort-button">Chronological</button>
     </div>
+    <!--
     <div class="search-container">
         <button id="clear-search-btn" aria-label="Clear search" class="hidden">×</button>
         <input type="text" id="search-input" placeholder="Search" />
     </div>
+    -->
 </div>

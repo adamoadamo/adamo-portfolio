@@ -27,18 +27,6 @@ caption = "Jimmy Desasna, Brooklyn Museum"
 alt = ""
 
 [[resources]]
-src = "3.jpg"
-[resources.params]
-caption = "Jimmy Desasna, Brooklyn Museum"
-alt = ""
-
-[[resources]]
-src = "4.jpg"
-[resources.params]
-caption = "Jimmy Desasna, Brooklyn Museum"
-alt = ""
-
-[[resources]]
 src = "5.jpg"
 [resources.params]
 caption = "Jimmy Desasna, Brooklyn Museum"

@@ -1,7 +1,9 @@
 :root {
-  --space-unit: 20px;
+  --space-unit: clamp(20px, 1.5vw, 100vh);
+  --border-width: clamp(1px, 0.1vw, 100vh);
   --color: rgb(7, 7, 7);
   --background-color: rgb(255, 255, 255);
+  font-size: clamp(16px, 1.1vw, 100vh);
 }
 
 body, html {
@@ -14,6 +16,21 @@ body, html {
 
 .container {
   padding: var(--space-unit);
+}
+
+.bio {
+  width: 75%;
+  max-width: 75%;
+  
+  @media screen and (min-width: 1400px) {
+    width: 50%;
+    max-width: 50%;
+  }
+  
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .flex-container {
@@ -35,15 +52,4 @@ body, html {
 ::-moz-selection {
   background-color: var(--color);
   color: var(--background-color);
-}
-
-/* Class to fade images to 5% opacity */
-.low-opacity {
-  opacity: 0;  /* Fade images to 5% opacity */
-  transition: opacity 2.5s ease;  /* Smooth transition to low opacity */
-}
-
-/* Ensure smooth transition when resetting to full opacity */
-img {
-  transition: opacity 5s ease;  /* Smooth transition for opacity changes */
 }

@@ -16,6 +16,6 @@
   }
 
   .border-top {
-    border-top: 1px solid var(--color);
+    border-top: var(--border-width) solid var(--color);
     margin-top: var(--space-unit);
   }

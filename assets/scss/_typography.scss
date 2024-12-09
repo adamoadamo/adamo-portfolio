@@ -1,5 +1,6 @@
 // ———————————————————————————— Typo Setup
-:root * {
+:root {
+  --font-size-base: clamp(1em, 1.1vw, 100vh);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: none;
@@ -10,7 +11,7 @@
 }
 
 $font-size-base: 1em;
-$line-height-base: 1.175em;
+$line-height-base: 1.2em;
 
 @font-face {
   font-family: 'oror-round';
@@ -34,6 +35,7 @@ $line-height-base: 1.175em;
   font-family: "oror-round";
   color: var(--color);
   letter-spacing: -0.02em;
+  font-size: var(--font-size-base);
 }
 
 em {
@@ -47,7 +49,6 @@ em {
 .bio-content, .bio-expand, .footer {
   @include font-style;
   text-align: left;
-  font-size: $font-size-base;
   line-height: $line-height-base;
 
   p:nth-of-type(n+2) {
@@ -68,7 +69,6 @@ em {
 .contact {
   @include font-style;
   text-align: left;
-  font-size: $font-size-base;
   line-height: $line-height-base;
   display: flex;
 
@@ -107,13 +107,11 @@ em {
 .toggle-bio {
   @include font-style;
   text-align: left;
-  font-size: $font-size-base * 1;
   line-height: $line-height-base;
 }
 
 .sort-total, .sort-button {
   @include font-style;
-  font-size: $font-size-base * 1;
 }
 
 .sort-button.selected {
@@ -123,14 +121,12 @@ em {
 #clear-search-btn {
   @include font-style;
   text-align: left;
-  font-size: $font-size-base * 1;
   line-height: $line-height-base;
 }
 
 #search-input {
   @include font-style;
   text-align: left;
-  font-size: $font-size-base * 1;
   line-height: $line-height-base;
   color: var(--color);
 }
@@ -143,14 +139,12 @@ em {
 .image-fig, .image-number, .overlay-caption {
   @include font-style;
   text-align: left;
-  font-size: $font-size-base * 1;
   line-height: $line-height-base;
 }
 
 .project-description {
   @include font-style;
   text-align: left;
-  font-size: $font-size-base * 1;
   line-height: $line-height-base;
 
   p:nth-of-type(2) {
@@ -193,7 +187,6 @@ a.download-link::after {
 .footer {
   @include font-style;
   text-align: left;
-  font-size: $font-size-base * 1;
   line-height: $line-height-base;
 
   p:nth-of-type(n+2) {
@@ -217,6 +210,5 @@ a.download-link::after {
   @include font-style;
   text-align: left;
   text-transform: uppercase;
-  font-size: $font-size-base * 1;
   line-height: $line-height-base;
 }

@@ -188,8 +188,9 @@ document.addEventListener('keydown', function (event) {
         registerClickToToggle();
     };
     
-    sortItems('alpha');
-    sortAlphaBtn.classList.add('selected');
+    sortItems('chrono');
+    sortChronoBtn.classList.add('selected');
+    sortAlphaBtn.classList.remove('selected');
     totalMdFiles.innerText = flexItems.length;
   
     sortAlphaBtn.addEventListener('click', () => {
@@ -217,35 +218,5 @@ document.addEventListener('keydown', function (event) {
     };
     
     setTimeout(loadLargeImages, 50);
-    
-
-
-// ——————–––––––––––––––––– Highlight Function
-
-flexItems.forEach(item => {
-    const media = item.querySelector('[data-highlight="true"]');
-    if (media) {
-        const navigableItem = media.closest('.navigable-item');
-        if (navigableItem) {
-            navigableItem.classList.add('active');
-            const imageCaption = navigableItem.querySelector('.image-caption');
-            if (imageCaption) {
-                imageCaption.style.display = "block";
-                imageCaption.style.opacity = "1";
-            }
-
-            if (media.tagName.toLowerCase() === 'img') {
-                updateImageToLarge(media);
-            }
-
-            if (media.tagName.toLowerCase() === 'video') {
-                const videoContainer = navigableItem.querySelector('.video-container');
-                if (videoContainer) {
-                    toggleVideoSize(videoContainer);
-                }
-            }
-        }
-    }
-});
 });
 

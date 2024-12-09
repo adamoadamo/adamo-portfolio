@@ -1,0 +1,44 @@
+baseURL: ""
+media:
+  tina:
+    publicFolder: "static"
+    mediaRoot: "uploads"
+
+collections:
+  - label: "Work"
+    name: "work"
+    path: "content/work"
+    ui: {
+      filename: {
+        readonly: true
+      }
+    }
+    fields:
+      - label: "Title"
+        name: "title"
+        type: "string"
+      - label: "Date"
+        name: "date"
+        type: "datetime"
+      - label: "Featured Image"
+        name: "image"
+        type: "image"
+      - label: "Caption"
+        name: "caption"
+        type: "string"
+      - label: "Description"
+        name: "description"
+        type: "rich-text"
+    format: "md"
+
+  - label: "Site Content"
+    name: "content"
+    path: "content"
+    match: {
+      include: "_index"
+    }
+    fields:
+      - label: "Bio"
+        name: "body"
+        type: "rich-text"
+        isBody: true 
