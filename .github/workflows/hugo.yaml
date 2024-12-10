@@ -65,7 +65,7 @@ jobs:
           echo "Checking admin directory contents:"
           ls -la public/admin/
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
