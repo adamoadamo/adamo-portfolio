@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -6,32 +6,6 @@
     <title>Content Manager</title>
   </head>
   <body>
-    <!-- Include the script that builds the page and powers Decap CMS -->
-    <!-- Updated for GitHub Pages deployment -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <script>
-      // Initialize Decap CMS
-      window.CMS.init();
-
-      // Add debugging
-      console.log('Admin page loaded');
-      console.log('CMS initialized');
-      
-      // Check if config loads
-      fetch('/admin/config.yml')
-        .then(response => {
-          console.log('Config response:', response.status);
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.text();
-        })
-        .then(text => {
-          console.log('Config loaded:', text.substring(0, 100) + '...');
-        })
-        .catch(error => {
-          console.error('Error loading config:', error);
-        });
-    </script>
   </body>
 </html>
