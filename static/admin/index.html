@@ -10,6 +10,7 @@
     </script>
   </head>
   <body>
+    <div id="nc-root"></div>
     <!-- Disable Cloudflare Rocket Loader for this script -->
     <script data-cfasync="false" src="https://unpkg.com/decap-cms@^3.1.3/dist/decap-cms.js"></script>
     <script>
@@ -17,18 +18,31 @@
       
       // Configure CMS
       const config = {
+        load_config_file: true,
         backend: {
           name: 'github',
           repo: 'adamoadamo/adamo-portfolio',
           branch: 'master',
           base_url: 'https://api.decapcms.org'
-        }
+        },
+        media_folder: "content/projects/{{dirname}}",
+        public_folder: ".",
+        site_url: "https://adamtoreilly.info",
+        display_url: "https://adamtoreilly.info",
+        publish_mode: "simple"
       };
 
       // Wait for CMS to be available
       function initCMS() {
         console.log('Initializing CMS');
         try {
+          // Make sure the root element exists
+          const root = document.getElementById('nc-root');
+          if (!root) {
+            console.error('Root element not found');
+            return;
+          }
+
           window.CMS.init({ config });
           console.log('CMS initialized successfully');
         } catch (error) {
@@ -36,18 +50,11 @@
         }
       }
 
-      if (window.CMS) {
-        console.log('CMS available immediately');
-        initCMS();
+      // Wait for DOM to be ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCMS);
       } else {
-        console.log('Waiting for CMS to be available');
-        document.addEventListener('DOMContentLoaded', function() {
-          if (window.CMS) {
-            initCMS();
-          } else {
-            console.error('CMS not available after DOMContentLoaded');
-          }
-        });
+        initCMS();
       }
     </script>
   </body>
