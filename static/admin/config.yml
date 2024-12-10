@@ -3,6 +3,7 @@ backend:
   repo: adamoadamo/adamo-portfolio
   branch: master
   base_url: https://api.decapcms.org
+  auth_endpoint: /authorize
 
 site_url: https://adamtoreilly.info
 display_url: https://adamtoreilly.info
@@ -11,6 +12,8 @@ publish_mode: simple
 
 media_folder: "content/projects/{{dirname}}"
 public_folder: "."
+
+local_backend: false
 
 collections:
   - name: "bio"
