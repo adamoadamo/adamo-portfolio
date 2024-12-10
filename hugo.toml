@@ -1,4 +1,4 @@
-baseURL = "http://adamtoreilly.info/"
+baseURL = "https://adamtoreilly.info/"
 languageCode = "en-us"
 title = "Adam Taylor O'Reilly"
 enableGitInfo = true

@@ -1,9 +1,9 @@
 backend:
   name: github
   repo: adamoadamo/adamo-portfolio
-  branch: main
-  base_url: https://adamtoreilly.info
-  auth_endpoint: oauth
+  branch: master
+  base_url: https://api.decapcms.org
+  auth_endpoint: auth
 
 # Remove local backend since we're going live
 # local_backend: true
