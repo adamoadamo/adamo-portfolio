@@ -2,7 +2,7 @@ backend:
   name: github
   repo: adamoadamo/adamo-portfolio
   branch: master
-  base_url: https://auth.decapcms.org
+  base_url: https://api.netlify.com
   auth_endpoint: auth
 
 site_url: https://adamtoreilly.info
