@@ -4,6 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
+    <!-- Add authentication endpoint configuration -->
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
   </head>
   <body>
     <!-- Disable Cloudflare Rocket Loader for this script -->
@@ -11,11 +15,21 @@
     <script>
       console.log('Admin page loaded');
       
+      // Configure CMS
+      const config = {
+        backend: {
+          name: 'github',
+          repo: 'adamoadamo/adamo-portfolio',
+          branch: 'master',
+          base_url: 'https://api.decapcms.org'
+        }
+      };
+
       // Wait for CMS to be available
       function initCMS() {
         console.log('Initializing CMS');
         try {
-          window.CMS.init();
+          window.CMS.init({ config });
           console.log('CMS initialized successfully');
         } catch (error) {
           console.error('Error initializing CMS:', error);
