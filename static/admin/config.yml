@@ -1,9 +1,11 @@
 backend:
-  name: proxy
-  proxy_url: http://localhost:8081/api/v1
+  name: github
+  repo: adamoadamo/adamo-portfolio
   branch: main
 
-local_backend: true
+# Remove local backend since we're going live
+# local_backend: true
+
 publish_mode: simple
 
 media_folder: "content/projects/{{dirname}}"
