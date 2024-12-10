@@ -1,4 +1,21 @@
+let fuse;
+
+// Wait for Fuse to be available
+function waitForFuse() {
+    return new Promise((resolve) => {
+        const check = () => {
+            if (window.Fuse) {
+                resolve(window.Fuse);
+            } else {
+                setTimeout(check, 100);
+            }
+        };
+        check();
+    });
+}
+
 function performSearch() {
+    if (!fuse) return; // Don't perform search if fuse isn't initialized
     const searchInput = document.getElementById('search-input');
     const clearButton = document.getElementById('clear-search-btn');
     
@@ -37,19 +54,25 @@ function performSearch() {
     });
 }
 
-let fuse;
-
-fetch('/index.json')
-  .then(response => response.json())
-  .then(data => {
-    fuse = new Fuse(data, {
-        keys: ['title', 'description', 'year', 'role', 'collaborators', 'images.caption', 'videos.caption', 'tags', 'location', 'alt'],
-        threshold: 0.1
-    });
-  });
+// Initialize search functionality
+async function initializeSearch() {
+    try {
+        await waitForFuse(); // Wait for Fuse to be available
+        const response = await fetch('/index.json');
+        const data = await response.json();
+        fuse = new Fuse(data, {
+            keys: ['title', 'description', 'year', 'role', 'collaborators', 'images.caption', 'videos.caption', 'tags', 'location', 'alt'],
+            threshold: 0.1
+        });
+    } catch (error) {
+        console.error('Error initializing search:', error);
+    }
+}
 
 // Add event listeners only if elements exist
 document.addEventListener('DOMContentLoaded', function() {
+    initializeSearch(); // Start initialization
+
     const searchInput = document.getElementById('search-input');
     const clearButton = document.getElementById('clear-search-btn');
 
