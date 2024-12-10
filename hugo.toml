@@ -24,14 +24,9 @@ work = "/:sections[last]-:filename/"
     isPlainText = true
     notAlternative = true
 
-  [outputFormats.YAML]
-    mediaType = "application/x-yaml"
-    baseName = "config"
-    isPlainText = true
-
 [outputs]
   home = ["HTML", "JSON"]
-  section = ["HTML", "YAML"]
+  section = ["HTML"]
 
 [mediaTypes]
   [mediaTypes."application/x-yaml"]

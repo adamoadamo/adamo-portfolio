@@ -8,7 +8,13 @@ backend:
 
 site_url: https://adamtoreilly.info
 display_url: https://adamtoreilly.info
-media_folder: "/content/projects/{{dirname}}"
+
+# Remove local backend since we're going live
+# local_backend: true
+
+publish_mode: simple
+
+media_folder: "content/projects/{{dirname}}"
 public_folder: "."
 
 collections:
@@ -44,6 +50,18 @@ collections:
     path: "{{title}}/index"
     summary: "{{title}}"
     sortable_fields: ['title', 'commit_date']
+    card: 
+      image: "{{resources.[0].src}}"
+      text: "{{title}}"
+      imageAlt: "{{resources.[0].alt}}"
+    view_filters:
+      - label: "Has Images"
+        field: resources
+        pattern: ".+"
+    view_groups:
+      - label: Year
+        field: year
+        pattern: '(\d{4})'
     fields:
       - {label: "Project Title", name: "title", widget: "string", required: false}
       - {label: "Section", name: "section", widget: "hidden", default: "projects"}
@@ -80,4 +98,9 @@ collections:
             widget: "string"
             required: true
             hint: "Describe the image/video for accessibility"
-      - {label: "Description", name: "body", widget: "markdown", required: false} 
+      - {label: "Description", name: "body", widget: "markdown", required: false}
+    meta:
+      path:
+        widget: string
+        label: 'Path'
+        index_file: 'index'
