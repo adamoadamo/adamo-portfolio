@@ -2,10 +2,9 @@ backend:
   name: github
   repo: adamoadamo/adamo-portfolio
   branch: master
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
-  site_id: ddb84c21-87cf-4153-b84f-e5aee4170d98
-  app_id: ddb84c21-87cf-4153-b84f-e5aee4170d98
+  api_root: https://api.netlify.com
+  cms_label_prefix: decap-cms/
+  site_domain: ddb84c21-87cf-4153-b84f-e5aee4170d98.netlify.app
 
 site_url: https://adamtoreilly.info
 display_url: https://adamtoreilly.info
