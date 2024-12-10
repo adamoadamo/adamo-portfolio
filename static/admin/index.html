@@ -6,6 +6,35 @@
     <title>Content Manager</title>
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@^3.1.3/dist/decap-cms.js"></script>
+    <!-- Disable Cloudflare Rocket Loader for this script -->
+    <script data-cfasync="false" src="https://unpkg.com/decap-cms@^3.1.3/dist/decap-cms.js"></script>
+    <script>
+      console.log('Admin page loaded');
+      
+      // Wait for CMS to be available
+      function initCMS() {
+        console.log('Initializing CMS');
+        try {
+          window.CMS.init();
+          console.log('CMS initialized successfully');
+        } catch (error) {
+          console.error('Error initializing CMS:', error);
+        }
+      }
+
+      if (window.CMS) {
+        console.log('CMS available immediately');
+        initCMS();
+      } else {
+        console.log('Waiting for CMS to be available');
+        document.addEventListener('DOMContentLoaded', function() {
+          if (window.CMS) {
+            initCMS();
+          } else {
+            console.error('CMS not available after DOMContentLoaded');
+          }
+        });
+      }
+    </script>
   </body>
 </html>
