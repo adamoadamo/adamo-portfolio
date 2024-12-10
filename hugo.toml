@@ -27,7 +27,3 @@ work = "/:sections[last]-:filename/"
 [outputs]
   home = ["HTML", "JSON"]
   section = ["HTML"]
-
-[mediaTypes]
-  [mediaTypes."application/x-yaml"]
-    suffixes = ["yml", "yaml"]
