@@ -3,6 +3,7 @@ backend:
   repo: adamoadamo/adamo-portfolio
   branch: master
   base_url: https://api.decapcms.org
+  site_id: adamtoreilly.info
 
 site_url: https://adamtoreilly.info
 display_url: https://adamtoreilly.info
