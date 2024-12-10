@@ -59,7 +59,11 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"          
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: List admin directory
+        run: |
+          echo "Checking admin directory contents:"
+          ls -la public/admin/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
