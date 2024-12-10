@@ -3,6 +3,7 @@ backend:
   repo: adamoadamo/adamo-portfolio
   branch: master
   base_url: https://decap-authentication.netlify.app
+  auth_endpoint: callback
   site_id: adamtoreilly.info
 
 site_url: https://adamtoreilly.info
