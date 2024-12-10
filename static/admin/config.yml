@@ -2,6 +2,7 @@ backend:
   name: github
   repo: adamoadamo/adamo-portfolio
   branch: master
+  base_url: https://api.netlify.com
   site_id: ddb84c21-87cf-4153-b84f-e5aee4170d98
 
 site_url: https://adamtoreilly.info
